@@ -61,13 +61,3 @@ Oxford Nanopore has a pretty complete offering of notebook tutorials for handlin
 ## **AI/ML Pipelines** <a name="AI"></a>
 AWS is moving all AI/ML workflows to Sagemaker, the Juptyer notebook platform we have used a few times already. AWS has a very general tutorial [here](https://aws.amazon.com/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/) on how to build out an AI pipeline on Sagememaker. You can also look at the breast cancer tutorial in the imaging section above for a more applied example. 
 You can also submit a training job to Sagemaker, and have your final model uplaoded to S3 using [PyTorch](https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/using_pytorch.html#train-a-model-with-pytorch), [Tensorflow](https://docs.aws.amazon.com/sagemaker/latest/dg/tf.html) or [Apache MXNet](https://docs.aws.amazon.com/sagemaker/latest/dg/mxnet.html).
-
-
-STRIDES Training
-Please visit the STRIDES Training page at cloud.nih.gov/training/ to view available cloud training opportunities
-
-STRIDES Training
-Please visit the STRIDES Training page at cloud.nih.gov/training/ to view available cloud training opportunitiesSTRIDES Initiative
-Please visit the NIH STRIDES website at cloud.nih.gov or contact the NIH STRIDES team at STRIDES@nih.gov for more information
-
-
