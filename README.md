@@ -1,4 +1,4 @@
-# AWSCloudLab
+# NIH Cloud Lab for AWS
 
 ***This repo is in active development. Expect frequent changes until April 28th!***
 
