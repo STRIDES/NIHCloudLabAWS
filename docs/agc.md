@@ -7,7 +7,7 @@ Because agc uses AWS Batch for computation, you can get away with spinning up a 
 
 Make sure you install the `Prerequisites` page. Install the AWS CLI if running locally, and if on EC2, you just need to install nodejs.
 
-Make sure you run `aws configure` and input your Short-term Access keys. You can access these following [these instructions](docs/STAKs.md)
+Make sure you run `aws configure` and input your Short-term Access keys. Intramural users can access keys following [these instructions](docs/STAKs_intramural.md)
 
 Now run the install instructions and add agc to the path with `export PATH=$HOME/bin:$PATH`
 
