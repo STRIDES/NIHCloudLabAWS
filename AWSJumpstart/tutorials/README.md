@@ -1,6 +1,6 @@
 # AWS Tutorial Resources
 
-_We have pulled together a variety of tutorials here from disparate sources. Some use EC2, or aws genomics CLI, and other use notebooks. Tutorials are organized by research method, but we try to designate what AWS services are used as well to help you navigate._
+_We have pulled together a variety of tutorials here from disparate sources. Some use EC2, or the aws genomics CLI, and other use notebooks. Tutorials are organized by research method, but we try to designate what AWS services are used as well to help you navigate._
 ---------------------------------
 ## Overview of Page Contents
 
