@@ -11,9 +11,9 @@
 + [Creating a Conda Environment](#CO)
 + [Serverless Functionality](#SER)
 + [Clusters](#CLU)
-+ [Bioinformatic Examples](#BIO)
 + [Billing and Benchmarking](#BB)
-
++ [Getting Support](#SUP)
++ [Additional Training](#TR)
 
 ## **Getting Started** <a name="GS"></a>
 All the tutorials you need to learn a lot of what is possible on AWS can be found in the AWS Getting Started [Tutorials Page](https://aws.amazon.com/getting-started/hands-on/?getting-started-all.sort-by=item.additionalFields.sortOrder&getting-started-all.sort-order=asc&awsf.getting-started-category=*all&awsf.getting-started-level=*all&awsf.getting-started-content-type=*all&awsm.page-getting-started-all=2), and we recommend you go there and explore some of the tutorials on offer. Nonetheless, it can be hard to know where to start if you are new to the cloud. To help you, we thought through some of the most common tasks you will encounter doing cloud-enabled research, and gathered tutorials and guides specific to those topics. We hope the following materials are helpful as you explore migrating your research to the cloud.
@@ -86,8 +86,12 @@ Serverless is kind of having it's moment. The idea is that you can run things, a
 ## **Clusters** <a name="CLU"></a>
 One great thing about the cloud is its ability to scale with demand. When you submit a job to a traditional cluster, you have to specify up front how many CPUs and Memory you want to give to your job, and you may over or under utilize these resources. With cloud resources like serverless and clusters though you can leverage a feature called autoscaling, where the compute resources will scale up or down with the demand. This is more efficient and keeps costs down when demand is low, but prevents latency when demand is high (think Black Friday shopping on a website). For most users of Cloud Lab, the best way to leverage scaling is to use AWS Batch, but in some cases, maybe for a whole lab group or large project, it may make sense to spin up a [Kubernetes cluster](https://aws.amazon.com/kubernetes/).
 
-## **Bioinformatic Examples** <a name="BIO"></a>
-There are some detailed [tutorials](https://training.nih-cfde.org/en/latest/Bioinformatic-Analyses/) on a few specific bioinformatic workflows that are specific to running on an AWS instance. Think about how these would translate to Sagemaker Notebooks as well. 
-
 ## **Billing and Benchmarking** <a name="BB"></a>
 Many Cloud Lab users are interested in understanding how to estimate the price of a large scale project using a reduced sample size. Generally, you should be able to benchmark with a few representative samples to get an idea of time and cost required for a larger scale project. In terms of cost, the best way to estimate costs is to use the AWS pricing calculator [here](https://aws.amazon.com/ec2/pricing/on-demand/) for an initial figure. Then, you can run some benchmarks and double check that everything is acting as you expect. For example, if you know that your analysis on your local cluster (Biowulf for example) takes 4 hours to run for a single sample with 12 CPUs, and that each sample needs about 30 GB of storage to run a workflow, then you can extrapolate out how much everything may cost using the calculator (e.g. ec2 + s3). 
+
+## **Getting Support** <a name="SUP"></a>
+
+## **Additional Training** <a name="TR"></a>
+
+
+
