@@ -92,6 +92,10 @@ Many Cloud Lab users are interested in understanding how to estimate the price o
 ## **Getting Support** <a name="SUP"></a>
 
 ## **Additional Training** <a name="TR"></a>
+STRIDES Training
+Please visit the STRIDES Training page at cloud.nih.gov/training/ to view available cloud training opportunities.
 
+STRIDES Initiative
+Please visit the NIH STRIDES website at cloud.nih.gov or contact the NIH STRIDES team at STRIDES@nih.gov for more information.
 
 
