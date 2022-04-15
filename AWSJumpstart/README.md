@@ -46,7 +46,7 @@ Also worth noting that when you run a cell, sometimes it doesn't produce any out
 A lot of great resources exist on how to spin up, connect to, and work on a VM on AWS. The first place to direct you is the tutorial created by [NIH Common Data Fund](https://training.nih-cfde.org/en/latest/Cloud-Platforms/Introduction_to_Amazon_Web_Services/introtoaws3/). This tutorial expects that you will launch an instance and work with it interactively.
 [Here](https://aws.amazon.com/getting-started/hands-on/launch-a-virtual-machine/) is an example developed by AWS that gives a good step by step on how to launch and access an instance using Amazon Lightsail.
 
-If you need help on launching a Windows VM, check out this [tutorial](https://aws.amazon.com/getting-started/hands-on/launch-windows-vm/)
+If you need help on launching a Windows VM, check out this [tutorial](https://aws.amazon.com/getting-started/hands-on/launch-windows-vm/).
 
 From a security perspective, we recommend that you use Center for Internet Security (CIS) Hardened VMs. These have security controls that meet the CIS benchmark for enhanced cloud security. To use these VMs, go to the AWS Marketplace > Discover Products. Then search for `CIS Hardened` and chose the OS that meets your needs. Click, `Continue to Subscribe` in the top right, and then `Continue to Configuration` and set your configuration parameters. Finally, click `Continue to Launch`. Here you decide how to launch the Marketplace solution; we recommend `Launch from EC2`, although you are welcome to experiment with the other options. Now click `Launch` and walk through the usual EC2 launch parameters. Click `Launch` and then you can view the status of your VM in the EC2 Instances page.
 
