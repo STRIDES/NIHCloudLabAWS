@@ -1,7 +1,7 @@
 # Jumpstart for NIH Cloud Lab on AWS
 ---------------------------------
 
-This repo is in active development. Expect frequent changes until April 28th!
+_This repo is in active development. Expect frequent changes until April 28th!_
 
 There are a LOT of resources available to learn more about AWS, which can be overwhelming. NIH Cloud Lab’s goal is to make cloud very easy and accessible for you, so that you can stop wasting time on administrative tasks and focus on your research.
 
