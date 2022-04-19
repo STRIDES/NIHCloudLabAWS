@@ -28,14 +28,14 @@ There are a lot of ways to run workflows on AWS. Here we list a few posibilities
 
 ## **Variant Calling** <a name="VC"></a>
 
-- This [AWS blog](https://aws.amazon.com/blogs/industries/running-gatk-workflows-on-aws-a-user-friendly-solution/) describes running the GATK pipeline on 1k genomes samples using Nextflow and AWS Batch. View it as an example of what is possible, but to actually repeat thier analysis, use [Nextflow on AWS](https://www.nextflow.io/docs/latest/awscloud.html), or the Genomics CLI, with the GATK pipeline from [Sequera Labs](https://github.com/seqeralabs/gatk4-germline-snps-indels).
+- This [AWS blog](https://aws.amazon.com/blogs/industries/running-gatk-workflows-on-aws-a-user-friendly-solution/) describes running the GATK pipeline on 1k genomes samples using Nextflow and AWS Batch. View it as an example of what is possible, but to actually repeat their analysis, use [Nextflow on AWS](https://www.nextflow.io/docs/latest/awscloud.html) with the GATK pipeline from [Sequera Labs](https://github.com/seqeralabs/gatk4-germline-snps-indels).
 - Another [AWS blog](https://aws.amazon.com/blogs/industries/using-structural-variant-analysis-on-aws-with-amazon-fsx-for-lustre-in-novel-therapeutic-discovery/) focuses on structural variant calling, and the team that wrote it ran [GATK-SV](https://github.com/broadinstitute/gatk-sv) using [Cromwell on AWS](https://docs.opendata.aws/genomics-workflows/orchestration/cromwell/cromwell-overview.html).
 - As mentioned above, NVIDIA Parabricks can be used to accelerate genomic workflows and especially variant calling. To give you an idea of the potential acceleration, you can expect that on a 32 CPU machine, a 30x human genome (HG002) will take about 30 hours to run GATK HaplotypeCaller. With Parabricks, you can run the same pipeline with 8 GPUs in ~40 minutes. To use Parabricks on AWS follow our instructions in the [docs](/docs/parabricks.md).
 
 ## **Genome Wide Association Studies** <a name="GWAS"></a>
 
 - This [NIH CFDE written tutorial](https://training.nih-cfde.org/en/latest/Bioinformatic-Analyses/GWAS-in-the-cloud
-) walks you through running a simple GWAS using EC2. Note that the CFDE page has a few other bioinformatics related tutorials like BLAST and Illumina read simulation. However, you could consider using one of the other approaches we listed above for something a bit more cloud native. 
+) walks you through running a simple GWAS using EC2. Note that the CFDE page has a few other bioinformatics related tutorials like BLAST and Illumina read simulation. We also converted this tutorial to a simplified [notebook version](Notebook) if you prefer that format. See the Sagemaker Notebook instructions on the AWSJumpstart page for help getting that running.
 - Terra has a [GWAS workspace](https://app.terra.bio/#workspaces/amp-t2d-op/2019_ASHG_Reproducible_GWAS-V2) that walks through a few tutorials and has links to public data for testing GWAS. If you have access to Terra or Biodata Catalyst you can port the notebooks into Sagemaker, if not, then skip this one.
 
 ## **Medical Imaging** <a name="IM"></a>
