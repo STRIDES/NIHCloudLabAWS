@@ -36,7 +36,7 @@ There are a lot of ways to run workflows on AWS. Here we list a few posibilities
 
 - This [NIH CFDE written tutorial](https://training.nih-cfde.org/en/latest/Bioinformatic-Analyses/GWAS-in-the-cloud
 ) walks you through running a simple GWAS using EC2. Note that the CFDE page has a few other bioinformatics related tutorials like BLAST and Illumina read simulation. However, you could consider using one of the other approaches we listed above for something a bit more cloud native. 
-- Terra has a [GWAS workspace](https://app.terra.bio/#workspaces/amp-t2d-op/2019_ASHG_Reproducible_GWAS-V2) that walks through a few tutorials and has links to public data for testing GWAS. Since it uses notebooks it should be easy enough to adapt to Sagemaker on AWS.
+- Terra has a [GWAS workspace](https://app.terra.bio/#workspaces/amp-t2d-op/2019_ASHG_Reproducible_GWAS-V2) that walks through a few tutorials and has links to public data for testing GWAS. If you have access to Terra or Biodata Catalyst you can port the notebooks into Sagemaker, if not, then skip this one.
 
 ## **Medical Imaging** <a name="IM"></a>
 - Most medical imaging analyses are done in notebooks, so we would recommend downloading the Jupyter Notebook from [here](BrainTumorSegmentation) and then importing or cloning it into Sagemaker. The tutorial walks through brain image segmentation.
