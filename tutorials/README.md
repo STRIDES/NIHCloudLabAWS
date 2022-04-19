@@ -13,7 +13,7 @@ _We have pulled together a variety of tutorials here from disparate sources. Som
 + [Long Read Sequencing Analysis](#Long)
 + [AI/ML Pipeline](#AI)
 
-## **Biomedical Workflows on AWS** <a name="VC"></a>
+## **Biomedical Workflows on AWS** <a name="Bio"></a>
 
 There are a lot of ways to run workflows on AWS. Here we list a few posibilities each of which may work for different research aims. As you walk through the various tutorials below, think about how you could possibly run that workflow more efficiently using a one of the other methods listed here.
 
