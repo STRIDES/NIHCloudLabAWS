@@ -24,7 +24,7 @@ There are a lot of ways to run workflows on AWS. Here we list a few posibilities
 - You will be able (soon) to leverage the serverless functionality of AWS using the [AWS Genomics CLI](https://aws.amazon.com/genomics-cli/), which automates genomic workflows similar to the above links, but with a simplified command line interface. This feature does not yet work within Cloud Lab due to some peculiarities of the environment, so check our [documentation](/docs/agc.md) for periodic updates on access. We are actively working on integrating this tool into Cloud Lab. In the mean time, stick with the solution [here](https://docs.opendata.aws/genomics-workflows/index.html).
 - Finally, one benefit of the cloud is access to GPUs for workflow acceleration. While a lot of focus on GPU implementation will focus on AI/ML workflows, NVIDIA has software called Parabricks that will accelerate genomic workflows for pretty low costs. See the full list of command line options [here](https://docs.nvidia.com/clara/parabricks/v3.5/text/software_overview.html) to see if your specific workflow is accelerated. Specific details on how to use the Parabricks within Cloud Lab are detailed in the next section (Variant Calling).
  
- **Be warned, GPU machines will burn through your budget very quickly if left running, so be sure to shut these machines down after use.**
+ **Be warned, GPU machines will burn through your budget very quickly if left running, so be sure to shut these machines down after use. You may also encounter quota limits to protect you from burning through your budget too quickly. If that happens, and you still want to use a certain instance type, follow these [instructions](/docs/service_quotas.md)**
 
 ## **Variant Calling** <a name="VC"></a>
 
