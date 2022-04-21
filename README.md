@@ -19,6 +19,7 @@ Use this repository to learn about how to use AWS by exploring the linked resour
 + [Clusters](#CLU)
 + [Billing and Benchmarking](#BB)
 + [Cost Optimization](#COST)
++ [Quota Limits](#QU)
 + [Getting Support](#SUP)
 + [Additional Training](#TR)
 
@@ -105,7 +106,6 @@ As you go through all the tutorials, you can keep costs down by deleting resourc
 
 ## **Getting Support** <a name="SUP"></a>
 You should be added to our Teams channel. Feel free to message others in the group for support and our team will also chime in and help. For NIH Intramural users, you can submit a support ticket to Service Now. For all other users, you can reach out to the STRIDES email with questions at STRIDES@nih.gov. Please be sure for tickets and email to have a clear Subject line, such as AWS help with Nextflow with BATCH. For issues the STRIDES team is unable to remediate, you can reach out to AWS support directly by clicking the question mark in the top right part of the console. 
-
 
 ## **Additional Training** <a name="TR"></a>
 This repo really only scratches the surface of what can be done in the cloud. If you are interested in additional cloud training opportunities please visit the [STRIDES Training page](cloud.nih.gov/training/). For more information on the STRIDES Initiative at the NIH, visit [our website](cloud.nih.gov) or contact the NIH STRIDES team at STRIDES@nih.gov for more information.
