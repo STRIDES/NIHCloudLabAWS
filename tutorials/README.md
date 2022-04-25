@@ -48,7 +48,7 @@ There are a lot of ways to run workflows on AWS. Here we list a few posibilities
 ## **RNAseq** <a name="RNA"></a>
 - You can run this [Nextflow tutorial](https://nf-co.re/rnaseq/usage) for RNAseq a variety of ways on AWS. Following the instructions outlined above, you could use EC2, the Amazon Genomics CLI (in the near future), AWS Batch, Sagemaker, or using functions + [Batch](https://www.nextflow.io/docs/latest/awscloud.html#:~:text=Nextflow%20requires%20to%20access%20the%20AWS%20command%20line,Docker%20image%20%28s%29%20used%20during%20the%20pipeline%20execution).
 - For a notebook version of a complete RNAseq pipeline from Fastq to Salmon quantification from [the University of Maine INBRE](https://github.com/MaineINBRE/rnaseq-myco-tutorial) use this [Notebook](rnaseq-myco-tutorial-main). 
-- There is also this NIH-written tutorial to use [kids first data on Cavatica](https://training.nih-cfde.org/en/latest/Bioinformatic-Analyses/RNAseq-on-Cavatica/rna_seq_1/). Note that you will need to pre-register for both kids first data and Cavatica access.
+- There is also this NIH-written tutorial to use [Kids First data on Cavatica](https://training.nih-cfde.org/en/latest/Bioinformatic-Analyses/RNAseq-on-Cavatica/rna_seq_1/). Note that you will need to pre-register for both kids first data and Cavatica access.
 
 ## **Single Cell RNAseq** <a name="sc"></a>
 - This [AWS blog](https://aws.amazon.com/blogs/publicsector/driving-innovation-single-cell-analysis-aws/) lays out a potential method that integrates a lot of the AWS native tools for running an scRNAseq pipeline. It is less of a tutorial, and more of a demo of what is possible.
