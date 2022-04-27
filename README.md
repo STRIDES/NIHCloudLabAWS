@@ -117,5 +117,5 @@ You should be added to our Teams channel. Feel free to message others in the gro
 If you have a question about Quota Limits, visit our [documentation](/docs/service_quotas.md) on how to request a limit increase. 
 
 ## **Additional Training** <a name="TR"></a>
-This repo really only scratches the surface of what can be done in the cloud. If you are interested in additional cloud training opportunities please visit the [STRIDES Training page](cloud.nih.gov/training/). For more information on the STRIDES Initiative at the NIH, visit [our website](cloud.nih.gov) or contact the NIH STRIDES team at STRIDES@nih.gov for more information.
+This repo really only scratches the surface of what can be done in the cloud. If you are interested in additional cloud training opportunities please visit the STRIDES Training page at cloud.nih.gov/training/. For more information on the STRIDES Initiative at the NIH, visit our website at cloud.nih.gov or contact the NIH STRIDES team at STRIDES@nih.gov for more information.
 
