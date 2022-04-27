@@ -1,4 +1,4 @@
-# NIH Cloud Lab AWS 101
+# AWS 101
 ---------------------------------
 
 There are a LOT of resources available to learn more about AWS, which can be overwhelming. NIH Cloud Lab’s goal is to make cloud very easy and accessible for you, so that you can stop wasting time on administrative tasks and focus on your research.
