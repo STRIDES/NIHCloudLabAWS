@@ -45,7 +45,7 @@ Now that our instance is `InService` (read running) we can click `Open JupyterLa
 git clone https://github.com/STRIDES/NIHCloudLabAWS.git
 ```
 
-Now you have the NIHCloudLabAWS directory available. Navigate to NIHCloudLabAWS > tutorials > notebooks > pangolin > pangolin_pipeline.ipynb.
+Now you have the NIHCloudLabAWS directory available. Navigate to NIHCloudLabAWS > tutorials > notebooks > GWAS > GWAS_coat_color.ipynb.
 Explore this notebook and see how data moves in and out of the Sagemaker environment. You can also manually add files, whether notebooks or data using the up arrow in the top left navigation menu. We can easily switch between different kernels in the top right, whether R or Python or Spark. 
 
 Here's a few tips if you are new to notebooks. The navigation menu in the top left controls the control panel that is the equivalent to your directory structure. The panel above the notebook itself controls the notebook options. Most of these are obvious, but a few you will use often are:
