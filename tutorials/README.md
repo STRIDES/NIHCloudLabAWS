@@ -5,7 +5,6 @@ _We have pulled together a variety of tutorials here from disparate sources. Som
 ## Overview of Page Contents
 
 + [Biomedical Workflows on AWS](#Bio)
-+ [Variant Calling](#VC)
 + [GWAS](#GWAS)
 + [Medical Imaging](#IM)
 + [RNAseq](#RNA)
