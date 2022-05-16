@@ -11,8 +11,8 @@ Use this repository to learn about how to use AWS by exploring the linked resour
 + [Overview](#OV)
 + [Command Line Tools](#CLI)
 + [Ingest and Store Data](#STO)
++ + [Virtual Machines in EC2](#VM)
 + [SageMaker Notebooks](#SAG)
-+ [Virtual Machines in EC2](#VM)
 + [Creating a Conda Environment](#CO)
 + [Clusters](#CLU)
 + [Billing and Benchmarking](#BB)
@@ -42,6 +42,18 @@ We also wanted to give you a few other tips that may be helpful when it comes to
 
 There is some strategy to managing storage costs as well. When you have spun up a VM, you have already paid for the storage on the VM since you are paying for the size of the disk, whereas S3 storage is charged based on how much data you put in your buckets. This is something to think about when copying results files back to S3 for example. If they are not files you will need later, then leave them on the VM's EBS and save your money on more important data to put in S3. If the data is important though, either create a disk image as a backup, or copy it to s3, or both! 
 
+## **Spin up a Virtual Machine and run a workflow** <a name="VM"></a>
+A lot of great resources exist on how to spin up, connect to, and work on a VM on AWS. The first place to direct you is the tutorial created by [NIH Common Data Fund](https://training.nih-cfde.org/en/latest/Cloud-Platforms/Introduction_to_Amazon_Web_Services/introtoaws3/). This tutorial expects that you will launch an instance and work with it interactively.
+[Here](https://aws.amazon.com/getting-started/hands-on/launch-a-virtual-machine/) is an example developed by AWS that gives a good step by step on how to launch and access an instance using Amazon Lightsail. Lightsail is a simplified version of the full AWS console, and may provide an interface you like better for using EC2. Note that resources you spin up in Lightsail will not be available in EC2. A lot of the [tutorials]((/tutorials/)) will have instructions on spinning up EC2 instances as well. 
+
+If you need help on launching a Windows VM, check out this [tutorial](https://aws.amazon.com/getting-started/hands-on/launch-windows-vm/).
+
+From a security perspective, we recommend that you use Center for Internet Security (CIS) Hardened VMs. These have security controls that meet the CIS benchmark for enhanced cloud security. To use these VMs, go to the AWS Marketplace > Discover Products. Then search for `CIS Hardened` and chose the OS that meets your needs. Click, `Continue to Subscribe` in the top right, and then `Continue to Configuration` and set your configuration parameters. Finally, click `Continue to Launch`. Here you decide how to launch the Marketplace solution; we recommend `Launch from EC2`, although you are welcome to experiment with the other options. Now click `Launch` and walk through the usual EC2 launch parameters. Click `Launch` and then you can view the status of your VM in the EC2 Instances page.
+
+If you need to scale your VM up or down (see Cost Optimization below), you can always change the machine type by clicking on the instance ID, then go to `Actions > Instance Settings > Change instance type`. The VM has to be stopped to change the instance type.  
+
+Finally, when you SSH into your instance, note that the username is typically `ec2-user` but on Ubuntu machines, the username is `ubuntu`. 
+
 ## **Launch a SageMaker Notebook** <a name="SAG"></a>
 Let's begin with running a SageMaker notebook. Notebooks are ideal for certain problems, particularly when doing a tutorial because you can mix code with instructions. They are also great for exploring your data or workflow one portion at a time, since the code gets broken up into little chunks that you can run one by one, which lends itself very well to most ML/AI problems. The notebook we are going to run is inside this repo, but we are going to launch a SageMaker instance and then copy the notebook into AWS programatically.
 
@@ -64,18 +76,6 @@ Here's a few tips if you are new to notebooks. The navigation menu in the top le
 + run a cell with the play button or use shift + enter/return. You can also use CMD + Enter, but it will only run the current cell and not move to the next cell. 
 
 Above that menu you will see an option called `Kernel` which is useful if you need to reset the kernel, you can click Kernel > Restart Kernel and Clear All Outputs. This will give you a clean restart. You can also use Kernel > Change Kernel if you need to switch between Kernel environments. Also worth noting that when you run a cell, sometimes it doesn't produce any output, but things are running in the background. If the brackets next to a cell have an * then it is still running. You can also look at the bottom where the kernel is listed (e.g. Python 3 | status) and it will show either Idle or Busy depending on if anything is running or not. 
-
-## **Spin up a Virtual Machine and run a workflow** <a name="VM"></a>
-A lot of great resources exist on how to spin up, connect to, and work on a VM on AWS. The first place to direct you is the tutorial created by [NIH Common Data Fund](https://training.nih-cfde.org/en/latest/Cloud-Platforms/Introduction_to_Amazon_Web_Services/introtoaws3/). This tutorial expects that you will launch an instance and work with it interactively.
-[Here](https://aws.amazon.com/getting-started/hands-on/launch-a-virtual-machine/) is an example developed by AWS that gives a good step by step on how to launch and access an instance using Amazon Lightsail. Lightsail is a simplified version of the full AWS console, and may provide an interface you like better for using EC2. Note that resources you spin up in Lightsail will not be available in EC2. A lot of the [tutorials]((/tutorials/)) will have instructions on spinning up EC2 instances as well. 
-
-If you need help on launching a Windows VM, check out this [tutorial](https://aws.amazon.com/getting-started/hands-on/launch-windows-vm/).
-
-From a security perspective, we recommend that you use Center for Internet Security (CIS) Hardened VMs. These have security controls that meet the CIS benchmark for enhanced cloud security. To use these VMs, go to the AWS Marketplace > Discover Products. Then search for `CIS Hardened` and chose the OS that meets your needs. Click, `Continue to Subscribe` in the top right, and then `Continue to Configuration` and set your configuration parameters. Finally, click `Continue to Launch`. Here you decide how to launch the Marketplace solution; we recommend `Launch from EC2`, although you are welcome to experiment with the other options. Now click `Launch` and walk through the usual EC2 launch parameters. Click `Launch` and then you can view the status of your VM in the EC2 Instances page.
-
-If you need to scale your VM up or down (see Cost Optimization below), you can always change the machine type by clicking on the instance ID, then go to `Actions > Instance Settings > Change instance type`. The VM has to be stopped to change the instance type.  
-
-Finally, when you SSH into your instance, note that the username is typically `ec2-user` but on Ubuntu machines, the username is `ubuntu`. 
 
 ## **Creating a Conda Environment** <a name="CO"></a>
 Using the conda package manager is one of the easier ways to create a comprehensive compute environment within an instance. Note that the instructions here are for EC2. If you want to create an environment in a SageMaker Notebook, follow [these instructions](https://github.com/aws/studio-lab-examples/blob/main/custom-environments/custom_environment.ipynb). We recommend using mambaforge since it is a lot faster than the traditional conda, then creating a conda environment with whatever tools you want to use for your particular research aims. Conda environments are created using configuration files in yaml format, where you specify the name of the environment, the conda channels to search, and then the programs to install. You can optionally specify a version for each program, or just list the name and have the default version installed. For example, `- bwa` or `- bwa ==0.7.17` with both install version `0.7.17`, but you could list a different version as needed. Further, some programs you may need do not play well with conda, or are simply not available. If you run into lots of errors while trying to intall something, consider installing via pip or downloading a binary. Make sure if you install anything in addition to the conda environment, you do it after activating the environment. 
