@@ -13,7 +13,7 @@ Use this repository to learn about how to use AWS by exploring the linked resour
 + [SageMaker Notebooks](#SAG)
 + [Virtual Machines in EC2](#VM)
 + [Creating a Conda Environment](#CO)
-+ [Serverless Functionality](#SER)
++ [Serverless Functionality](#SERV)
 + [Clusters](#CLU)
 + [Billing and Benchmarking](#BB)
 + [Cost Optimization](#COST)
@@ -21,7 +21,7 @@ Use this repository to learn about how to use AWS by exploring the linked resour
 + [Additional Training](#TR)
 
 ## **Getting Started** <a name="GS"></a>
-You can learn a lot of what is possible on AWS in the AWS Getting Started [Tutorials Page](https://aws.amazon.com/getting-started/hands-on/?getting-started-all.sort-by=item.additionalFields.sortOrder&getting-started-all.sort-order=asc&awsf.getting-started-category=*all&awsf.getting-started-level=*all&awsf.getting-started-content-type=*all&awsm.page-getting-started-all=2), and we recommend you go there and explore some of the tutorials on offer. Nonetheless, it can be hard to know where to start if you are new to the cloud. To help you, we thought through some of the most common tasks you will encounter doing cloud-enabled research, and gathered tutorials and guides specific to those topics. We hope the following materials are helpful as you explore migrating your research to the cloud.
+You can learn a lot of what is possible on AWS in the AWS Getting Started [Tutorials Page](https://aws.amazon.com/getting-started/hands-on/?getting-started-all.sort-by=item.additionalFields.sortOrder&getting-started-all.sort-order=asc&awsf.getting-started-category=*all&awsf.getting-started-level=*all&awsf.getting-started-content-type=*all&awsm.page-getting-started-all=2) and we recommend you go there and explore some of the tutorials on offer. Nonetheless, it can be hard to know where to start if you are new to the cloud. To help you, we thought through some of the most common tasks you will encounter doing cloud-enabled research, and gathered tutorials and guides specific to those topics. We hope the following materials are helpful as you explore migrating your research to the cloud.
 
 ## **Command Line Tools** <a name="CLI"></a>
 Most things in AWS can be done without the command line, but the command line tools will generally make your life easier in the long run. The primary tool you will need is the AWS CLI, which will allow you to interact with instances or S3 buckets from your local terminal. Instructions for the CLI can be found [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html). To configure the CLI, you will need to authenticate using access keys. Within Cloud Lab, you will need to use Short Term Access Keys. If you are an intramural user, the instructions for accessing these are found [here](/docs/Intramural_STAKs.md).
@@ -99,7 +99,7 @@ conda activate /home/ec2-user/mambaforge/envs/$ENVNAME
 Now test your environment by running one of the programs you just installed. For example, type `bwa` (if you installed bwa!).
 
 ## **Serverless Functionality** <a name="SERV"></a>
-
+Serverless functionality is really where analysis is headed in the cloud. The idea is that you can run things, an analysis, an app, a website, and not have to deal with your own servers (VMs). There are still servers running somewhere, you just don't have to manage them. All you have to do is call a command that runs your analysis in the background, and copies the output files to a storage bucket. The most relevant serverless feature on AWS to Cloud Lab users (especially 'omics' analyses) is going to be [AWS Batch](https://aws.amazon.com/batch/), which you can learn more about in the tutorials section.
 
 ## **Clusters** <a name="CLU"></a>
 One great thing about the cloud is its ability to scale with demand. When you submit a job to a traditional cluster, you have to specify up front how many CPUs and memory you want to give to your job, and you may over or under utilize these resources. With cloud resources like serverless and clusters  you can leverage a feature called autoscaling, where the compute resources will scale up or down with the demand. This is more efficient and keeps costs down when demand is low, but prevents latency when demand is high (think Black Friday shopping on a website). For most users of Cloud Lab, the best way to leverage scaling is to use AWS Batch, but in some cases, maybe for a whole lab group or large project, it may make sense to spin up a [Kubernetes cluster](https://aws.amazon.com/kubernetes/). Note that if you spin up resources in Batch, that you need to deactivate the compute enviornment (in Batch) and delete the autoscaling groups (in EC2) to avoid further charges.
