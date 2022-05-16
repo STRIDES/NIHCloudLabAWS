@@ -3,14 +3,14 @@
 
 There are a lot of resources available to learn about AWS, which can be overwhelming. NIH Cloud Lab’s goal is to make cloud very easy and accessible for you, so that you can stop wasting time on administrative tasks and focus on your research.
 
-Use this repository to learn about how to use AWS by exploring the linked resources and walking through the tutorials. If you are a beginner, we suggest you begin with this 101 section. If you already have foundational knowledge of AWS and cloud, feel free to skip ahead to the [tutorials](/tutorials/) section for in-depth examples of how to run specific workflows such as genomic variant calling and medical image analyis.
+Use this repository to learn about how to use AWS by exploring the linked resources and walking through the tutorials. If you are a beginner, we suggest you begin with this 101 section. If you already have foundational knowledge of AWS and cloud, feel free to skip ahead to the [tutorials](/tutorials/) section for in-depth examples of how to run specific workflows such as genomic variant calling and medical image analysis.
 
 ## Overview of Page Contents
 
 + [Getting Started](#GS)
 + [Command Line Tools](#CLI)
 + [Ingest and Store Data](#STO)
-+ [Sagemaker Notebooks](#SAG)
++ [SageMaker Notebooks](#SAG)
 + [Virtual Machines in EC2](#VM)
 + [Creating a Conda Environment](#CO)
 + [Serverless Functionality](#SER)
@@ -34,7 +34,7 @@ Data can be stored in two places on the cloud: either in a cloud storage bucket,
 There is some strategy to managing storage costs as well. When you have spun up a VM, you have already paid for the storage on the VM since you are paying for the size of the disk, whereas S3 storage is charged based on how much data you put in S3. This is something to think about when copying results files back to S3 for example. If they are not files you will need later, then leave them on the VM's EBS and save your money on more important data to put in S3. If the data is important though, either create a disk image as a backup, or copy it to s3, or both! 
 
 ## **Launch a SageMaker Notebook** <a name="SAG"></a>
-Let's begin with running a SageMaker notebook. Notebooks are ideal for certain problems, particularly when doing a tutorial because you can mix code with instructions. They are also great for exploring your data or workflow one portion at a time, since the code gets broken up into little chunks that you can run one by one, which lends itself very well to most ML/AI problems. The notebook we are going to run is inside this repo, but we are going to launch a Sagemaker instance and then copy the notebook into AWS programatically.
+Let's begin with running a SageMaker notebook. Notebooks are ideal for certain problems, particularly when doing a tutorial because you can mix code with instructions. They are also great for exploring your data or workflow one portion at a time, since the code gets broken up into little chunks that you can run one by one, which lends itself very well to most ML/AI problems. The notebook we are going to run is inside this repo, but we are going to launch a SageMaker instance and then copy the notebook into AWS programatically.
 
 To begin, go to `Services > Machine Learning > Amazon SageMaker`. Once on the landing page, you should see a menu bar on the left side of the page. Click `Notebook` and then `Notebook instances`. Now click the orange colored `Create notebook instance`. Give your instance a globally unique name. Under `Notebook instance type` choose a machine type. You can find the full list of instance types [here](https://aws.amazon.com/ec2/instance-types/). Fortunately not all machines are available with SageMaker, so we only have to choose from a few. You can figure out how much your notebook will cost to run using the pricing calculator [here](https://aws.amazon.com/ec2/pricing/on-demand/) based on your machine type. As long as the notebook is running (and not stopped) you will be charged per second of use. Leave all other values as default for now. Click `Create notebook instance`. It should take about 10 minutes to spin up, so go brew some coffee and come back. Once the status changes from `Pending` to `InService` then you can connect.
 
@@ -46,7 +46,7 @@ git clone https://github.com/STRIDES/NIHCloudLabAWS.git
 ```
 
 Now you have the NIHCloudLabAWS directory available. Navigate to NIHCloudLabAWS > tutorials > notebooks > GWAS > GWAS_coat_color.ipynb.
-Explore this notebook and see how data moves in and out of the Sagemaker environment. You can also manually add files, whether notebooks or data using the up arrow in the top left navigation menu. We can easily switch between different kernels in the top right, whether R or Python or Spark. 
+Explore this notebook and see how data moves in and out of the SageMaker environment. You can also manually add files, whether notebooks or data using the up arrow in the top left navigation menu. We can easily switch between different kernels in the top right, whether R or Python or Spark. 
 
 Here's a few tips if you are new to notebooks. The navigation menu in the top left controls the control panel that is the equivalent to your directory structure. The panel above the notebook itself controls the notebook options. Most of these are obvious, but a few you will use often are:
 + the plus sign to add a cell
@@ -69,7 +69,7 @@ If you need to scale your VM up or down (see Cost Optimization below), you can a
 Finally, when you SSH into your instance, note that the username is typically `ec2-user` but on Ubuntu machines, the username is `ubuntu`. 
 
 ## **Creating a Conda Environment** <a name="CO"></a>
-Using the conda package manager is one of the easier ways to create a comprehensive compute environment within an instance. Note that the instructions here are for EC2. If you want to create an environment in a Sagemaker Notebook, follow [these instructions](https://github.com/aws/studio-lab-examples/blob/main/custom-environments/custom_environment.ipynb). We recommend using mambaforge since it is a lot faster than the traditional conda, then creating a conda environment with whatever tools you want to use for your particular research aims. Conda environments are created using configuration files in yaml format, where you specify the name of the environment, the conda channels to search, and then the programs to install. You can optionally specify a version for each program, or just list the name and have the default version installed. For example, `- bwa` or `- bwa ==0.7.17` with both install version `0.7.17`, but you could list a different version as needed. Further, some programs you may need do not play well with conda, or are simply not available. If you run into lots of errors while trying to intall something, consider installing via pip or downloading a binary. Make sure if you install anything in addition to the conda environment, you do it after activating the environment. 
+Using the conda package manager is one of the easier ways to create a comprehensive compute environment within an instance. Note that the instructions here are for EC2. If you want to create an environment in a SageMaker Notebook, follow [these instructions](https://github.com/aws/studio-lab-examples/blob/main/custom-environments/custom_environment.ipynb). We recommend using mambaforge since it is a lot faster than the traditional conda, then creating a conda environment with whatever tools you want to use for your particular research aims. Conda environments are created using configuration files in yaml format, where you specify the name of the environment, the conda channels to search, and then the programs to install. You can optionally specify a version for each program, or just list the name and have the default version installed. For example, `- bwa` or `- bwa ==0.7.17` with both install version `0.7.17`, but you could list a different version as needed. Further, some programs you may need do not play well with conda, or are simply not available. If you run into lots of errors while trying to intall something, consider installing via pip or downloading a binary. Make sure if you install anything in addition to the conda environment, you do it after activating the environment. 
 
 To create the conda environment, first install mamba:
 ```
@@ -97,6 +97,9 @@ Now activate your environment using the path printed from the previous command.
 conda activate /home/ec2-user/mambaforge/envs/$ENVNAME
 ```
 Now test your environment by running one of the programs you just installed. For example, type `bwa` (if you installed bwa!).
+
+## **Serverless Functionality** <a name="SERV"></a>
+
 
 ## **Clusters** <a name="CLU"></a>
 One great thing about the cloud is its ability to scale with demand. When you submit a job to a traditional cluster, you have to specify up front how many CPUs and memory you want to give to your job, and you may over or under utilize these resources. With cloud resources like serverless and clusters  you can leverage a feature called autoscaling, where the compute resources will scale up or down with the demand. This is more efficient and keeps costs down when demand is low, but prevents latency when demand is high (think Black Friday shopping on a website). For most users of Cloud Lab, the best way to leverage scaling is to use AWS Batch, but in some cases, maybe for a whole lab group or large project, it may make sense to spin up a [Kubernetes cluster](https://aws.amazon.com/kubernetes/). Note that if you spin up resources in Batch, that you need to deactivate the compute enviornment (in Batch) and delete the autoscaling groups (in EC2) to avoid further charges.
