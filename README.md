@@ -11,7 +11,8 @@ Use this repository to learn about how to use AWS by exploring the linked resour
 + [Overview](#OV)
 + [Command Line Tools](#CLI)
 + [Ingest and Store Data](#STO)
-+ + [Virtual Machines in EC2](#VM)
++ [Virtual Machines in EC2](#VM)
++ [Disk Images](#IM)
 + [SageMaker Notebooks](#SAG)
 + [Creating a Conda Environment](#CO)
 + [Clusters](#CLU)
@@ -53,6 +54,10 @@ From a security perspective, we recommend that you use Center for Internet Secur
 If you need to scale your VM up or down (see Cost Optimization below), you can always change the machine type by clicking on the instance ID, then go to `Actions > Instance Settings > Change instance type`. The VM has to be stopped to change the instance type.  
 
 Finally, when you SSH into your instance, note that the username is typically `ec2-user` but on Ubuntu machines, the username is `ubuntu`. 
+
+## **Disk Images** <a name="IM"></a>
+Part of the power of virual machines is that they offer a blank slate for you to configure as desired. However, sometimes you want to recycle data or installed programs for your next VM instead of having to recreate the wheel. One solution to this issue is using disk (or machine) images, where you copy your existing virtual disk to an [Amazon Machine Image](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) which can serve as a backup, or can be used to launch a new instance with the programs and data from a previous instance.
+
 
 ## **Launch a SageMaker Notebook** <a name="SAG"></a>
 Let's begin with running a SageMaker notebook. Notebooks are ideal for certain problems, particularly when doing a tutorial because you can mix code with instructions. They are also great for exploring your data or workflow one portion at a time, since the code gets broken up into little chunks that you can run one by one, which lends itself very well to most ML/AI problems. The notebook we are going to run is inside this repo, but we are going to launch a SageMaker instance and then copy the notebook into AWS programatically.
