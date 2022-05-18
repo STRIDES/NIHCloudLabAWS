@@ -18,6 +18,7 @@ There are a lot of ways to run workflows on AWS. Here we list a few possibilitie
 
 - The most simple is probably to spin up an EC2 instance, and run your command interactively, or using `screen` or, as a [startup script](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) attached as metadata. See the [GWAS tutorial](https://training.nih-cfde.org/en/latest/Bioinformatic-Analyses/GWAS-in-the-cloud) below for more info on how to run a pipeline using EC2. 
 - You could also run your pipeline via a SageMaker notebook, either by splitting out each command as a different block, or by running a workflow manager (Nextflow etc.). See [here](https://aws.amazon.com/blogs/machine-learning/scheduling-jupyter-notebooks-on-sagemaker-ephemeral-instances/) about scheduling a notebook to let it run longer. You can find some example notebooks in the [tutorials below](/tutorials/notebooks/).
+- You will be able (soon) to leverage the serverless functionality of AWS using the [AWS Genomics CLI](https://aws.amazon.com/genomics-cli/), which automates genomic workflows similar to the above links, but with a simplified command line interface. We are waiting on a new version of the CLI that will be compatible with the Cloud Lab environment, so check our [documentation](/docs/agc.md) for periodic updates on access. We are actively working on integrating this tool into Cloud Lab. In the mean time, work with the alternative solution [here](https://docs.opendata.aws/genomics-workflows/index.html).
 - Finally, one benefit of the cloud is access to GPUs for workflow acceleration. While a lot of focus on GPU implementation will focus on AI/ML workflows, NVIDIA has software called Parabricks that will accelerate genomic workflows for pretty low costs. See the full list of command line options [here](https://docs.nvidia.com/clara/parabricks/v3.5/text/software_overview.html) to see if your specific workflow is accelerated. Specific details on how to use the Parabricks within Cloud Lab are detailed in the next section (Variant Calling).
  
  **Please note, GPU machines cost more than most CPU machines, so be sure to shut these machines down after use. You may also encounter service quotas protect from the accidental use of expensive machine types. If that happens, and you still want to use a certain instance type, follow these [instructions](/docs/service_quotas.md).**
@@ -38,7 +39,7 @@ Medical imaging analysis requires the analysis of large image files and often re
 
 ## **RNAseq** <a name="RNA"></a>
 RNAseq is a technique for quantifying gene levels of gene expression across the genome. 
-- You can run this [Nextflow tutorial](https://nf-co.re/rnaseq/3.7) for RNAseq a variety of ways on AWS. Following the instructions outlined above, you could use EC2 or SageMaker.
+- You can run this [Nextflow tutorial](https://nf-co.re/rnaseq/3.7) for RNAseq a variety of ways on AWS. Following the instructions outlined above, you could use EC2, the Amazon Genomics CLI (in the near future) or SageMaker.
 - For a notebook version of a complete RNAseq pipeline from Fastq to Salmon quantification from [the University of Maine INBRE](https://github.com/MaineINBRE/rnaseq-myco-tutorial) use this [Notebook](rnaseq-myco-tutorial-main). 
 
 ## **Single Cell RNAseq** <a name="sc"></a>
