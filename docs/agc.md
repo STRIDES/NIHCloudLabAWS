@@ -2,7 +2,7 @@
 
 The following instructions follow the [AWS docs](https://aws.github.io/amazon-genomics-cli/docs/), but with some tips and tricks specific to Cloud Lab. Read more about the specifics of the agc tool in the [docs](https://aws.github.io/amazon-genomics-cli/docs/concepts/).
 
-You can do all of the following from your local computer using the AWS SDK, but to ensure things go smoothly in the Cloud Lab environment, we recommend you spin up a VM and follow along from within your EC2 or Sagemaker instance. Do not use Cloud Shell, because Cloud Shell is ephemeral and will not save your environment between sessions.
+You can do all of the following from your local computer using the AWS SDK, but to ensure things go smoothly in the Cloud Lab environment, we recommend you spin up a VM and follow along from within your EC2 or Sagemaker instance. If using Sagemaker, it is easier to use the terminal than a notebook, but both ways should work. Do not use Cloud Shell, because Cloud Shell is ephemeral and will not save your environment between sessions.
 
 Because agc uses AWS Batch for computation, you can get away with spinning up a small VM, like the t2 micro for this tutorial. Once you VM is ready, ssh into it. If you are using a notebook, open the Jupyter environment.
 
