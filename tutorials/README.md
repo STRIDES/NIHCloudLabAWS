@@ -39,7 +39,7 @@ Medical imaging analysis requires the analysis of large image files and often re
 ## **RNAseq** <a name="RNA"></a>
 RNAseq is a technique for quantifying gene levels of gene expression across the genome. 
 - You can run this [Nextflow tutorial](https://nf-co.re/rnaseq/3.7) for RNAseq a variety of ways on AWS. Following the instructions outlined above, you could use EC2, SageMaker, or AWS Batch(/docs/Genomics_Workflows.md).
-- For a notebook version of a complete RNAseq pipeline from Fastq to Salmon quantification from the King Lab of the University of Maine INBRE use this [Notebook](rnaseq-myco-tutorial-main), which we re-wrote to work on AWS. You can also use any of Ben King's excellent [notebooks](https://github.com/MaineINBRE/rnaseq-myco-tutorial](https://github.com/King-Laboratory/rnaseq-myco-notebook) as well.
+- For a notebook version of a complete RNAseq pipeline from Fastq to Salmon quantification from the King Lab of the University of Maine INBRE use this [Notebook](rnaseq-myco-tutorial-main), which we re-wrote to work on AWS. You can also use any of Ben King's excellent [notebooks](https://github.com/King-Laboratory/rnaseq-myco-notebook) as well.
 
 ## **Single Cell RNAseq** <a name="sc"></a>
 Single Cell RNAseq (scRNAseq) analyses allow for gene expression profiling at the single cell level.
