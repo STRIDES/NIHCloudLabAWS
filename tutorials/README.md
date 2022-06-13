@@ -25,7 +25,6 @@ There are a lot of ways to run workflows on AWS. Here we list a few possibilitie
  **Please note, GPU machines cost more than most CPU machines, so be sure to shut these machines down after use. You may also encounter service quotas to protect you from the accidental use of expensive machine types. If that happens, and you still want to use a certain instance type, follow these [instructions](/docs/service_quotas.md).**
 
 ## **Genome Wide Association Studies** <a name="GWAS"></a>
-
 Genome wide association studies, or GWAS, are statistical analyses that look for associations between genomic variants and phenotypic traits.
 - This [NIH CFDE written tutorial](https://training.nih-cfde.org/en/latest/Bioinformatic-Analyses/GWAS-in-the-cloud
 ) walks you through running a simple GWAS using EC2. Note that the CFDE page has a few other bioinformatics related tutorials like BLAST and Illumina read simulation. We also converted this tutorial to a simplified [notebook version](/tutorials/notebooks/GWAS) if you prefer that format. See the SageMaker Notebook instructions on the AWS 101 page for help getting that running.
@@ -46,6 +45,9 @@ RNAseq is a technique for quantifying gene levels of gene expression across the 
 Single Cell RNAseq (scRNAseq) analyses allow for gene expression profiling at the single cell level.
 - This [AWS blog](https://aws.amazon.com/blogs/publicsector/driving-innovation-single-cell-analysis-aws/) lays out a potential method that integrates a lot of the AWS native tools for running an scRNAseq pipeline. It is less of a tutorial, and more of a demo of what is possible.
 -  This [NVIDIA blog](https://developer.nvidia.com/blog/accelerating-single-cell-genomic-analysis-using-rapids/) details how to run an accelerated scRNAseq pipeline using RAPIDS. You can find a link to the GitHub that has lots of example notebooks [here](https://github.com/clara-parabricks/rapids-single-cell-examples). For each example use case they show some nice benchmarking data with time and cost for each machine type. You will see that most runs cost less than $1.00 with GPU machines. If you want a CPU version that users Scanpy you can use this [notebook](https://github.com/clara-parabricks/rapids-single-cell-examples/blob/master/notebooks/hlca_lung_cpu_analysis.ipynb). Pay careful attention to the environment setup as there are a lot of dependencies for these notebooks. Create a conda environment in the terminal, then run the notebook. Consider using [mamba](https://github.com/mamba-org/mamba) to speed up environment creation. 
+
+## **ElasticBLAST** <a name="sc"></a>
+The NCBI team has written a version of BLAST for the cloud called ElasticBLAST, and you can read all about [here](https://blast.ncbi.nlm.nih.gov/doc/elastic-blast/index.html). Essentially, ElasticBLAST helps you submit BLAST jobs to AWS Batch and write the results back to S3. Feel free to experiment with the example tutorial in Cloud Shell, or try our [notebook version](/tutorials/notebooks/ElasticBLAST/run_elastic_blast.ipynb).
 
 ## **Long Read Sequence Analysis** <a name="Long"></a>
 Long read DNA sequence analysis involves analyzing sequencing reads typically longer than 10 thousand base pairs (bp) in length, compared with short read sequencing where reads are about 150 bp in length.
