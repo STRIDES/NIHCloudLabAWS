@@ -8,6 +8,7 @@
 + [Medical Imaging](#IM)
 + [RNAseq](#RNA)
 + [scRNAseq](#sc)
++ [BLAST](#bl)
 + [Long Read Sequencing Analysis](#Long)
 + [AI/ML Pipeline](#AI)
 + [Open Data](#OPEN)
