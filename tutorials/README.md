@@ -4,6 +4,7 @@
 ## Overview of Page Contents
 
 + [Biomedical Workflows on AWS](#Bio)
++ [Download SRA Data](#SRA)
 + [GWAS](#GWAS)
 + [Medical Imaging](#IM)
 + [RNAseq](#RNA)
@@ -23,6 +24,9 @@ There are a lot of ways to run workflows on AWS. Here we list a few possibilitie
 - Finally, one benefit of the cloud is access to GPUs for workflow acceleration. While a lot of focus on GPU implementation will focus on AI/ML workflows, NVIDIA has software called Parabricks that will accelerate genomic workflows for pretty low costs. See the full list of command line options [here](https://docs.nvidia.com/clara/parabricks/v3.5/text/software_overview.html) to see if your specific workflow is accelerated. Specific details on how to use the Parabricks within Cloud Lab are detailed in the next section (Variant Calling).
  
  **Please note, GPU machines cost more than most CPU machines, so be sure to shut these machines down after use. You may also encounter service quotas to protect you from the accidental use of expensive machine types. If that happens, and you still want to use a certain instance type, follow these [instructions](/docs/service_quotas.md).**
+
+## **Download Data From the Sequence Read Archive (SRA)** <a name="SRA"></a>
+Next Generatin genetic sequence data is housed in the NCBI Sequence Read Archive (SRA). You can access these data using the SRA Toolkit. We walk you through this using [this notebook](/tutorials/notebooks/SRADownload).
 
 ## **Genome Wide Association Studies** <a name="GWAS"></a>
 Genome wide association studies, or GWAS, are statistical analyses that look for associations between genomic variants and phenotypic traits.
