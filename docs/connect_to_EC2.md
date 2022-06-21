@@ -38,7 +38,7 @@ Now you are ready to launch, and SSH and SSM should both be available under the 
 
 ![connect](/docs/images/connect_ec2.png)
 
-Here is the view if you try and connect via SSM. It will open a terminal in your browser window. 
+Here is the view if you try and connect via SSM. It will open a terminal in your browser window. Once in, switch to the ec2-user by typing `sudo su ec2-user`
 
 ![SSM](/docs/images/SSM.png)
 
