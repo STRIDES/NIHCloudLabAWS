@@ -13,11 +13,16 @@ To launch an instance, click the orange `Launch Instances` button in the top rig
 Name your instance under `Name and tags`.
 
 Under `Application and OS Images (Amazon Machine Image` you can select your base machine image (AMI). Usually, the Amazon base image will work fine, but for some instances you may want to use a different base image. Also, some Marketplace solutions will use different base images. One reason this matters is that to use the session manager (SSM) to connect to your instance, you will need to select an Amazon AMI here. If you need a different AMI and also need to connect via SSM, please email CloudLab@nih.gov and we can help you write a startup script to launch SSM.
+
 ![AMI](/docs/images/AMI.png)
 
 Next, under `Instance  type`, select your instance type. You can click `Compare instance types` to see the full specs of all available instances. 
 
+![instance_type](/docs/images/instance_type.png)
+
 Under `Key pair (login)` select your key pair. If you need to generate a new key pair, click `Create new key pair`, then give your key a name, select `RSA` and `.pem`, then `Create key pair`. Make sure you secure your key and never share with other users or make available on Github. 
+
+![new_key](/docs/images/new_key.png)
 
 Now, under `Network settings` we wil set our security group that allows us to SSH into the instance. You can either create a security group and then select `Select existing security group`, or leave the default selected for `Create security group`. Leave the box checked that says `Allow SSH traffic from` and then in the dropdown select `Custom` and then in the search box type `10.0.0.0/8`. This provides a range of IP addresses that should encompass your VPN's private IP. 
 
@@ -33,7 +38,17 @@ Now you are ready to launch, and SSH and SSM should both be available under the 
 
 ![connect](/docs/images/connect_ec2.png)
 
+Here is the view if you try and connect via SSM. It will open a terminal in your browser window. 
+
 ![SSM](/docs/images/SSM.png)
+
+To connect via SSH, click this SSH option.
+
+![SSH](/docs/images/SSH.png)
+
+Then copy the example text under number four. For security reasons we don't include a screenshot, but it will be something like: 
+
+`ssh -i "<PATH/TO/KEY_FILE>.pem" ec2-user@<INSTANCE-IP>`. Paste that into a terminal or Cloud Shell window. If not using an Amazon AMI, the user name will be different, for example, an Ubuntu image will have the username `ubuntu`. 
 
 
 
