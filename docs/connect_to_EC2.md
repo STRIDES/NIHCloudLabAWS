@@ -29,6 +29,12 @@ If you plan to only connect via SSH, and not SSM, go ahead and click `Launch Ins
 
 ![IAM](/docs/images/IAM_SSM_role.png)
 
-Now you are ready to launch and SSH and SSM should both be available under the `Connect` menu once your instance is running. 
+Now you are ready to launch, and SSH and SSM should both be available under the `Connect` menu once your instance is running. 
+
+![connect](/docs/images/connect_ec2.png)
+
+![SSM](/docs/images/SSM.png)
+
+
 
 
