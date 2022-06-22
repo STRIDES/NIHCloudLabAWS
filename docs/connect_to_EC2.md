@@ -59,7 +59,7 @@ If you are on campus, your IP may remain stable, you will need to check. To find
 
 For macOS: Look for utun(number) where number is the highest number of the utun series, which should have an IP assigned. This could be utun1-3. 
 
-![mac](/docs/images/mac.jpg)
+![mac](/docs/images/mac.png)
 
 Once you have your IP, update the security group as described above and then try and SSH into the instance again. 
 
