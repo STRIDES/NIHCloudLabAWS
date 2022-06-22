@@ -24,7 +24,7 @@ Under `Key pair (login)` select your key pair. If you need to generate a new key
 
 ![new_key](/docs/images/new_key.png)
 
-Now, under `Network settings` we wil set our security group that allows us to SSH into the instance. You can either create a security group and then select `Select existing security group`, or leave the default selected for `Create security group`. Leave the box checked that says `Allow SSH traffic from` and then in the dropdown select `Custom` and then in the search box type `10.0.0.0/8`. This provides a range of IP addresses that should encompass your VPN's private IP. 
+Now, under `Network settings` we wil set our security group that allows us to SSH into the instance. You can either create a security group and then select `Select existing security group`, or leave the default selected for `Create security group`. Leave the box checked that says `Allow SSH traffic from` and then in the dropdown select `Custom` and then in the search box type `10.0.0.0/8`. This provides a range of IP addresses that should encompass your VPN's private IP. This may not work, if your IP is not in that range, so scroll down to `Additional Troubleshooting`. 
 
 ![security_group](/docs/images/security_group.png)
 
@@ -49,6 +49,19 @@ To connect via SSH, click this SSH option.
 Then copy the example text under number four. For security reasons we don't include a screenshot, but it will be something like: 
 
 `ssh -i "<PATH/TO/KEY_FILE>.pem" ec2-user@<INSTANCE-IP>`. Paste that into a terminal or Cloud Shell window. If not using an Amazon AMI, the user name will be different, for example, an Ubuntu image will have the username `ubuntu`. 
+
+### Additional Troubleshooting
+If your assigned IP is outside the range of 10.0.0.0/8, then you will need to update your security group to include your assigned IP. Unfortunately, you will need to do this every time you sign in to the VPN. To keep things simple, you can go to Network and Security > Security Groups on the left of the EC2 menu, select the Security group ID associated with your instance, click Actions at the top, and click `Edit inbound rules`. Click Add rule, select SSH, custom, and then paste in your IP followed by /32. This should allow you to SSH into the instance.
+
+If you are on campus, your IP may remain stable, you will need to check. To find your current IP, run ifconfig( macOS/linux user) or ipconfig(Windows user) and identify the assigned IP address. For Windows, look for DNS suffix `nih.gov` which will show up if you are connected to the VPN. 
+
+![windows](/docs/images/windows.jpg)
+
+For macOS: Look for utun(number) where number is the highest number of the utun series, which should have an IP assigned. This could be utun1-3. 
+
+![mac](/docs/images/mac.jpg)
+
+Once you have your IP, update the security group as described above and then try and SSH into the instance again. 
 
 
 
