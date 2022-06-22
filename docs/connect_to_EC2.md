@@ -26,7 +26,7 @@ Under `Key pair (login)` select your key pair. If you need to generate a new key
 
 Now, under `Network settings` we wil set our security group that allows us to SSH into the instance. You can either create a security group and then select `Select existing security group`, or leave the default selected for `Create security group`. Leave the box checked that says `Allow SSH traffic from` and then in the dropdown select `Custom` and then in the search box type `10.0.0.0/8`. This provides a range of IP addresses that should encompass your VPN's private IP. 
 
-![IP_range](/docs/images/IP_range.png)
+![security_group](/docs/images/security_group.png)
 
 Now go to `Configure storage` and set the GB that you will need. You can always resize later by editing the instance.
 
