@@ -9,6 +9,13 @@ Because agc uses AWS Batch for computation, you can get away with spinning up a 
 Make sure you set up your environment following the [Prerequisites](https://aws.github.io/amazon-genomics-cli/docs/getting-started/prerequisites/) page. Install the AWS CLI if running locally, and if on EC2 or Sagemaker, you just need to install nodejs. Make sure you run `aws configure` and input your Short-term Access keys. Intramural users can access keys following [these instructions](/docs/STAKs_intramural.md). 
 
 Now run the [install instructions](https://aws.github.io/amazon-genomics-cli/docs/getting-started/installation/) and add agc to the path with `export PATH=$HOME/bin:$PATH`. If the install went well, go ahead and activate. You need to add a few flags to the base `activate` command. Create the bucket before running this command, and make sure that the bucket is empty. 
+
+You can find the VPC ID by navigating in the AWS console to the VPC page (via the console search bar) and copying the ID that shows up in blue link text. Or, with the AWS CLI and jq, `aws ec2 describe-vpcs | jq '.Vpcs[0].VpcId'`.
+
+You can find the subnet IDs on the VPC page as well; look in the left navigation menu for the "Subnets" section and copy the IDs that show up in blue link text. Or, with the AWS CLI and jq, `aws ec2 describe-subnets | jq '.Subnets[].SubnetId'`.
+
+You can create a new bucket by navigating to the S3 page and creating a new bucket. Or, with the AWS CLI `aws s3api create-bucket --bucket <BUCKET NAME>`.
+
 ```
 agc account activate --vpc <vcp-id> --subnets <subnet1> --subnets <subnet2> --bucket <bucket-name>
 ```
