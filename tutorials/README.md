@@ -31,7 +31,7 @@ Next Generatin genetic sequence data is housed in the NCBI Sequence Read Archive
 ## **Genome Wide Association Studies** <a name="GWAS"></a>
 Genome wide association studies, or GWAS, are statistical analyses that look for associations between genomic variants and phenotypic traits.
 - This [NIH CFDE written tutorial](https://training.nih-cfde.org/en/latest/Bioinformatic-Analyses/GWAS-in-the-cloud
-) walks you through running a simple GWAS using EC2. Note that the CFDE page has a few other bioinformatics related tutorials like BLAST and Illumina read simulation. We also converted this tutorial to a simplified [notebook version](/tutorials/notebooks/GWAS) if you prefer that format. See the SageMaker Notebook instructions on the AWS 101 page for help getting that running.
+) walks you through running a simple GWAS using EC2. The tutorials asks you to select the Ohio region, make sure you change your region to N. Virginia. Note that the CFDE page has a few other bioinformatics related tutorials like BLAST and Illumina read simulation. We also converted this tutorial to a simplified [notebook version](/tutorials/notebooks/GWAS) if you prefer that format. See the SageMaker Notebook instructions on the AWS 101 page for help getting that running.
 
 ## **Medical Imaging Analysis** <a name="IM"></a>
 Medical imaging analysis requires the analysis of large image files and often requires elastic storage and accelerated computing.
