@@ -30,3 +30,5 @@ Once in a project, you can list the available contexts with `agc context list`, 
 
 **Please note that at this time Snakemake is not working within Cloud Lab, we are investigating if a work around is possible** If you need to run snakemake as opposed to Nextflow etc, we recommend just running via EC2 or SageMaker. You could also try the [Snakemake docs](https://snakemake.readthedocs.io/en/stable/executing/cloud.html) recommendation of Tibanna but this has not been tested. 
 
+One other note...this workflow will create a bunch of Stacks in Cloud Formation. When you are done testing this functionality, please go in and manually delete the stacks. Our clean up scripts (for giving your account to someone else) are unable to wipe Cloud Formation. Thank you!
+
