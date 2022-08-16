@@ -45,7 +45,7 @@ This assumes your instance already exists. You can also tag a new instance durin
 1. Select the Sagemaker instance and scroll down to `Tags`.
 2. Click `Edit`, then add tags as described above.
 
-<img src="/docs/images/sagemaker_edit_tags.png" width="350" height="100">
+<img src="/docs/images/sagemaker_edit_tags2.png" width="350" height="200">
 
 <img src="/docs/images/sagemaker_add_tags.png" width="350" height="200">
 
