@@ -8,7 +8,7 @@ Understanding how to manager your costs can be difficult in the cloud. For one t
 Further, some Cloud Lab users are interested in understanding how to forcast cloud costs for a larger project. For example, if you want to understand the cost of calling somatic variants on 100 samples, but in Cloud Lab you plan to benchmark using five samples. How would you go about doing that? 
 This guide aims to answer these questions. 
 
-## Resource Tagging
+## 1. Resource Tagging
 
 One of the first steps to understanding costs is resource tagging. Billing reports will be aggregated across time and services, and it can be hard to figure out how much did that variant calling pipeline cost to run? 
 Tagging allows you attach metadata to resources that you can later filter for in Billing reports. AWS has a comprehensive Tagging guide [here](https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
@@ -49,6 +49,7 @@ This assumes your instance already exists. You can also tag a new instance durin
 
 <img src="/docs/images/sagemaker_add_tags.png" width="350" height="200">
 
+## 2. Explore Billing Reports
 
 
 
