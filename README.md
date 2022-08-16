@@ -92,36 +92,7 @@ Above that menu you will see an option called `Kernel` which is useful if you ne
 ## **Creating a Conda Environment** <a name="CO"></a>
 Virtual environments allow you to manage package versions without having package conflicts. For example, if you needed Python 3 for one analysis, but Python 2.7 for another, you could create separate environments to use the two versions of Python. One of the most popular package managers used for creating virtual environments is the [conda package manager](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html#:~:text=A%20conda%20environment%20is%20a,NumPy%201.6%20for%20legacy%20testing). 
 
-Mamba is a reimplementation of conda written in C++ and runs much faster than legacy conda. Conda environments are created using configuration files in yaml format (yaml is a type of configuration file), where you specify the name of the environment, the conda channels to search, and then the programs to install. You can optionally specify a version for each program, or just list the name and have the default version installed. For example, `- bwa` or `- bwa ==0.7.17` with both install version `0.7.17`, but you could list a different version as needed. Further, some programs you may need do not play well with conda, or are simply not available. If you run into lots of errors while trying to install something, consider installing via pip (python package manager) or downloading a binary (pre compiled version of software). Make sure if you install anything in addition to the conda environment, you do it after activating the environment. 
-
-To create the conda environment, first install mamba:
-```
-curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh
-bash Mambaforge-$(uname)-$(uname -m).sh -b -p $HOME/mambaforge
-```
-Now add mamba to your path.
-```
-export PATH="/home/ec2-user/mambaforge/bin:$PATH"
-```
-List your current conda environments.
-```
-conda info --envs 
-```
-Now create the conda environment with all of your desired packages. Note that the file name doesn't matter if you have the name designation at the top of the yaml file. If you don't name the environment in the yaml, then it will be named whatever your file is named. Or you can add a -n flag to name the environment (`mamba env create -f environment.yaml -n your_name_of_choice`).
-```
-mamba env create -f envs/environment.yaml
-```
-Now list your environments again to find the path of your new environment.
-```
-conda info --envs 
-```
-Now activate your environment using the path printed from the previous command. 
-```
-conda activate /home/ec2-user/mambaforge/envs/$ENVNAME
-```
-Now test your environment by running one of the programs you just installed. For example, type `bwa` (if you installed bwa!).
-
-If you want to create an environment in a SageMaker Notebook, follow [these instructions](https://github.com/aws/studio-lab-examples/blob/main/custom-environments/custom_environment.ipynb). 
+Mamba is a reimplementation of conda written in C++ and runs much faster than legacy conda. Follow our [guide](/docs/create_conda_env.md) to create a conda environment using Mamba in an EC2 or Sagemaker instance.
 
 ## **Clusters** <a name="CLU"></a>
 One great thing about the cloud is its ability to scale with demand. When you submit a job to a traditional cluster, you specify up front how many CPUs and memory you want to give to your job, and you may over or under utilize these resources. With cloud resources like serverless and clusters  you can leverage a feature called autoscaling, where the compute resources will scale up or down with the demand. This is more efficient and keeps costs down when demand is low, but prevents latency when demand is high (think Black Friday shopping on a website). For most users of Cloud Lab, the best way to leverage scaling is to use AWS Batch, but in some cases, maybe for a whole lab group or large project, it may make sense to spin up a [Kubernetes cluster](https://aws.amazon.com/kubernetes/). Note that if you spin up resources in Batch, that you need to deactivate the compute environment (in Batch) and delete the autoscaling groups (in EC2) to avoid further charges.
