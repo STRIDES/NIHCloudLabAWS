@@ -1,8 +1,8 @@
 # Creating a conda environment on a Virtual Machine (notebooks or otherwise)
 
-The instructions for creating conda environments on Compute Engine virtual machines are exactly the same as those for Vertex AI notebooks. The reason is that notebooks have conda pre-installed and so don't play well with changing the conda environment within the notebook. Thus, if you are using a notebook, follow all steps from within a terminal, which you can access from the launcher. 
+The instructions for creating conda environments on EC2 virtual machines are exactly the same as those for Sagemaker notebooks. The reason is that notebooks have conda pre-installed and so don't play well with changing the conda environment within the notebook. Thus, if you are using a notebook, follow all steps from within a terminal, which you can access from the launcher. 
 
-<img src="/images/launch_terminal.png" width="350" height="200">
+<img src="/docs/images/launcher_terminal.jpeg" width="400" height="200">
 
 ## 1. Create a conda environment
 
@@ -40,9 +40,19 @@ If you get a `no module named ipykernel`, then run `pip3 install ipykernel`.
 
 Now you can switch to the kernel either from the launcher
 
-<img src="/images/launcher_env.png" width="350" height="200">
-
+<img src="/docs/images/launcher_vcftools_aws.jpeg" width="350" height="200">
 
 Or, from the top right from within the notebook.
 
-<img src="/images/kernel.png" width="350" height="200">
+<img src="/docs/images/kernel_vcftools_aws.jpeg" width="350" height="200">
+
+### Add bin to path
+On AWS we need to add one extra step to add the environment bin to our kernel environment. Although we have a separate kernel, the conda environment does not copy over correctly. 
+
+From within the notebook run 
+
+`os.environ["PATH"] += os.pathsep + os.environ["HOME"]+"/mambaforge/envs/vcftools/bin/"`
+
+Notice in the screenshot that vcftools is not available until we add the environment bin to PATH. If you were to then switch back to a previous conda environment, like base, `source activate base`, vcftools won't be available anymore.
+
+<img src="/docs/images/add_env_path_aws.jpeg" width="350" height="200">
