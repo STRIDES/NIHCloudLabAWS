@@ -80,7 +80,7 @@ Now we see only costs related to EC2.
 
 <img src="/docs/images/filter_tag.png" width="450" height="250">
 
-Now we can see the costs related to the analyses with the BLAST tag. If you don't see the tags you added before, make sure you have waited ~12 hours. AWS aggregates costs about three times per day, so those costs may have just not showed up yet. 
+Now we can see the costs related to the analyses with the BLAST tag. If you don't see the tags you added before, make sure you have waited ~12 hours. AWS aggregates costs about three times per day, so those costs may have just not shown up yet. 
 
 <img src="/docs/images/blast_costs.png" width="450" height="250">
 
