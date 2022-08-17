@@ -88,37 +88,37 @@ Now we can see the costs related to the analyses with the BLAST tag. If you don'
 
 ## 3. Create Budget Alerts
 
-One way to help not overrun your budget is to create budget alerts. You can do this from Cost Management > Budgets.
+One way to help stay on budget is to create budget alerts. You can do this from Cost Management > Budgets.
 
 <img src="/docs/images/nav_budget.png" width="450" height="250">
 
 1. Click `Create a budget`. 
 
-<img src="/docs/images/create_budget.png" width="450" height="250">
+<img src="/docs/images/create_budget.png" width="450" height="350">
 
-2. Select your budget type. We recommend `Cost-budget`. Click `Next`. 
+2. Select your budget type. We recommend `Cost budget`. Click `Next`. 
 
-<img src="/docs/images/budget_type.png" width="450" height="250">
+<img src="/docs/images/budget_type.png" width="450" height="350">
 
 3. On the next page, enter a Budget Name. Under budget amount, select **Annually** for **Period**. Under **Budget renewal type** select **Expiring budget**. For **Budgeting method** select **Fixed** and then put **500** for the Budget Amount.
 
-<img src="/docs/images/configure_budget_aws.png" width="450" height="250">
+<img src="/docs/images/configure_budget_aws.png" width="450" height="350">
 
 4. You can leave the rest as default and then click **Next**
 
-<img src="/docs/images/budget_scope.png" width="450" height="250">
+<img src="/docs/images/budget_scope.png" width="450" height="350">
 
 5. Click **Add an alert threshold**
 
-<img src="/docs/images/add_alert_threshold.png" width="450" height="250">
+<img src="/docs/images/add_alert_threshold.png" width="450" height="350">
 
 6. Configure your budget alerts as desired. Here we set one alert for when the budget reaches 50%, but you could set several alerts to let you know when you have reached 25%, 50%, 75% and then 95% for example. 
 
-<img src="/docs/images/budget_alerts.png" width="450" height="250">
+<img src="/docs/images/budget_alerts.png" width="450" height="350">
 
 7. Click **Next** then on the following page, click **Create Budget**
 
-<img src="/docs/images/submit_budget.png" width="450" height="250">
+<img src="/docs/images/submit_budget.png" width="450" height="350">
 
 
 
