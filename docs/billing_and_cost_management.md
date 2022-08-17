@@ -116,6 +116,11 @@ One way to help not overrun your budget is to create budget alerts. You can do t
 
 <img src="/docs/images/budget_alerts.png" width="450" height="250">
 
+7. Click **Next** then on the following page, click **Create Budget**
+
+<img src="/docs/images/submit_budget.png" width="450" height="250">
+
+
 
 
 
