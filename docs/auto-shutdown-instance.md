@@ -43,3 +43,13 @@ echo "Starting the SageMaker autostop script in cron"
 
 ### Configuring an existing instance
 
+The instructions for adding auto-shutdown to an existing instance are almost identical. 
+
+1. Select the instance you want to modify, and click **Edit** in the top right. Your instance does need to be stopped.
+
+<img src="/docs/images/edit_instance_aws.png" width="450" height="250">
+
+2. Now under *Additional configuration* select *Lifecycle configuration - optional* and follow the instructions above for 2–4.
+
+3. Restart your instance and confirm that it will shut down after the specified amount of time. 
+
