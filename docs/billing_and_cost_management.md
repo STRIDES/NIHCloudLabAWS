@@ -86,7 +86,10 @@ Now we can see the costs related to the analyses with the BLAST tag. If you don'
 
 6. Explore the other options available. You can change the plot type, change the filtering, and use several other tools within Cost Management. 
 
-## 3. Explore Billing Reports
+## 3. Create Budget Alerts
+One way to help not overrun your budget is to create budget alerts. You can do this from Cost Management > Budgets.
+
+<img src="/docs/images/nav_budget.png" width="450" height="250">
 
 
 
