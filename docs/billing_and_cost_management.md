@@ -108,6 +108,14 @@ One way to help not overrun your budget is to create budget alerts. You can do t
 
 <img src="/docs/images/budget_scope.png" width="450" height="250">
 
+5. Click **Add an alert threshold**
+
+<img src="/docs/images/add_alert_threshold.png" width="450" height="250">
+
+6. Configure your budget alerts as desired. Here we set one alert for when the budget reaches 50%, but you could set several alerts to let you know when you have reached 25%, 50%, 75% and then 95% for example. 
+
+<img src="/docs/images/budget_alerts.png" width="450" height="250">
+
 
 
 
