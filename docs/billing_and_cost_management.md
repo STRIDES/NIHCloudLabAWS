@@ -16,11 +16,11 @@ You can add a tag to pretty much any resource but let's look at a few examples.
 
 ### Add tags to a storage bucket
 
-1. Select the bucket and then click `Properties`. 
+1. Select the bucket and then click **Properties**. 
 
 <img src="/docs/images/bucket_properties.png" width="450" height="175">
 
-2. Scroll down to `Tags` and click `Edit`.
+2. Scroll down to **Tags** and click **Edit**.
 
 <img src="/docs/images/edit_tags_bucket.png" width="450" height="125">
 
@@ -32,18 +32,18 @@ You can add a tag to pretty much any resource but let's look at a few examples.
 
 This assumes your instance already exists. You can also tag a new instance during creation using the same method.
 
-1. Select the instance and click the `Tags` tab, then `Manage Tags`.
+1. Select the instance and click the **Tags** tab, then **Manage Tags**.
 
 <img src="/docs/images/EC2_edit_tags.png" width="450" height="250">
 
-2. Add your tags, then click `Save`.
+2. Add your tags, then click **Save**.
 
 <img src="/docs/images/EC2_add_tags.png" width="450" height="250">
 
 ### Add tags to a Sagemaker instance
 
-1. Select the Sagemaker instance and scroll down to `Tags`.
-2. Click `Edit`, then add tags as described above.
+1. Select the Sagemaker instance and scroll down to **Tags**.
+2. Click **Edit**, then add tags as described above.
 
 <img src="/docs/images/sagemaker_edit_tags2.png" width="450" height="250">
 
@@ -56,15 +56,15 @@ You can find a lot of billing tools by searching for billing in the bar at the t
 
 However, the best billing tool for Cloud Lab use is the cost explorer. 
 
-1. Go to the (A) Console Home Page, then to (B) AWS Cost Management.
+1. Go to the (A) **Console Home Page**, then to (B) **AWS Cost Management**.
 
 <img src="/docs/images/aws_cost_management.png" width="450" height="250">
 
-2. Click on `Cost Explorer` on the left panel
+2. Click on **Cost Explorer** on the left panel
 
 <img src="/docs/images/cost_explorer.png" width="450" height="250">
 
-3. Click on the (A) the data range, then (B) change the end date to today's date. By default it will show you billing to the end of last month.
+3. Click on (A) the data range, then (B) change the end date to today's date. By default it will show you billing to the end of last month so you won't see your current month charges.
 
 <img src="/docs/images/change_end_date.png" width="450" height="250">
 
@@ -76,7 +76,7 @@ Now we see only costs related to EC2.
 
 <img src="/docs/images/ec2-filtered.png" width="450" height="250">
 
-5. Filter for the tags we added in Part 1 to benchmark a specific analysis.
+5. Filter for the tags we added in Part 1 to benchmark a specific analysis. In this case, I am going to select **BLAST**.
 
 <img src="/docs/images/filter_tag.png" width="450" height="250">
 
@@ -87,9 +87,26 @@ Now we can see the costs related to the analyses with the BLAST tag. If you don'
 6. Explore the other options available. You can change the plot type, change the filtering, and use several other tools within Cost Management. 
 
 ## 3. Create Budget Alerts
+
 One way to help not overrun your budget is to create budget alerts. You can do this from Cost Management > Budgets.
 
 <img src="/docs/images/nav_budget.png" width="450" height="250">
+
+1. Click `Create a budget`. 
+
+<img src="/docs/images/create_budget.png" width="450" height="250">
+
+2. Select your budget type. We recommend `Cost-budget`. Click `Next`. 
+
+<img src="/docs/images/budget_type.png" width="450" height="250">
+
+3. On the next page, enter a Budget Name. Under budget amount, select **Annually** for **Period**. Under **Budget renewal type** select **Expiring budget**. For **Budgeting method** select **Fixed** and then put **500** for the Budget Amount.
+
+<img src="/docs/images/configure_budget_aws.png" width="450" height="250">
+
+4. You can leave the rest as default and then click **Next**
+
+<img src="/docs/images/budget_scope.png" width="450" height="250">
 
 
 
