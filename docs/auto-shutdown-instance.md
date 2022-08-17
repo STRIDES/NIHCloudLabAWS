@@ -13,11 +13,11 @@ Configuring auto shutdown on Sagemaker instances is also relatively simple.
 
 1. On the Sagemaker page, click **Create notebook instance**.
 
-<img src="/docs/images/create_notebook_instance.jpeg" width="450" height="75">
+<img src="/docs/images/create_notebook_instance.jpeg" width="550" height="125">
 
 2. Under *Additional Configuration* click the box under *Lifecycle configuration - optional*, then select **Create a new lifecycle configuration**.
 
-<img src="/docs/images/click_configuration.png" width="450" height="350">
+<img src="/docs/images/click_configuration.png" width="550" height="450">
 
 3. Name your configuration something like `idle-shutdown-sagemaker` and then paste in the following code under *Start notebook*. This code snippet will shutdown your VM after 3600 seconds (1 hr) of inactivity. If you want that time to be shorter, change it to something like 1800 (30 min).
 
@@ -37,7 +37,7 @@ echo "Starting the SageMaker autostop script in cron"
 (crontab -l 2>/dev/null; echo "*/5 * * * * /usr/bin/python $PWD/autostop.py --time $IDLE_TIME --ignore-connections") | crontab -
 ```
 
-<img src="/docs/images/add_script.png" width="450" height="650">
+<img src="/docs/images/add_script.png" width="550" height="750">
 
 4. Click **Create configuration**, then click **Create notebook instance**
 
@@ -47,7 +47,7 @@ The instructions for adding auto-shutdown to an existing instance are almost ide
 
 1. Select the instance you want to modify, and click **Edit** in the top right. Your instance does need to be stopped.
 
-<img src="/docs/images/edit_instance_aws.png" width="450" height="175">
+<img src="/docs/images/edit_instance_aws.png" width="550" height="175">
 
 2. Now under *Additional configuration* select *Lifecycle configuration - optional* and follow the instructions above for 2–4.
 
