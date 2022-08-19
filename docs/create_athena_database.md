@@ -52,4 +52,15 @@ Click **Next**
 
 <img src="/docs/images/12_name_database.jpeg" width="550" height="400">
 
+13) Review your selections and click **Finish**. Now your crawler will show up on the `Crawlers` menu. 
+
+<img src="/docs/images/13_crawlers_menu.jpeg" width="550" height="400">
+
+14) Click your crawler name, then select **Run crawler**. This will start the crawler and generate tables, which we will query using Amazon Athena. It should take about **10 minutes** to generate the SRA metadata tables. 
+
+<img src="/docs/images/14_run_crawler.jpeg" width="550" height="400">
+
+
+
+
 
