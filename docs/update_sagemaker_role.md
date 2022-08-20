@@ -12,7 +12,7 @@ If when using using Athena from a notebook, you get the following permissions er
 
 3) Click **Add permissions** then **Create inline policy**.
 
-<img src="/docs/images/3_inline_policy.png" width="550" height="400">
+<img src="/docs/images/3_inline_policy.png" width="550" height="350">
 
 4) Fill out the form as in the screen shot below to attach the permission to the Sagemaker Role. Click **Review Policy**
 
@@ -20,7 +20,7 @@ If when using using Athena from a notebook, you get the following permissions er
 
 5) Name your policy and click **Create policy**
 
-<img src="/docs/images/5_name_and_create.png" width="550" height="400">
+<img src="/docs/images/5_name_and_create.png" width="550" height="450">
 
 6) Confirm that the new policy is listed for the Sagemaker Role.
 
