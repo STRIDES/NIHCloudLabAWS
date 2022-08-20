@@ -34,7 +34,7 @@ Click **Next**
 
 8) Click **No** unless you want to add another data store.
 
-<img src="/docs/images/8_click_no_other.png" width="550" height="350">
+<img src="/docs/images/8_click_no_other.png" width="550" height="300">
 
 9) Select **Create an IAM role**, give your role some kind of name like `sraCrawler`. This will add a role and grant it permissions to access the public S3 bucket with the SRA metadata. Feel free to go to `IAM` and search for the Role you just created.
 
