@@ -4,11 +4,11 @@
 
 1. Go to the EC2 console, and select the instance ID of the instance you want to monitor. 
 
-<img src="/docs/images/1_EC2_homepage.png" width="550" height="75">
+<img src="/docs/images/1_EC2_homepage.png" width="550" height="125">
 
 2. Scroll down and select the *Monitoring* tab.
 
-<img src="/docs/images/1_EC2_homepage.png" width="550" height="300">
+<img src="/docs/images/1_EC2_homepage.png" width="550" height="150">
 
 3. If you would like more information for a given metric, click the three dots and select *View in metrics*.
 
