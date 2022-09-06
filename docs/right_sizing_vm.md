@@ -18,15 +18,15 @@
 
 5. If you need to change the size of your VM based on over- or under- CPU or memory utilization, first stop the instance.
 
-<img src="/docs/images/4_stop_instance.png" width="550" height="300">
+<img src="/docs/images/4_stop_instance.png" width="550" height="350">
 
 6. Change the instance type. In the top right, click *Actions > Instance settings > Change instance type.* 
 
-<img src="/docs/images/5_edit_instance.png" width="550" height="300">
+<img src="/docs/images/5_edit_instance.png" width="550" height="600">
 
 7. In the dropdown, select a new instance type and click **Apply**.
 
-<img src="/docs/images/6_change_instance_type.png" width="550" height="300">
+<img src="/docs/images/6_change_instance_type.png" width="550" height="600">
 
 ## Monitor your CPU usage on a Sagemaker instance
 
