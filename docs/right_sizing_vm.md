@@ -30,4 +30,4 @@
 
 ## Monitor your CPU usage on a Sagemaker instance
 
-You can monitor some aspects of Sagemaker jobs in [CloudWatch](https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-cloudwatch.html#cloudwatch-metrics-jobs), but unfortunately, you can not yet monitor CPU usage. If you want to monitor CPU or memory usage of a Sagemaker notebook, you will need to use Sagemaker Studio.
+You can monitor some aspects of Sagemaker jobs in [CloudWatch](https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-cloudwatch.html#cloudwatch-metrics-jobs), but unfortunately, you can not yet monitor CPU usage. If you want to monitor CPU or memory usage of a Sagemaker notebook, you will need to use Sagemaker Studio, but we do not yet have a guide on this product.
