@@ -16,6 +16,9 @@
 
 <img src="/docs/images/4_connect_ssh.png" width="550" height="250">
 
-5. Open a terminal on Mac or Linux. On Windows connect [using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html). Paste in the command from #4. 
-6. 
+5. Open a terminal on Mac or Linux. On Windows connect [using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html). Paste in the command from #4. If everything works, you will now be SSH'd into your EC2 machine.
+
+<img src="/docs/images/5_terminal.png" width="550" height="250">
+
+
 
