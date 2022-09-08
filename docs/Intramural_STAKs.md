@@ -4,7 +4,7 @@ If you have an NIH identity, you can access your Short Term Access Keys (STAKs) 
 
 1. Click `Cloud Access`. 
 
-<img src="/docs/images/1_cloud_access.png" width="550" height="300">
+<img src="/docs/images/1_cloud_access.png" width="550" height="250">
 
 2. On the line with your account name, click **Short-term access keys**. 
 
