@@ -1,4 +1,22 @@
-To begin, go to `Services > Machine Learning > Amazon SageMaker`. Once on the landing page, you should see a menu bar on the left side of the page. Click `Notebook` and then `Notebook instances`. Now click the orange colored `Create notebook instance`. Give your instance a globally unique name. Under `Notebook instance type` choose a machine type. You can find the full list of instance types [here](https://aws.amazon.com/ec2/instance-types/). Fortunately not all machines are available with SageMaker, so we only have to choose from a few. You can figure out how much your notebook will cost to run using the pricing calculator [here](https://aws.amazon.com/ec2/pricing/on-demand/) based on your machine type. As long as the notebook is running (and not stopped) you will be charged per second of use. Leave all other values as default for now. Click `Create notebook instance`. It should take about 10 minutes to spin up, so go brew some coffee and come back. Once the status changes from `Pending` to `InService` then you can connect. It is also a good idea to enable [auto-shutdown](/docs/auto-shutdown-instance.md) on your notebook to prevent leaving it running after you finish.
+
+# Guide to spinning up a Sagemake Notebook instance and importing an example notebook
+
+## Spin up the instance
+
+1. Go to `Services > (A) Machine Learning > (B) Amazon SageMaker`, or just search for `Sagemaker` in the top search bar.
+
+<img src="/docs/images/1_find_sagemaker.png" width="550" height="750">
+
+2. On the left menu, click **Notebook > Notebook Instance**, then click **Create notebook instance**.
+
+<img src="/docs/images/2_new_notebook_instance.png" width="550" height="250">
+
+3. Fill out the required fields. If you need help selecting an instance go [here](https://aws.amazon.com/sagemaker/pricing/) to `On-Demand Pricing`. Click '**Additional configuration**, then increase your disk size to fit your needs. You can also create a Lifecycle configuration to enable auto-shutdown of idle VMs. See our [other guide](/docs/auto-shutdown-instance.md) on how to do this. If you want to benchmark the cost of an instance, add a tag such as key=`Project`, value=`cloudlab`, and then you can filter this later in your [billing dashboard](/docs/billing_and_cost_management.md). Finally, click **Create notebook instance** at the bottom. 
+
+<img src="/docs/images/3_configure_sagemaker_instance.png" width="550" height="800">
+
+
+
 
 ### Import our training notebook
 Now that our instance is `InService` (read running) we can click `Open JupyterLab` on the far right of the screen. Notice that we have a lot of options for creating new notebooks, and we can also open a terminal window. Let's begin by looking at the AWS example notebooks by clicking the bottom icon on the far left that looks like a brain. You will see that most of these are generic data science and ML topics, but there are a few biomedically relevant examples, with several notebooks focused on cancer data. These notebooks are a great way to learn some basic functionality of AWS like ingesting data, training and running ML/AI models, and running R notebooks. You can also explore a variety of more advanced applications. Open a few notebooks and copy them to your workspace to see how that works. After this, you can copy in a custom notebook and some example data. From the base directory, click the git icon on the middle left bar, it kind of looks like the letter 'T' with a tilt. Click `Clone a Repository`, and then paste the address to this repo (from the green box in the top right) into the box.
