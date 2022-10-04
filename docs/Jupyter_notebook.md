@@ -19,7 +19,7 @@
 
 4. Your instance will say `Pending` for a few minutes. Once the instance says `InService` (i.e. running) we can click `Open JupyterLab` on the far right of the screen. 
 
-<img src="/docs/images/4_open_jupyter.png" width="550" height="250">
+<img src="/docs/images/4_open_jupyter.png" width="550" height="175">
 
 5. There are a lot of options here for opening different types of notebooks, as well as a terminal window. If you want to start a new notebook, you can select a kernel, if you aren't sure what to select, we recommend `conda_python3`. 
 
