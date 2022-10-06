@@ -65,7 +65,7 @@ If you are on campus, your IP may remain stable, you will need to check. To find
 
 ![windows](/docs/images/windows.jpg)
 
-For macOS: Look for utun(number) where number is the highest number of the utun series, which should have an IP assigned. This could be utun1-3. 
+For macOS: Look for utun(number) where number is the highest number of the utun series, which should have an IP assigned. This could be utun1-3. You can also identify which interface is the wired connection by running “networksetup -listallhardwareports” which tells you the port type along the ID. For example, “en0” or “en1” might be the wired connection on your machine. Once you determine which ID this is, run “ifconfig” and find the corresponding ID.  That will give you the private IP that is assigned to that port and that would need to be used in the security group to allow ssh access.
 
 ![mac](/docs/images/mac.png)
 
