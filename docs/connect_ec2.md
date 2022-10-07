@@ -32,7 +32,7 @@ There are two ways you can connect to an instance in Cloud Lab:
 
 7. Go to `Configure storage` and set the GB that you will need. You can always resize later by editing the instance.
 
-8. If you plan to only connect via SSH, and not SSM, go ahead and click `Launch Instance` on the bottom right part of the screen. However, if you would like to have SSM access available, and are using an Amazon AMI, then click the `Advanced details` drop down arrow. Under `IAM instance profile`, select `SSM-Role-For-EC2`. You may need to search for it. 
+8. If you plan to only connect via SSH, and not SSM, go ahead and click `Launch Instance` on the bottom right part of the screen. However, if you would like to have SSM access available, and are using an Amazon Linux AMI, then click the `Advanced details` drop down arrow. Under `IAM instance profile`, select `SSM-Role-For-EC2`. You may need to search for it. If you are not using an Amazon Linux AMI then follow these [instructions](https://aws.amazon.com/premiumsupport/knowledge-center/install-ssm-agent-ec2-linux/). For more info on adding IAM roles go [here](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-profile.html).
 
 ![IAM](/docs/images/IAM_SSM_role.png)
 
@@ -48,13 +48,13 @@ There are two ways you can connect to an instance in Cloud Lab:
 
 <img src="/docs/images/2_click_connect.png" width="550" height="250">
 
-3. SSH and Session Manager should both be available under the `Connect` menu once your instance is running. If you can not access Session Manager go back up to Step #8 and add the IAM Role.
+3. SSH and Session Manager (SSM) should both be available under the `Connect` menu once your instance is running. If you can not access Session Manager go back up to Step #8 and add the IAM Role. When you connect via SSM, you will usually end up in the `/usr/bin`. If this happens, then type `cd` to get back to the ssm-user directory. If you need to also use the ec2-user, then use `sudo su` and then you can switch between ec2 and ssm users profiles.
 
 4. Now let's try connecting via SSH. Select *SSH client*, and then copy the example given at the bottom. Note that the example username is typically `ec2-user` but if you are using Ubuntu as the operating system, the username is `ubuntu`, and you may need to modify the example EC2 gives you. 
 
 <img src="/docs/images/4_connect_ssh.png" width="550" height="400">
 
-5. Open a terminal on Mac or Linux. On Windows connect [using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html). Paste in the command from #4. If everything works, you will now be SSH'd into your EC2 machine.
+5. Open a terminal on Mac or Linux. On Windows connect [using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html). Paste in the command from #4. If everything works, you will now be SSH'd into your EC2 machine. If you are unable to connect, or get a command timeout, there is likely an issue with the CIDR ranges in the security group not including your IP address. If you are connected via wifi, or else connected via ethernet, as well as if you are on the VPN, your IP can be different. To help troubleshoot these issues, see the next section. If you still are stuck, submit a support ticket.
 
 <img src="/docs/images/5_terminal.png" width="550" height="250">
 
@@ -65,7 +65,7 @@ If you are on campus, your IP may remain stable, you will need to check. To find
 
 ![windows](/docs/images/windows.jpg)
 
-For macOS: Look for utun(number) where number is the highest number of the utun series, which should have an IP assigned. This could be utun1-3. You can also identify which interface is the wired connection by running “networksetup -listallhardwareports” which tells you the port type along the ID. For example, “en0” or “en1” might be the wired connection on your machine. Once you determine which ID this is, run “ifconfig” and find the corresponding ID.  That will give you the private IP that is assigned to that port and that would need to be used in the security group to allow ssh access.
+For macOS: Look for utun(number) where number is the highest number of the utun series, which should have an IP assigned. This could be utun1-3. You can also identify which interface is the wired connection by running “networksetup -listallhardwareports” which tells you the port type along the ID. For example, “en0” or “en1” might be the wired connection on your machine. Once you determine which ID this is, run “ifconfig” and find the corresponding ID.  That will give you the private IP that is assigned to that port and that would need to be used in the security group to allow SSH access.
 
 ![mac](/docs/images/mac.png)
 
