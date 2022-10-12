@@ -26,7 +26,7 @@ There are a lot of ways to run workflows on AWS. Here we list a few possibilitie
  **Please note, GPU machines cost more than most CPU machines, so be sure to shut these machines down after use, or apply an EC2 [lifecycle configuration](/docs/auto-shutdown-instance.md). You may also encounter service quotas to protect you from the accidental use of expensive machine types. If that happens, and you still want to use a certain instance type, follow these [instructions](/docs/service_quotas.md).**
 
 ## **Download Data From the Sequence Read Archive (SRA)** <a name="SRA"></a>
-Next Generatin genetic sequence data is housed in the NCBI Sequence Read Archive (SRA). You can access these data using the SRA Toolkit. We walk you through this using [this notebook](/tutorials/notebooks/SRADownload). You can also read [this guide](https://www.ncbi.nlm.nih.gov/sra/docs/sra-aws-download/), and see how to interact with SRA metadata using [Athena](https://www.ncbi.nlm.nih.gov/sra/docs/sra-athena/).
+Next Generation genetic sequence data is housed in the NCBI Sequence Read Archive (SRA). You can access these data using the SRA Toolkit. We walk you through this using [this notebook](/tutorials/notebooks/SRADownload), which also walks you through how to use Athena to search and generate an Accession list. You can also read [this guide](https://www.ncbi.nlm.nih.gov/sra/docs/sra-aws-download/), and see how to interact with SRA metadata using [Athena](https://www.ncbi.nlm.nih.gov/sra/docs/sra-athena/).
 
 ## **Genome Wide Association Studies** <a name="GWAS"></a>
 Genome wide association studies, or GWAS, are statistical analyses that look for associations between genomic variants and phenotypic traits.
