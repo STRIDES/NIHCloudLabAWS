@@ -20,6 +20,7 @@ Use this repository to learn about how to use AWS by exploring the linked resour
 + [Disk Images](#IM)
 + [SageMaker Notebooks](#SAG)
 + [Creating a Conda Environment](#CO)
++ [Managing Containers](#DOCK)
 + [Clusters](#CLU)
 + [Billing and Benchmarking](#BB)
 + [Cost Optimization](#COST)
@@ -75,6 +76,9 @@ Follow our [Sagemake Notebook guide](/docs/Jupyter_notebook.md) to learn how to 
 Virtual environments allow you to manage package versions without having package conflicts. For example, if you needed Python 3 for one analysis, but Python 2.7 for another, you could create separate environments to use the two versions of Python. One of the most popular package managers used for creating virtual environments is the [conda package manager](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html#:~:text=A%20conda%20environment%20is%20a,NumPy%201.6%20for%20legacy%20testing). 
 
 Mamba is a reimplementation of conda written in C++ and runs much faster than legacy conda. Follow our [guide](/docs/create_conda_env.md) to create a conda environment using Mamba in an EC2 or Sagemaker instance.
+
+## **Managing Containers with Elastic Container Registry** <a name="DOCK"></a>
+You can host containers within Amazon Elastic Container Registry. We outline how to build a container, push to Elastic Container Registry, and pull to a compute environment in our [docs](/docs/containers.md).
 
 ## **Clusters** <a name="CLU"></a>
 One great thing about the cloud is its ability to scale with demand. When you submit a job to a traditional cluster, you specify up front how many CPUs and memory you want to give to your job, and you may over or under utilize these resources. With managed resources like serverless and clusters you can leverage a feature called autoscaling, where the compute resources will scale up or down with the demand. This is more efficient and keeps costs down when demand is low, but prevents latency when demand is high (think about workshop participants all submitting jobs at the same time to a cluster). For most users of Cloud Lab, the best way to leverage scaling is to use AWS Batch, but in some cases, maybe for a whole lab group or large project, it may make sense to spin up a [Kubernetes cluster](https://aws.amazon.com/kubernetes/). Note that if you spin up resources in Batch, you will need to deactivate the compute environment (in Batch) and delete the autoscaling groups (in EC2) to avoid further charges.
