@@ -7,11 +7,11 @@ Follow this guide to learn how to set up and use AWS CodeCommit.
 
 1. Navigate to the CodeCommit page.
 
-<img src="/docs/images/find_codecommit.png" width="550" height="150">
+<img src="/docs/images/1_find_code_commit.png" width="550" height="150">
 
 2. Click **Create repository**
 
-<img src="/docs/images/create_repository.png" width="550" height="150">
+<img src="/docs/images/2_create_respository.png" width="550" height="150">
 
 3. Enter the necessary information for your repository. Feel free to add tags to track costs. Click **Create**.
 
