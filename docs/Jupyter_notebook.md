@@ -1,5 +1,5 @@
 
-# Guide to spinning up a Sagemake Notebook instance and importing an example notebook
+# Guide to spinning up a Sagemaker Notebook instance and importing an example notebook
 
 ## Spin up the instance
 
