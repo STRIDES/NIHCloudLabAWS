@@ -7,15 +7,15 @@ Follow this guide to learn how to set up and use AWS CodeCommit.
 
 1. Navigate to the CodeCommit page.
 
-<img src="/docs/images/1_find_code_commit.png" width="550" height="150">
+<img src="/docs/images/1_find_code_commit.png" width="550" height="200">
 
 2. Click **Create repository**
 
-<img src="/docs/images/2_create_respository.png" width="550" height="150">
+<img src="/docs/images/2_create_respository.png" width="550" height="200">
 
 3. Enter the necessary information for your repository. Feel free to add tags to track costs. Click **Create**.
 
-<img src="/docs/images/3_add_repo_info.png" width="550" height="150">
+<img src="/docs/images/3_add_repo_info.png" width="550" height="550">
 
 ### Authenticate and Set Up Environment
 
@@ -38,11 +38,11 @@ git config --global credential.UseHttpPath true
 
 1. You should not be authenticated and ready to clone the repository locally. To copy the url path, you can (A) click on the HTTPS link on the CodeCommit page. 
 
-<img src="/docs/images/1_clone_repository1.png" width="550" height="150">
+<img src="/docs/images/1_clone_respository1.png" width="550" height="150">
 
 Or, (B) you can go into the details for your repository, and click **Clone URL** in the top right. 
 
-<img src="/docs/images/1_clone_repository2.png" width="550" height="600">
+<img src="/docs/images/1_clone_respository2.png" width="550" height="600">
 
 If you get an error, re-authenticate with your Short Term Access Keys.
 
