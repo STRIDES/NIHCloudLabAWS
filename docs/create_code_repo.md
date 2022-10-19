@@ -34,4 +34,44 @@ git config --global credential.helper '!aws codecommit credential-helper $@'
 git config --global credential.UseHttpPath true
 ```
 
-### Clone the Repository and Push Local Code
+### Clone the Repository and Push Code
+
+1. You should not be authenticated and ready to clone the repository locally. To copy the url path, you can (A) click on the HTTPS link on the CodeCommit page. 
+
+<img src="/docs/images/1_clone_repository1.png" width="550" height="150">
+
+Or, (B) you can go into the details for your repository, and click **Clone URL** in the top right. 
+
+<img src="/docs/images/1_clone_repository2.png" width="550" height="600">
+
+If you get an error, re-authenticate with your Short Term Access Keys.
+
+2. Now you can use regular git commands to add, commit, push etc. If you have to reinitialize your keys, then you may need to run `git init` to reinitialize the repo.
+
+A simple workflow would look like this. 
+
+```
+# Clone the repo
+git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/cloud-lab-test-repo
+# CD into the repo
+cd cloud-lab-test-repo
+# Copy in the files you want to commit to the CodeCommit repository
+cp ../example_file.txt .
+# Create a new branch, Code Commit does not create a default branch, so you need to create a branch to push to.
+git checkout -b cloud-lab-branch
+# Stage your files
+git add example_file.txt 
+# Commit
+git commit -m 'cloud lab test commit'
+# Push to CodeCommit Repo
+git push origin cloud-lab
+# Test pulling files back down
+git pull git pull origin cloud-lab
+```
+You should now see your file(s) in the CodeCommit Repository.
+
+
+
+
+
+ 
