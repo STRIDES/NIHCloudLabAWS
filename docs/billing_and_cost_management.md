@@ -1,7 +1,3 @@
-Tagging
-Billing Report
-Creating Budget Alerts
-
 # Guide to AWS Billing and Cost Management
 
 Understanding how to manager your costs can be difficult in the cloud. For one thing, you have to keep track of how much you have spent with the obvious services, like EC2, Sagemaker and S3. On the other hand, how can you figure out how much you are being charged for your network (VPC)? 
