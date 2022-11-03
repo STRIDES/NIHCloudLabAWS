@@ -20,7 +20,7 @@ You can create a new bucket by navigating to the S3 page and creating a new buck
 agc account activate --vpc <vcp-id> --subnets <subnet1> --subnets <subnet2> --bucket <bucket-name>
 ```
 
-If for some reason the activation fails, you need to go to s3 and delete the bucket agc created and then try again. If you can't get the account to activate after a few attempts, start from scratch with this command `agc account deactivate --force`. 
+If for some reason the activation fails, you need to go to s3 and delete the bucket agc created and then try again. If you can't get the account to activate after a few attempts, start from scratch with this command `agc account deactivate --force`. You may also need to go to Stack Formation and delete any of the stacks related to AGC.
 
 If everything works, then it will take about 4 minutes to finish bootstrapping the infrastructure. Now configure you email (`agc configure email you@youremail.com`) and you are all set up! 
 
