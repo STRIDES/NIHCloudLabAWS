@@ -28,7 +28,7 @@ Now try running some examples. You can start with the [Hello World example](http
 
 Once in a project, you can list the available contexts with `agc context list`, and you can list the available workflows with `agc workflow list`. If you want to check on any of the agc commands, just type `agc` or agc + subcommand like `agc workflow` and you will get a help menu. 
 
-**Please note that at this time Snakemake is not working within Cloud Lab, we are investigating if a work around is possible** If you need to run snakemake as opposed to Nextflow etc, we recommend just running via EC2 or SageMaker. You could also try the [Snakemake docs](https://snakemake.readthedocs.io/en/stable/executing/cloud.html) recommendation of Tibanna but this has not been tested. 
+**Please note that if you need to run snakemake as opposed to Nextflow etc, we will need to make some modification to your account's network. Please email CloudLab@nih.gov with the subject 'Snakemake Genomics CLI DNS modification Request'.** 
 
 One other note...this workflow will create a bunch of Stacks in Cloud Formation. When you are done testing this functionality, please go in and manually delete the stacks. Our clean up scripts (for giving your account to someone else) are unable to wipe Cloud Formation. Thank you!
 
