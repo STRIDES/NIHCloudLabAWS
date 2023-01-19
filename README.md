@@ -11,39 +11,39 @@ Use this repository to learn about how to use AWS by exploring the linked resour
 
 ## Overview of Page Contents
 
-+ [Getting Started](#GS)
-+ [Overview](#OV)
-+ [Command Line Tools](#CLI)
-+ [Amazon Marketplace](#MARK)
-+ [Ingest and Store Data](#STO)
-+ [Virtual Machines in EC2](#VM)
-+ [Disk Images](#IM)
-+ [SageMaker Notebooks](#SAG)
-+ [Creating a Conda Environment](#CO)
-+ [Managing Containers and Code Repositories](#DOCK)
-+ [Clusters](#CLU)
-+ [Billing and Benchmarking](#BB)
-+ [Cost Optimization](#COST)
-+ [Getting Support](#SUP)
-+ [Additional Training](#TR)
++ [Getting Started](#gs)
++ [Overview](#ov)
++ [Command Line Tools](#cli)
++ [Amazon Marketplace](#mark)
++ [Ingest and Store Data](#sto)
++ [Virtual Machines in EC2](#vm)
++ [Disk Images](#im)
++ [SageMaker Notebooks](#sag)
++ [Creating a Conda Environment](#co)
++ [Managing Containers and Code Repositories](#dock)
++ [Clusters](#clu)
++ [Billing and Benchmarking](#bb)
++ [Cost Optimization](#cost)
++ [Getting Support](#sup)
++ [Additional Training](#tr)
 
-## **Getting Started** <a name="GS"></a>
+## **Getting Started** <a name="gs"></a>
 You can learn a lot of what is possible on AWS in the AWS Getting Started [Tutorials Page](https://aws.amazon.com/getting-started/hands-on/?getting-started-all.sort-by=item.additionalFields.sortOrder&getting-started-all.sort-order=asc&awsf.getting-started-category=*all&awsf.getting-started-level=*all&awsf.getting-started-content-type=*all&awsm.page-getting-started-all=2) and we recommend you go there and explore some of the tutorials on offer. Nonetheless, it can be hard to know where to start if you are new to the cloud. To help you, we thought through some of the most common tasks you will encounter doing cloud-enabled research, and gathered tutorials and guides specific to those topics. We hope the following materials are helpful as you explore cloud-based research. For an alternative perspective, you can also check out Lynn Langit's [AWS for Bioinformatics repo](https://github.com/lynnlangit/aws-for-bioinformatics). 
 
-## **Overview** <a name="OV"></a>
+## **Overview** <a name="ov"></a>
 There are three primary ways you can run analyses using AWS: using **Virtual Machines**, **Jupyter Notebook instances**, and **Serverless services**. We give a breif overview of each of these here and go into more detail in the sections below. [Virtual machines](https://aws.amazon.com/getting-started/launch-a-virtual-machine-B-0/) are like desktop computers, but you access them through the cloud console and you get to pick the operating system and the specs such as CPU and memory. In AWS, these virtual machines are called Elastic Compute Cloud or EC2 for short. Jupyter Notebook instances are virtual machines with preconfigured with Jupyter Lab. On AWS these are run through [SageMaker](https://aws.amazon.com/pm/sagemaker/?trk=8987dd52-6f33-407a-b89b-a7ba025c913c&sc_channel=ps&sc_campaign=acquisition&sc_medium=ACQ-P|PS-GO|Brand|Desktop|SU|Machine%20Learning|Sagemaker|US|EN|Text&s_kwcid=AL!4422!3!532502995192!e!!g!!aws%20sagemaker&ef_id=CjwKCAjw7IeUBhBbEiwADhiEMfXNyIY5DZB4FG17gZcXYycBpN1lNPRNfXdxWP9NhTY_t_IrAmEiIhoCIqwQAvD_BwE:G:s&s_kwcid=AL!4422!3!532502995192!e!!g!!aws%20sagemaker), which is also AWS's ML/AI platform. You decide what kind of virtual machine you want to 'spin up' and then you can run Juptyer notebooks on that virtual machine. Finally, Serverless services are services that allow you to run things, an analysis, an app, a website, and not have to deal with your own servers (VMs). There are still servers running somewhere, you just don't have to manage them. All you have to do is call a command that runs your analysis in the background, and then see the outputs usually in a storage bucket.
 
-## **Command Line Tools** <a name="CLI"></a>
+## **Command Line Tools** <a name="cli"></a>
 Most tasks in AWS can be done without the command line, but the command line tools will generally make your life easier in the long run. Command line interface (CLI) tools are those that you use directly in a terminal/shell as opposed to clicking within a graphical user interface (GUI). The primary tool you will need is the AWS CLI, which will allow you to interact with instances or S3 buckets (see below) from your local terminal. Instructions for the CLI can be found [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html). If you are unable to install locally, you can use all the CLI commands from within EC2 and SageMaker instances, or from the [Cloud Shell](https://aws.amazon.com/cloudshell/). 
 
 To configure the CLI, you will need to authenticate using [access keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html), which are unique strings that tell AWS that you are allowed to interact with the account. Within Cloud Lab, you will need to use Short Term Access Keys. If you are an NIH user, the instructions for accessing these are found [here](/docs/Intramural_STAKs.md). Short Term Access keys differ from Long Term Access keys in that they only work for a short period of time. Once your time limit expires, you have to request new keys and then authenticate again.
 
 If you are running bioinformatic workflows, you can leverage the serverless functionality of AWS using [Amazon Omics](https://aws.amazon.com/omics/) which is a new service for genomic-data specific storage, serverless workflow execution (using WDL or Nextflow), and variant queries using Amazon Athena. For those who want to use other workflow managers, you can instead try the [AWS Genomics CLI](https://aws.amazon.com/genomics-cli/), which is a wrapper for genomics workflow managers and AWS Batch (serverless computing cluster). See our [docs](/docs/agc.md) on how to set up the Genomics CLI for Cloud Lab. Supported workflow engines include [Toil](https://aws.github.io/amazon-genomics-cli/docs/workflow-engines/toil/), [Cromwell](https://aws.github.io/amazon-genomics-cli/docs/workflow-engines/cromwell/), [minwdl](https://aws.amazon.com/blogs/industries/running-wdl-workflows-at-scale-with-amazon-genomics-cli-and-miniwdl/), [Nextflow](https://aws.github.io/amazon-genomics-cli/docs/workflow-engines/nextflow/), and [Snakemake](https://aws.github.io/amazon-genomics-cli/docs/workflow-engines/snakemake/). 
 
-## **Amazon Marketplace** <a name="MARK"></a>
+## **Amazon Marketplace** <a name="mark"></a>
 The [AWS Marketplace](https://docs.aws.amazon.com/marketplace/latest/userguide/what-is-marketplace.html) is a platform similar to Amazon.com where you can search for and launch pre-configured solutions such as Machine Images. Examples of images you may launch would be those with [enhanced security](https://aws.amazon.com/marketplace/seller-profile?id=dfa1e6a8-0b7b-4d35-a59c-ce272caee4fc) (see EC2 section) or ones opimized for various tasks like machine learning, [platform-specific genomics](https://aws.amazon.com/marketplace/pp/prodview-ypz2tpzy6f5xq?sr=0-3&ref_=beagle&applicationId=AWSMPContessa), or [accelerated genomics](https://aws.amazon.com/marketplace/pp/prodview-apbngojlskcyq?sr=0-1&ref_=beagle&applicationId=AWSMPContessa). 
 
-## **Ingest and Store Data using Amazon S3** <a name="STO"></a>
+## **Ingest and Store Data using Amazon S3** <a name="sto"></a>
 Data can be stored in two places on the cloud: either in a cloud storage bucket, which on AWS is called Amazon Simple Storage Service (S3), or on an instance, which usually has Elastic Block Storage. Block storage is storage with a finite size (e.g., 200 GB) that is located on your virtual machine. S3 is object storage, meaning that you can put any type of object in S3, and it is scalable, so there is no upper limit on storage size. There is a 5 TB limit on individial items that you upload, so if you needed to upload a larger file, you would need to break it into smaller pieces.
 
 In general, you want to keep your compute and storage separate, so you should aim to store data in S3 for access, then only copy the data you need to a particular instance to run an analysis, then copy the results back to S3. In addition, the data on an instance is only available when the instance is running, whereas the data in S3 is always available, and serves as a longer term storage solution. [Here](https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/) is a great tutorial on how to use S3 and is worth going through to learn how it all works.
@@ -52,7 +52,7 @@ We also wanted to give you a few other tips that may be helpful when it comes to
 
 There is some strategy to managing storage costs as well. When you have spun up a VM, you have already paid for the storage on the VM since you are paying for the size of the disk, whereas S3 storage is charged based on how much data you put in your buckets. This is something to think about when copying results files back to S3 for example. If they are not files you will need later, then leave them on the VM's block storage and save your money on more important data to put in S3. Just make sure you delete the VM when you are finished with it. If the data is important though, either create a disk image as a backup, or copy it to S3, or both! 
 
-## **Spin up a Virtual Machine and run a workflow** <a name="VM"></a>
+## **Spin up a Virtual Machine and run a workflow** <a name="vm"></a>
 Virtual machines (VMs) on AWS are called Amazon Elastic Compute Cloud (EC2) and are like virtual computers that you access via SSH and which start as (nearly) completly blank slates. You have complete control over the VM configuration beginning with the [operating system](https://docs.aws.amazon.com/systems-manager/latest/userguide/prereqs-operating-systems.html#prereqs-os-linux). You can choose a variety of Linux flavors, as well as macOS and Windows. Virtual Machines are organized into [machine families](https://aws.amazon.com/ec2/instance-types/?trk=36c6da98-7b20-48fa-8225-4784bced9843&sc_channel=ps&sc_campaign=acquisition&sc_medium=ACQ-P|PS-GO|Brand|Desktop|SU|Compute|EC2|US|EN|Text&s_kwcid=AL!4422!3!536392622533!e!!g!!ec2%20instance%20types&ef_id=CjwKCAjw7IeUBhBbEiwADhiEMedsuBikka4KyMJjZdw2Qi63FwjhvKhPlmHr9EYefV3GIE14lRz-ixoCqWIQAvD_BwE:G:s&s_kwcid=AL!4422!3!536392622533!e!!g!!ec2%20instance%20types) with different functions, such as General Purpose, Compute Optimized, Accelerated Computing etc. You can also select machines with graphics processing units (GPUs), which run very quickly for some use cases, but also can cost more than most of the CPU machines. Billing occurs on a per second basis, and larger and faster machine types cost more per second. This is why it is important to stop or delete machines when not in use to minimize costs, and consider always using an [auto shutdown script](/docs/auto-shutdown-instance.md).
 
 Many great resources exist on how to spin up, connect to, and work on a VM on AWS. The first place to direct you is the tutorial created by [NIH Common Data Fund](https://training.nih-cfde.org/en/latest/Cloud-Platforms/Introduction_to_Amazon_Web_Services/introtoaws3/). This tutorial expects that you will launch an instance and work with it interactively.
@@ -64,44 +64,44 @@ From a security perspective, we recommend that you use Center for Internet Secur
 
 If you need to scale your VM up or down (see Cost Optimization below), you can always change the machine type by clicking on the instance ID, then go to `Actions > Instance Settings > Change instance type`. The VM has to be stopped to change the instance type. 
 
-## **Disk Images** <a name="IM"></a>
+## **Disk Images** <a name="im"></a>
 Part of the power of virtual machines is that they offer a blank slate for you to configure as desired. However, sometimes you want to recycle data or installed programs for your next VM instead of having to recreate the wheel. One solution to this issue is using disk (or machine) images, where you copy your existing virtual disk to an [Amazon Machine Image](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) which can serve as a backup, or can be used to launch a new instance with the programs and data from a previous instance.
 
-## **Launch a SageMaker Notebook** <a name="SAG"></a>
+## **Launch a SageMaker Notebook** <a name="sag"></a>
 Sagemaker is the AWS ML/AI development platform, as well as the hosted/managed Jupyter notebook platform. Notebooks are ideal for certain problems, particularly when doing a tutorial because you can mix code with instructions. They are also great for exploring your data or workflow one portion at a time, since the code gets broken up into little chunks that you can run one by one, which lends itself very well to most ML/AI problems. However, you can also open a terminal within Jupyter Lab, so you can switch between a traditional terminal and notebook interface. The notebook we are going to test here is inside this repo, but we are going to launch a SageMaker instance and then copy the notebook into AWS programatically.
 
 Follow our [Sagemake Notebook guide](/docs/Jupyter_notebook.md) to learn how to spin up an instance and walk through an example notebook focused on genome-wide association studies.
 
-## **Creating a Conda Environment** <a name="CO"></a>
+## **Creating a Conda Environment** <a name="co"></a>
 Virtual environments allow you to manage package versions without having package conflicts. For example, if you needed Python 3 for one analysis, but Python 2.7 for another, you could create separate environments to use the two versions of Python. One of the most popular package managers used for creating virtual environments is the [conda package manager](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html#:~:text=A%20conda%20environment%20is%20a,NumPy%201.6%20for%20legacy%20testing). 
 
 Mamba is a reimplementation of conda written in C++ and runs much faster than legacy conda. Follow our [guide](/docs/create_conda_env.md) to create a conda environment using Mamba in an EC2 or Sagemaker instance.
 
-## **Managing Containers with Elastic Container Registry and Code with CodeCommit** <a name="DOCK"></a>
+## **Managing Containers with Elastic Container Registry and Code with CodeCommit** <a name="dock"></a>
 You can host containers within Amazon Elastic Container Registry. We outline how to build a container, push to Elastic Container Registry, and pull to a compute environment in our [docs](/docs/ecr.md).
 
 Further, you can manage your git repositories within your AWS account using AWS CodeCommit. [Here](/docs/create_code_repo.md) we outline how to create a repository, authenticate to it, then push and pull files using standard git commands.
 
-## **Clusters** <a name="CLU"></a>
+## **Clusters** <a name="clu"></a>
 One great thing about the cloud is its ability to scale with demand. When you submit a job to a traditional cluster, you specify up front how many CPUs and memory you want to give to your job, and you may over or under utilize these resources. With managed resources like serverless and clusters you can leverage a feature called autoscaling, where the compute resources will scale up or down with the demand. This is more efficient and keeps costs down when demand is low, but prevents latency when demand is high (think about workshop participants all submitting jobs at the same time to a cluster). For most users of Cloud Lab, the best way to leverage scaling is to use AWS Batch, but in some cases, maybe for a whole lab group or large project, it may make sense to spin up a [Kubernetes cluster](https://aws.amazon.com/kubernetes/). Note that if you spin up resources in Batch, you will need to deactivate the compute environment (in Batch) and delete the autoscaling groups (in EC2) to avoid further charges.
 
-## **Billing and Benchmarking** <a name="BB"></a>
+## **Billing and Benchmarking** <a name="bb"></a>
 Many Cloud Lab users are interested in understanding how to estimate the price of a large scale project using a reduced sample size. Generally, you should be able to benchmark with a few representative samples to get an idea of time and cost required for a larger scale project. Follow our [Cost Management Guide](/docs/billing_and_cost_management.md) to see how to tag specific resources for workflow benchmarking. 
 
 In terms of cost, the best way to estimate costs is to use the AWS pricing calculator [here](https://aws.amazon.com/ec2/pricing/on-demand/) for an initial figure, which is a pricing tool that forcasts costs based on products and useage. Then, you can run some benchmarks and double check that everything is acting as you expect. For example, if you know that your analysis on your on-premesis cluster takes 4 hours to run for a single sample with 12 CPUs, and that each sample needs about 30 GB of storage to run a workflow, then you can extrapolate out how much everything may cost using the calculator (e.g. EC2 + S3).
 
-## **Cost Optimization** <a name="COST"></a>
+## **Cost Optimization** <a name="cost"></a>
 Follow our [Cost Management Guide](/docs/billing_and_cost_management.md) for details on how to monitor costs, set up budget alerts, and cost-benchmark specific analyses using resource tagging. In addition, here are a few tips to help you stay on budget.
 + Configure auto-shutdown on your EC2 instances following [this guide](/docs/auto-shutdown-instance.md). This will prevent you from accidentally leaving instances running.
 + Make sure you shut down other resources after you use them, and periodically 'clean up' your account. This can include S3 buckets, virtual machines/notebooks, Batch environments and Cloud Formation scripts. For Batch environments, you will also need to go to EC2 and delete the autoscaling groups (far bottom left option on the EC2 page).
 + Ensure that you are using all the compute resources you have provisioned. If you spin up a VM with 16 CPUs, you can see if they are all being utilized using [CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/US_SingleMetricPerInstance.html). If you are only really using 8 CPUs for example, then just change your machine size to fit the analysis. You can also view our CPU optimization guide [here](/docs/right_sizing_vm.md).
 + Explore using [Spot Instances](https://aws.amazon.com/ec2/spot/?cards.sort-by=item.additionalFields.startDateTime&cards.sort-order=asc&trk=8e336330-37e5-41e0-8438-bc1c75320d09&sc_channel=ps&sc_campaign=acquisition&sc_medium=ACQ-P|PS-GO|Brand|Desktop|SU|Compute|EC2%20Spot|US|EN|Text&s_kwcid=AL!4422!3!517520538473!e!!g!!ec2%20spot%20instances&ef_id=Cj0KCQjwgYSTBhDKARIsAB8KuksD7LV6FQEACly0PY4VJnEIONcvLuFG_Tq5RWp1p3OQkFbhBDRSjQcaAlMHEALw_wcB:G:s&s_kwcid=AL!4422!3!517520538473!e!!g!!ec2%20spot%20instances) or [Reserved](https://aws.amazon.com/ec2/pricing/reserved-instances/) for running workflows.
 
-## **Getting Support** <a name="SUP"></a>
+## **Getting Support** <a name="sup"></a>
 As part of your participation in Cloud Lab you will be added to the Cloud Lab Teams channel where you can chat with other Cloud Lab users, and gain support from the Cloud Lab team. For NIH Intramural users, you can submit a support ticket to Service Now. For issues related to the cloud environment, feel free to request [AWS Enterprise Support](/docs/request_enterprise_support.md). For issues related to scientific use cases, such as, how can I best run an RNAseq pipeline in AWS, email us at `CloudLab@nih.gov`.
 
 If you have a question about Quota Limits, visit our [documentation](/docs/service_quotas.md) on how to request a limit increase. 
 
-## **Additional Training** <a name="TR"></a>
+## **Additional Training** <a name="tr"></a>
 This repo only scratches the surface of what can be done in the cloud. If you are interested in additional cloud training opportunities please visit the [STRIDES Training page](https://cloud.nih.gov/training/). For more information on the STRIDES Initiative at the NIH, visit [our website](https://cloud.nih.gov) or contact the NIH STRIDES team at STRIDES@nih.gov for more information.
 
