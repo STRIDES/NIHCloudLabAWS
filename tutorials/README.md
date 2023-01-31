@@ -14,6 +14,11 @@
 + [AI/ML Pipeline](#ai)
 + [Open Data](#open)
 
+---------------------------------
+## Short Term Access Keys for Tutorials
+For most of these tutorials, you will probably need Short Term Access Keys in order to create and use resources. You will use these whenever a tutorial calls for an "access key ID" and "secret key."
+You can use [this guide](https://github.com/STRIDES/NIHCloudLabAWS/blob/main/docs/Intramural_STAKs.md) for an explanation of how to obtain and use Short Term Access Keys.
+
 ## **Biomedical Workflows on AWS** <a name="bio"></a>
 
 There are a lot of ways to run workflows on AWS. Here we list a few possibilities each of which may work for different research aims. As you walk through the various tutorials below, think about how you could possibly run that workflow more efficiently using a one of the other methods listed here. If you are unfamiliar with any of the terms or concepts here, please review the [AWS 101](https://github.com/STRIDES/NIHCloudLabAWS) page. 
