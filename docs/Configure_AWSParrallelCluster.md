@@ -1,3 +1,7 @@
+**0. Install Parallel Cluster**
+
+To install AWS Parallel Cluster in a Cloud Cloud account, first visit our [install documentation](https://github.com/STRIDES/NIHCloudLabAWS/blob/aws---parrallelcluster-patch/docs/Install_AWSParrallelCluster.md).
+
 **1. Setup your AWS credentials**
 
 To connect to your AWS console paste in your Short Term Access Keys following [these instructions](/docs/Intramural_STAKs.md).
