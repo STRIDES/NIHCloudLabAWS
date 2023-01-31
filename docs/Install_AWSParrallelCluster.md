@@ -1,7 +1,9 @@
-### Ways to install AWS ParrallelCluster:
+## Ways to install AWS ParrallelCluster:
 
     - Using a virtual environment (recommended)
     - Using pip
+ 
+ We recommend conducting all steps within AWS Cloud Shell, but you could also use a small Ec2 instance or your local machine's terminal. 
 
  **1.To install AWS ParallelCluster in a virtual environment:**
 
