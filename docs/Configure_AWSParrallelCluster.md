@@ -109,4 +109,8 @@ Wait for configuration file to be created:
     $ pcluster create <nameofcluster>
 
 After the cluster reaches the "CREATE_COMPLETE" status, you can connect to it by using your normal SSH client settings.
+
+**4. Deactivate venv when finished working
+
+To deactivate a pip environment, just type `deactivate`.
     
