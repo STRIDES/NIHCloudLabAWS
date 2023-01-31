@@ -1,19 +1,21 @@
-**1. Setup your AWS crednetials**
+**1. Setup your AWS credentials**
 
-    To connect to your AWS console enter AWS Access Keys:
-        *$ aws configure*
+To connect to your AWS console paste in your Short Term Access Keys following [these instructions](/docs/Intramural_STAKs.md).
+Next, use aws configure to set your default region: 
+    
+`aws configure`
 
           AWS Access Key ID [None]: ABCDEFGHIJKLEXAMPLE
           AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
           Default AWS Region name [us-east-1]: us-east-1
           Default output format [None]:
 
-**2. Configure your Parrallel Cluster**
+**2. Configure your Parallel Cluster**
     
-    run the following command:
-        -pcluster configure
+Run the following command: 
+`pcluster configure`
 
- Once command is run the following configuration options will display:
+Once command is run the following configuration options will display:
 
     Pick a region:
 
@@ -53,25 +55,24 @@ Choose an operating system:
                 3. ubuntu1804
                 4. ubuntu2004
 
-
 The minimum and maximum size of the cluster of compute nodes is entered. This is measured in number of instances:
                 
                 Minimum cluster size (instances) [0]:
                 Maximum cluster size (instances) [10]: 
 
- The head and compute nodes instance types are entered. For instance types, your account instance limits are large enough to meet your requirements, [instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#ec2-on-demand-instances-limits):
+The head and compute nodes instance types are entered. For instance types, your account instance limits are large enough to meet your requirements, [instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#ec2-on-demand-instances-limits). You can select something really small for the head node (Master) since it is just handling scheduling, and then compute is up to you based on requirements.
 
                 Master instance type [instance type]: 
                 Compute instance type [instance type]: 
 
     
-The key pair is selected from the key pairs registered with Amazon EC2 in the selected AWS Region:
+The key pair is selected from the key pairs registered with Amazon EC2 in the selected AWS Region. If you do not yet have a key pair, go to the EC2 console and [create one](/docs/connect_to_EC2.md): 
 
             Allowed values for EC2 Key Pair Name:
                 1. example1-uswest1-key
                 2. example2-uswest1-key
 
-After the previous steps are completed, decide whether to use an existing VPC or let AWS ParallelCluster create a VPC for you. If you don't have a properly configured VPC, AWS ParallelCluster can create a new one. It either uses both the head and compute nodes in the same public subnet, or only the head node in a public subnet with all nodes in a private subnet. It's possible to reach your limit on number of VPCs in a AWS Region. The default limit is five VPCs for each AWS Region
+After the previous steps are completed, decide whether to use an existing VPC or let AWS ParallelCluster create a VPC for you. If you don't have a properly configured VPC, AWS ParallelCluster can create a new one. It either uses both the head and compute nodes in the same public subnet, or only the head node in a public subnet with all nodes in a private subnet. It's possible to reach your limit on number of VPCs in a AWS Region. The default limit is five VPCs for each AWS Region. **For Cloud Lab accounts we recommend you do not try to create a VPC, but rather use the existing VPCs associated with your account**.
 
     Automate VPC creation? (y/n) [n]: y
     Allowed values for Network Configuration:
@@ -88,24 +89,20 @@ If you don't create a new VPC, you must select an existing VPC:
     2  vpc-0e87c753286f37eef  ParallelClusterVPC-20191118233938                    5
 
 
-After the VPC has been selected, you need to decide whether to use existing subnets or create new ones:
+After the VPC has been selected, you need to decide whether to use existing subnets or create new ones. Again for Cloud Lab accounts select **No**:
 
-    Automate Subnet creation? (y/n) [y]: y
+    Automate Subnet creation? (y/n) [n]: n
 
 Wait for configuration file to be created:
 
     Creating CloudFormation stack...
     Do not leave the terminal until the process has finished
 
-
-When you have completed the preceding steps, a simple cluster launches into a VPC. The VPC uses an existing subnet that supports public IP addresses, if public IP addresses are not supported then check here (placeholder for network config link?)
-
-
 **3. Launch Cluster**
 
      When all settings contain valid values, you can launch the cluster by running the create command:
 
-    $ pcluster create nameofcluster
+    $ pcluster create <nameofcluster>
 
 After the cluster reaches the "CREATE_COMPLETE" status, you can connect to it by using your normal SSH client settings.
     
