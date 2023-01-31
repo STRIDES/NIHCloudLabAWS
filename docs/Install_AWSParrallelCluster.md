@@ -63,7 +63,9 @@ bash Mambaforge-$(uname)-$(uname -m).sh -b -p $HOME/mambaforge
 export PATH="$HOME/mambaforge/bin:$PATH"
 ```
  ### 2.2 Create environment and install parallel cluster
- `mamba create -n pcluster -c conda-forge aws-parallelcluster -y`
+ ```
+ mamba create -n pcluster -c conda-forge aws-parallelcluster -y
+ ```
  
  ### 2.3 Activate environment
  ```
