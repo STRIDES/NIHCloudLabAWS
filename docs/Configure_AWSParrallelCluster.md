@@ -1,7 +1,7 @@
 ## Configuring AWS Parallel Cluster
 Make sure that you have first installed pcluster following these [install instructions](https://github.com/STRIDES/NIHCloudLabAWS/blob/aws---parrallelcluster-patch/docs/Install_AWSParrallelCluster.md).
 
-### **1. Setup your AWS credentials**
+### 1. Setup your AWS credentials
 
 To connect to your AWS console paste in your Short Term Access Keys following [these instructions](/docs/Intramural_STAKs.md). These should last 12 hours, and although normally you could just enter the key and secret key using aws configure, with short term keys you also need the session token, so make sure you include that. 
 
@@ -14,7 +14,7 @@ Next, use aws configure to set your default region:
           Default AWS Region name [us-east-1]: us-east-1
           Default output format [None]:
 
-**2. Configure your Parallel Cluster**
+### 2. Configure your Parallel Cluster
     
 Run the following command: 
 `pcluster configure`
@@ -102,7 +102,7 @@ After the VPC has been selected, you need to decide whether to use existing subn
 
 **Paste in one of the subnet IDs**
 
-**3. Launch Cluster**
+### 3. Launch Cluster
 
      When all settings contain valid values, you can launch the cluster by running the create command:
 
@@ -110,7 +110,7 @@ After the VPC has been selected, you need to decide whether to use existing subn
 
 After the cluster reaches the "CREATE_COMPLETE" status, you can connect to it by using your normal SSH client settings.
 
-**4. Deactivate venv when finished working
+## 4. Deactivate venv when finished working
 
 To deactivate a pip environment, just type `deactivate`.
 For conda environment type `conda deactivate`.
