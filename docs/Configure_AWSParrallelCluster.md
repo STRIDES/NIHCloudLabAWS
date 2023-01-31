@@ -1,10 +1,10 @@
-**0. Install Parallel Cluster**
+## Configuring AWS Parallel Cluster
+Make sure that you have first installed pcluster following these [install instructions](https://github.com/STRIDES/NIHCloudLabAWS/blob/aws---parrallelcluster-patch/docs/Install_AWSParrallelCluster.md).
 
-To install AWS Parallel Cluster in a Cloud Cloud account, first visit our [install documentation](https://github.com/STRIDES/NIHCloudLabAWS/blob/aws---parrallelcluster-patch/docs/Install_AWSParrallelCluster.md).
+### **1. Setup your AWS credentials**
 
-**1. Setup your AWS credentials**
+To connect to your AWS console paste in your Short Term Access Keys following [these instructions](/docs/Intramural_STAKs.md). These should last 12 hours, and although normally you could just enter the key and secret key using aws configure, with short term keys you also need the session token, so make sure you include that. 
 
-To connect to your AWS console paste in your Short Term Access Keys following [these instructions](/docs/Intramural_STAKs.md).
 Next, use aws configure to set your default region: 
     
 `aws configure`
@@ -76,12 +76,9 @@ The key pair is selected from the key pairs registered with Amazon EC2 in the se
                 1. example1-uswest1-key
                 2. example2-uswest1-key
 
-After the previous steps are completed, decide whether to use an existing VPC or let AWS ParallelCluster create a VPC for you. If you don't have a properly configured VPC, AWS ParallelCluster can create a new one. It either uses both the head and compute nodes in the same public subnet, or only the head node in a public subnet with all nodes in a private subnet. It's possible to reach your limit on number of VPCs in a AWS Region. The default limit is five VPCs for each AWS Region. **For Cloud Lab accounts we recommend you do not try to create a VPC, but rather use the existing VPCs associated with your account**.
+After the previous steps are completed, decide whether to use an existing VPC or let AWS ParallelCluster create a VPC for you. If you don't have a properly configured VPC, AWS ParallelCluster can create a new one. It either uses both the head and compute nodes in the same public subnet, or only the head node in a public subnet with all nodes in a private subnet. It's possible to reach your limit on number of VPCs in a AWS Region. The default limit is five VPCs for each AWS Region. 
 
-    Automate VPC creation? (y/n) [n]: y
-    Allowed values for Network Configuration:
-        1. Master in a public subnet and compute fleet in a private subnet
-        2. Master and compute fleet in the same public subnet
+**For Cloud Lab accounts we recommend you do not try to create a VPC, but rather use the existing VPCs associated with your account. When it asks for your VPC, just paste in one of the two options it gives you**.
 
 If you don't create a new VPC, you must select an existing VPC:
 
@@ -89,18 +86,21 @@ If you don't create a new VPC, you must select an existing VPC:
     Allowed values for VPC ID:
     #  id                     name                                 number_of_subnets
     ---  ---------------------  ---------------------------------  -------------------
-    1  vpc-0b4ad9c4678d3c7ad  ParallelClusterVPC-20200118031893                    2
-    2  vpc-0e87c753286f37eef  ParallelClusterVPC-20191118233938                    5
+    1  vpc-ID  ParallelClusterVPC-NUMBER                    2
+    2  vpc-ID  ParallelClusterVPC-NUMBER                    5
 
 
 After the VPC has been selected, you need to decide whether to use existing subnets or create new ones. Again for Cloud Lab accounts select **No**:
 
     Automate Subnet creation? (y/n) [n]: n
+    
+    Allowed values for head node Subnet ID:
+    #  id                        name                                                                       size  availability_zone
+    ---  ------------------------  -----------------------------------------------------------------------  ------  -------------------
+    1  subnet-ID  Subnet1_name     32  us-east-1b
+    2  subnet-ID  Subnet2_name      32  us-east-1a
 
-Wait for configuration file to be created:
-
-    Creating CloudFormation stack...
-    Do not leave the terminal until the process has finished
+**Paste in one of the subnet IDs**
 
 **3. Launch Cluster**
 
@@ -113,4 +113,5 @@ After the cluster reaches the "CREATE_COMPLETE" status, you can connect to it by
 **4. Deactivate venv when finished working
 
 To deactivate a pip environment, just type `deactivate`.
+For conda environment type `conda deactivate`.
     
