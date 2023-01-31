@@ -64,4 +64,8 @@
 
     Output should display version number.
 
-    
+Bonus conda install
+mamba create -n pcluster -c conda-forge aws-parallelcluster -y
+mamba activate pcluster (or could just use source activate pcluster)
+
+
