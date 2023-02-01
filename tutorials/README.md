@@ -15,10 +15,6 @@
 + [Open Data](#open)
 
 ---------------------------------
-## Short Term Access Keys for Tutorials
-For most of these tutorials, you will probably need Short Term Access Keys in order to create and use resources. You will use these whenever a tutorial calls for an "access key ID" and "secret key."
-You can use [this guide](https://github.com/STRIDES/NIHCloudLabAWS/blob/main/docs/Intramural_STAKs.md) for an explanation of how to obtain and use Short Term Access Keys.
-
 ## **Biomedical Workflows on AWS** <a name="bio"></a>
 
 There are a lot of ways to run workflows on AWS. Here we list a few possibilities each of which may work for different research aims. As you walk through the various tutorials below, think about how you could possibly run that workflow more efficiently using a one of the other methods listed here. If you are unfamiliar with any of the terms or concepts here, please review the [AWS 101](https://github.com/STRIDES/NIHCloudLabAWS) page. 
@@ -27,8 +23,10 @@ There are a lot of ways to run workflows on AWS. Here we list a few possibilitie
 - You could also run your pipeline via a SageMaker notebook, either by splitting out each command as a different block, or by running a workflow manager (Nextflow etc.). See [here](https://aws.amazon.com/blogs/machine-learning/scheduling-jupyter-notebooks-on-sagemaker-ephemeral-instances/) about scheduling a notebook to let it run longer. You can find some example notebooks in the [tutorials below](/tutorials/notebooks/).
 - If you are running bioinformatic workflows, you can leverage the serverless functionality of AWS using [Amazon Omics](https://aws.amazon.com/omics/). Read [this blog](https://aws.amazon.com/blogs/industries/automated-end-to-end-genomics-data-storage-and-analysis-using-amazon-omics/) for more detailed information. If you are using a workflow manager other than WDL or Nextflow, with [AWS Genomics CLI](https://aws.amazon.com/genomics-cli/), which is a wrapper for genomics workflow managers and AWS Batch (serverless computing cluster). See our [docs](/docs/agc.md) on how to set up the AGC CLI for Cloud Lab. 
 - Finally, one benefit of the cloud is access to GPUs for workflow acceleration. While a lot of focus on GPU implementation will focus on AI/ML workflows, NVIDIA has software called Parabricks that will accelerate genomic workflows for pretty low costs. See the full list of command line options [here](https://docs.nvidia.com/clara/parabricks/3.7.0/index.html)) to see if your specific workflow is accelerated. For specific details on how to use Parabricks within Cloud Lab see our [guide](/docs/parabricks.md).
- 
- **Please note, GPU machines cost more than most CPU machines, so be sure to shut these machines down after use, or apply an EC2 [lifecycle configuration](/docs/auto-shutdown-instance.md). You may also encounter service quotas to protect you from the accidental use of expensive machine types. If that happens, and you still want to use a certain instance type, follow these [instructions](/docs/service_quotas.md).**
+
+**For many of these tutorials, you will need Short Term Access Keys to create and use resources, particularly whenever a tutorial calls for "access key ID" and "secret key." Use [this guide](/docs/Intramural_STAKs.md) for an explanation of how to obtain and use Short Term Access Keys.**
+
+ **Please also note, GPU machines cost more than most CPU machines, so be sure to shut these machines down after use, or apply an EC2 [lifecycle configuration](/docs/auto-shutdown-instance.md). You may also encounter service quotas to protect you from the accidental use of expensive machine types. If that happens, and you still want to use a certain instance type, follow these [instructions](/docs/service_quotas.md).**
 
 ## **Download Data From the Sequence Read Archive (SRA)** <a name="sra"></a>
 Next Generation genetic sequence data is housed in the NCBI Sequence Read Archive (SRA). You can access these data using the SRA Toolkit. We walk you through this using [this notebook](/tutorials/notebooks/SRADownload), which also walks you through how to set up and search Athena tables to generate an accession list. You can also read [this guide](https://www.ncbi.nlm.nih.gov/sra/docs/sra-aws-download/) for more information on available dataset tables. Additional example notebooks can be found at this [NCBI repo](https://github.com/ncbi/ASHG-Workshop-2021). In particular, we recommend this notebook(https://github.com/ncbi/ASHG-Workshop-2021/blob/main/3_Biology_Example_AWS_Demo.ipynb), which goes into more detail on using Athena to access the results of the SRA Taxonomic Analysis Tool, which often differ from the user input species name due to contamination, error, or due to samples being metagenomic in nature.
