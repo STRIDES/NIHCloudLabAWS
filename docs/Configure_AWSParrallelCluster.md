@@ -103,7 +103,22 @@ When you have completed the preceding steps, a simple cluster launches into a VP
 
 **3. Launch Cluster**
 
-     When all settings contain valid values, you can launch the cluster by running the create command:
+Before launching the default configuration allows public IP addresses, which typically is not allowed in the NIH environment , to fix this:
+
+      change to directory .parrallelcluster (Will be a hidden file in directory you installed and configured the Parrallel Cluster), the default name of the Pcluster configuration file is "config"
+
+        $ vi config 
+      
+      add a line under the "[vpc_default]" block 
+
+         use_public_ips = false
+
+      once line is added make sure to save the file:
+
+         wq!
+
+
+ When all settings contain valid values, you can launch the cluster by running the create command:
 
     $ pcluster create nameofcluster
 
