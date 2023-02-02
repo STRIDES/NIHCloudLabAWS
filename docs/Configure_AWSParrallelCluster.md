@@ -106,9 +106,9 @@ After the VPC has been selected, you need to decide whether to use existing subn
 
 Before launching the default configuration allows public IP addresses, which typically is not allowed in the NIH environment , to fix this:
 
-      change to directory .parrallelcluster (Will be a hidden file in directory you installed and configured the Parrallel Cluster), the default name of the Pcluster configuration file is "config"
+      Modify the pcluster config file (Will be in a hidden file in directory you installed and configured the Parrallel Cluster), the default name of the Pcluster configuration file is "config"
 
-        $ vi config 
+        $ vi ~/.parallelcluster/config 
       
       add a line under the "[vpc_default]" block 
 
