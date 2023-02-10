@@ -3,7 +3,7 @@
     - Using a virtual environment (recommended)
     - Using a conda virtual environment 
  
- We recommend conducting all steps within AWS Cloud Shell, but you could also use a small Ec2 instance or your local machine's terminal.     
+ All steps can be completed within your local machine's terminal, an EC2 instance, or AWS Cloud Shell.
 
  ## 1.0 Install within pip virtual environment
  
