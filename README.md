@@ -76,6 +76,8 @@ SageMaker is the AWS ML/AI development platform, as well as the hosted/managed J
 
 Follow our [SageMaker Notebook guide](/docs/Jupyter_notebook.md) to learn how to spin up an instance and walk through an example notebook focused on genome-wide association studies.
 
+Amazon recently launched a new IDE environment called [Sagemaker Studio](https://docs.aws.amazon.com/sagemaker/latest/dg/studio.html), which we recommend for Cloud Lab users. To launch Studio, you will need to first set up a Domain which you can read more about [here](https://docs.aws.amazon.com/sagemaker/latest/dg/gs-studio-onboard.html). Once launched, you can use the normal Sagemaker notebook features, except that you can resizes your VM on the fly. You can also execute a whole ML/AI pipeline, including training, deploying, and monitoring, and you have ready access to [AWS Jumpstart Models](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html) for easy to deploy large language models. If you do try deploying one of these models and run into a quota limit, follow [these instructions](https://repost.aws/knowledge-center/sagemaker-resource-limit-exceeded-error).
+
 ## **Creating a Conda Environment** <a name="co"></a>
 Virtual environments allow you to manage package versions without having package conflicts. For example, if you needed Python 3 for one analysis, but Python 2.7 for another, you could create separate environments to use the two versions of Python. One of the most popular package managers used for creating virtual environments is the [conda package manager](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html#:~:text=A%20conda%20environment%20is%20a,NumPy%201.6%20for%20legacy%20testing). 
 
