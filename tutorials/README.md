@@ -11,6 +11,7 @@
 + [scRNAseq](#sc)
 + [BLAST](#bl)
 + [Long Read Sequencing Analysis](#long)
++ [Drug Discovery](#atom)
 + [AI/ML Pipeline](#ai)
 + [Open Data](#open)
 
@@ -60,6 +61,11 @@ NCBI BLAST (Basic Local Alignment Search Tool) is a widely used bioinformatics p
 ## **Long Read Sequence Analysis** <a name="long"></a>
 Long read DNA sequence analysis involves analyzing sequencing reads typically longer than 10 thousand base pairs (bp) in length, compared with short read sequencing where reads are about 150 bp in length.
 Oxford Nanopore has a pretty complete offering of notebook tutorials for handling long read data to do a variety of things including variant calling, RNAseq, Sars-Cov-2 analysis and much more. Access the notebooks [here](https://labs.epi2me.io/nbindex/).  These notebooks expect you are running locally and accessing the epi2me notebook server. To run them in Cloud Lab, skip the first cell that connects to the server and then the rest of the notebook should run correctly, with a few tweaks. If you are just looking to try out notebooks, don't start with these. If you are interested in long read sequence analysis, then some troubleshooting may be needed to adapt these to the Cloud Lab environment. You may even need to rewrite them in a fresh notebook by adapting the commands. Feel free to reach out to our support team for help.
+
+## **Drug Discovery** <a name="atom"></a>
+The [Accelerating Therapeutics for Opportunities in Medicine (ATOM) Consortium](https://atomscience.org/) created a series of [Jupyter notebooks](https://github.com/ATOMScience-org/AMPL/tree/master/atomsci/ddm/examples/tutorials) that walk you through the ATOM approach to Drug Discovery. 
+
+These notebooks were created to run in Google Colab, so if you run them in AWS, you will need to make a few modification. First, we recommend you use a [Sagemaker Studio Notebook](https://github.com/STRIDES/NIHCloudLabAWS/blob/kao_update_docs/README.md#launch-a-sagemaker-notebook-) rather than a User-Managed notebook simply because it will have Tensorflow and other dependencies installed. Be sure to attach a GPU to your instance (T4 is fine). Also, you will need to comment out `%tensorflow_version 2.x` since that is a Colab-specific command. You will also need to `pip install` a few packages as needed. If you get errors with `deepchem`, try running `pip install --pre deepchem[tensorflow]` and/or `pip install --pre deepchem[torch]`. Also, some notebooks will require a Tensorflow kernel, while others require Pytorch. You may also run into a Pandas error, reach out to the ATOM GitHub developers for the best solution to this issue.
 
 ## **AI/ML Pipelines** <a name="ai"></a>
 Machine learning is a subfield of artificial intelligence that focuses on the development of algorithms and models that enable computers to learn from and make predictions or decisions based on data, without being explicitly programmed. Artificial intelligence and machine learning algorithms are being applied to a variety of biomedical research questions, ranging from image classification to genomic variant calling. AWS is moving all AI/ML workflows to SageMaker, the Juptyer notebook platform we have used a few times already. AWS has a very general tutorial [here](https://aws.amazon.com/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/) on how to build out an AI pipeline on SageMaker. You can also look at the [breast cancer tutorial](https://github.com/aws/amazon-sagemaker-examples/blob/main/introduction_to_applying_machine_learning/breast_cancer_prediction/Breast%20Cancer%20Prediction.ipynb) from the imaging section above for a more applied example. 
