@@ -10,6 +10,7 @@
 + [RNAseq](#rna)
 + [scRNAseq](#sc)
 + [BLAST](#bl)
++ [Protein Folding](#af)
 + [Long Read Sequencing Analysis](#long)
 + [Drug Discovery](#atom)
 + [AI/ML Pipeline](#ai)
@@ -57,6 +58,9 @@ Single-cell RNA sequencing (scRNA-seq) is a technique that enables the analysis 
 
 ## **ElasticBLAST** <a name="bl"></a>
 NCBI BLAST (Basic Local Alignment Search Tool) is a widely used bioinformatics program provided by the National Center for Biotechnology Information (NCBI) that compares nucleotide or protein sequences against a large database to identify similar sequences and infer evolutionary relationships, functional annotations, and structural information. The NCBI team has written a version of BLAST for the cloud called ElasticBLAST, and you can read all about it [here](https://blast.ncbi.nlm.nih.gov/doc/elastic-blast/index.html). Essentially, ElasticBLAST helps you submit BLAST jobs to AWS Batch and write the results back to S3. Feel free to experiment with the example tutorial in Cloud Shell, or try our [notebook version](/tutorials/notebooks/ElasticBLAST/run_elastic_blast.ipynb).
+
+## **Protein Folding** <a name="af"></a>
+You can run several protein folding algorithms including Alpha Fold on AWS. Because the databases are so large, the setup is normally pretty difficult, but AWS has created a StackFormation stack that automates spinning up all the resources necessary for running Alpha Fold and other protein folding algorithms. You can read about the AWS resources [here](https://aws.amazon.com/solutions/guidance/protein-folding-on-aws/), and view the GitHub page [here](https://github.com/aws-solutions-library-samples/aws-batch-arch-for-protein-folding). To get this to work, you will need to modify your security groups following [these instructions](https://docs.aws.amazon.com/fsx/latest/LustreGuide/limit-access-security-groups.html). You will also likely have to [grant additional permissions to the Role](https://github.com/STRIDES/NIHCloudLabAWS/blob/kao_update_docs/docs/update_sagemaker_role.md) that CloudFormation is using. If you get stuck, reach out to CloudLab@nih.gov.
 
 ## **Long Read Sequence Analysis** <a name="long"></a>
 Long read DNA sequence analysis involves analyzing sequencing reads typically longer than 10 thousand base pairs (bp) in length, compared with short read sequencing where reads are about 150 bp in length.
