@@ -4,6 +4,7 @@
 ## Overview of Page Contents
 
 + [Biomedical Workflows on AWS](#bio)
++ [Clinical Informatics](#ci)
 + [Download SRA Data](#sra)
 + [GWAS](#gwas)
 + [Medical Imaging](#im)
@@ -30,6 +31,9 @@ There are a lot of ways to run workflows on AWS. Here we list a few possibilitie
 **For many of these tutorials, you will need Short Term Access Keys to create and use resources, particularly whenever a tutorial calls for "access key ID" and "secret key." Use [this guide](/docs/Intramural_STAKs.md) for an explanation of how to obtain and use Short Term Access Keys. If you are an NIH-affiliated researcher, in other words, you don't work at the NIH but have a Cloud Lab account, you will not have access to keys. If there is a tutorial you are unable to complete, reach out to us for help at CloudLab@nih.gov**
 
  **Please also note, GPU machines cost more than most CPU machines, so be sure to shut these machines down after use, or apply an EC2 [lifecycle configuration](/docs/auto-shutdown-instance.md). You may also encounter service quotas to protect you from the accidental use of expensive machine types. If that happens, and you still want to use a certain instance type, follow these [instructions](/docs/service_quotas.md).**
+
+## **Clinical Informatics** <a name="ci"></a>
+
 
 ## **Download Data From the Sequence Read Archive (SRA)** <a name="sra"></a>
 Next Generation genetic sequence data is housed in the NCBI Sequence Read Archive (SRA). You can access these data using the SRA Toolkit. We walk you through this using [this notebook](/tutorials/notebooks/SRADownload), which also walks you through how to set up and search Athena tables to generate an accession list. You can also read [this guide](https://www.ncbi.nlm.nih.gov/sra/docs/sra-aws-download/) for more information on available dataset tables. Additional example notebooks can be found at this [NCBI repo](https://github.com/ncbi/ASHG-Workshop-2021). In particular, we recommend this notebook(https://github.com/ncbi/ASHG-Workshop-2021/blob/main/3_Biology_Example_AWS_Demo.ipynb), which goes into more detail on using Athena to access the results of the SRA Taxonomic Analysis Tool, which often differ from the user input species name due to contamination, error, or due to samples being metagenomic in nature.
