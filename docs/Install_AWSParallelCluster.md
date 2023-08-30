@@ -90,5 +90,5 @@ export PATH="$HOME/mambaforge/bin:$PATH"
     Output should display version number.
     
  ## 5. Move on to configuring and connecting to your cluster
- Follow the [next instructions](https://github.com/STRIDES/NIHCloudLabAWS/blob/aws---parrallelcluster-patch/docs/Configure_AWSParrallelCluster.md) on how to configure your cluster.
+ Follow the [next instructions]([https://github.com/STRIDES/NIHCloudLabAWS/blob/main/docs/Configure_AWSParallelCluster.md) on how to configure your cluster.
 
