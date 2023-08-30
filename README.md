@@ -22,7 +22,7 @@ Use this repository to learn about how to use AWS by exploring the linked resour
 + [SageMaker Notebooks](#sag)
 + [Creating a Conda Environment](#co)
 + [Managing Containers and Code Repositories](#dock)
-+ [Clusters](#clu)
++ [Clusters (Batch, Kubernetes, SLURM)](#clu)
 + [Billing and Benchmarking](#bb)
 + [Cost Optimization](#cost)
 + [Getting Support](#sup)
