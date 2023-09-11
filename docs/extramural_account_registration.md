@@ -1,6 +1,6 @@
 # 1. How to register for an NIH-affiliated researcher Cloud Lab account using University credentials
 
-1. From an incognito or private browsing window, navigate to [this link](https://nih-cloudlab.firebaseapp.com/NIGMS) and wait for a login page to load.
+1. From an incognito or private browsing window, navigate to [this link](https://nih-cloudlab.firebaseapp.com) and wait for a login page to load.
 
 2. Scroll down and click **Research Organization**. If you select another login option your registration will not work.
 
@@ -22,7 +22,7 @@
    
 # 2. How to register for an NIH-affiliated researcher Cloud Lab account using Login.gov or National Science Foundation credentials
 
-1. From an incognito or private browsing window, navigate to [this link](https://nih-cloudlab.firebaseapp.com/NIGMS) and wait for a login page to load.
+1. From an incognito or private browsing window, navigate to [this link](https://nih-cloudlab.firebaseapp.com) and wait for a login page to load.
 
 2. Scroll down and click **Research Organization**. If you select another login option your registration will not work.
 
