@@ -6,9 +6,10 @@
 
   ![initial nih login page](/docs/images/1_NIH_login.png)
 
-3. Search for and select your University. If you University is listed, continue to [Registering with your University Account](#Option-1-–-Registering-with-a-University-Account). If your University is not listed, skip ahead to [Login with Login.gov](#How-to-register-for-an-NIH-affiliated-researcher-Cloud-Lab-account-using-Login.gov-or-National-Science-Foundation-credentials).
+3. Search for and select your University. If you University is listed, continue to `Registering with your University Account`. If your University is not listed, skip ahead to `Login with Login.gov`.
    
 Option 1 – Registering with a University Account
+
 _If your university is listed in the dropdown, you can use your university username and password to complete the registration process. Follow these steps:_
 
 4. Select the name of your university.
