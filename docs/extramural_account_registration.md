@@ -1,18 +1,18 @@
 # Registering for NIH Cloud Lab – Instructions for NIH-Affiliated Researchers
 
-1. From an incognito or private browsing window, navigate to this [this link](https://nih-cloudlab.firebaseapp.com) and wait for a login page to load.
+1. From an incognito or private browsing window, navigate to [this registration page](https://nih-cloudlab.firebaseapp.com).
 
 2. Scroll down and click **Research Organization**. If you select another login option your registration will not work.
 
   ![initial nih login page](/docs/images/1_NIH_login.png)
 
-3. Search for and select your University. If you University is listed, continue to `Registering with your University Account`. If your University is not listed, skip ahead to `Login with Login.gov`.
+3. Search for your University. If you University is listed, follow `Registering with your University Account`. If your University is not listed, follow steps for registering `Login.gov`.
    
 Option 1 – Registering with a University Account
 
 _If your university is listed in the dropdown, you can use your university username and password to complete the registration process. Follow these steps:_
 
-4. Select the name of your university.
+4. Click the name of your university.
 
    ![University Search](/docs/images/2_input_university.png)
 
