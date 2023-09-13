@@ -1,18 +1,18 @@
 # Registering for NIH Cloud Lab – Instructions for NIH-Affiliated Researchers
 
-1. From an incognito or private browsing window, navigate to this [this link](https://nih-cloudlab.firebaseapp.com) and wait for a login page to load.
+1. From an incognito or private browsing window, navigate to [this registration page](https://nih-cloudlab.firebaseapp.com).
 
-2. Scroll down and click **Research Organization**. If you select another login option your registration will not work.
+2. Scroll down and click **Research Organization**. If you select another login option, your registration will not work.
 
   ![initial nih login page](/docs/images/1_NIH_login.png)
 
-3. Search for and select your University. If you University is listed, continue to `Registering with your University Account`. If your University is not listed, skip ahead to `Login with Login.gov`.
+3. Search for your University. If your University is listed, follow steps for `Registering with your University Account`. If your University is not listed, follow steps for registering with `Login.gov`.
    
 Option 1 – Registering with a University Account
 
 _If your university is listed in the dropdown, you can use your university username and password to complete the registration process. Follow these steps:_
 
-4. Select the name of your university.
+4. Click the name of your university.
 
    ![University Search](/docs/images/2_input_university.png)
 
@@ -35,11 +35,11 @@ A Login.gov account is a free account that members of the public can create to a
 
   ![initial nih login page](/docs/images/1_NIH_login.png)
 
-3. Type in **Login.gov** or **National Science Foundation** (if you have an account with NSF) and follow the prompts to sign in to your account. The images shown here are only for the *login.gov* authentication. If you do not have a Login.gov account, you can create one following [these instructions](https://login.gov/help/get-started/create-your-account/) or the instructions attached to the registration email.
+3. Search for and Select **Login.gov** or **National Science Foundation** (if you have an account there) and follow the prompts to log into your account. The images shown here are only for the *login.gov* authentication. If you do not have a Login.gov account, you can create one following [these instructions](https://login.gov/help/get-started/create-your-account/) or the instructions attached to the registration email.
 
    ![Sign In Login.gov](/docs/images/6_signin_logingov.png)
 
-4. Complete MFA, in this case a one time code.
+4. Complete Multi-factor authentication, in this case a one time code.
 
    ![MFA](/docs/images/7_mfa.png)
 
