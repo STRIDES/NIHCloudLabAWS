@@ -1,4 +1,4 @@
-# Ways to install AWS ParrallelCluster:
+# installing the AWS ParrallelCluster CLI:
 
     - Using a virtual environment (recommended)
     - Using a conda virtual environment 
