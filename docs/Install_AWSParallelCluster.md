@@ -1,4 +1,10 @@
-# Ways to install AWS ParrallelCluster:
+#Installing the AWS ParrallelCluster User interface (UI)
+
+ ## To install and instance of the AWS Parrallel Cluster UI choose an AWS Cloudformation quick-create link for the AWS region you want cluster in.
+ 
+  Follow the instructions [here](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-pcui-v3.html)
+ 
+#Installing the AWS ParrallelCluster CLI:
 
     - Using a virtual environment (recommended)
     - Using a conda virtual environment 
@@ -88,7 +94,9 @@ export PATH="$HOME/mambaforge/bin:$PATH"
             (apc-ve) C:\>pcluster version
 
     Output should display version number.
-    
+
  ## 5. Move on to configuring and connecting to your cluster
  Follow the [next instructions]([https://github.com/STRIDES/NIHCloudLabAWS/blob/main/docs/Configure_AWSParallelCluster.md) on how to configure your cluster.
+
+
 
