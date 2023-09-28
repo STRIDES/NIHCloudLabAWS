@@ -15,6 +15,7 @@
 + [Drug Discovery](#atom)
 + [AI/ML Pipeline](#ai)
 + [Open Data](#open)
++ [Generative AI on AWS](#genai)
 
 ---------------------------------
 ## **Biomedical Workflows on AWS** <a name="bio"></a>
@@ -77,3 +78,6 @@ You can also submit a training job to SageMaker, and have your final model uploa
 
 ## **Open Data** <a name="open"></a>
 AWS has a lot of public data that you can integrate into your testing or use in your own research. You can access these datasets at the [Registry of Open Data on AWS](https://registry.opendata.aws/). There you can click on any of the datasets to view the S3 path to the data, as well as publications that have used those data and tutorials if available. To demonstrate, we can click the [gnomad dataset](https://registry.opendata.aws/broad-gnomad/), then get the S3 path and view the files at the command line by pasting `https://registry.opendata.aws/broad-gnomad/`. 
+
+## **Generative AI on AWS** <a name="genai"></a>
+Sagemaker not only has the capabilities to create Jupyter notebooks but also generative AI models. Some examples of what generative AI models are capabile of are extracting wanted information from text, transforming speech into text, generating images from describtions and vice versa, and so much more. Sagemaker Studio console allows the user to rapidly create, test, and train generative AI models on the cloud in a safe and secure setting. The studio also has ready to use models all contained with in Jumpstart, these models range from foundation models, fine-tunable models, and task-specific solutions. You are also able to use these models within a jupyter notebook, AWS also provides many generative AI tutorial via there Github [here](https://github.com/aws-samples/amazon-sagemaker-generativeai). Some example they provide are document summarization, Q&A, and many more to come. Another way to download models is through AWS's partnership with Huggingface that allows you easily utilize Huggingfaces Hubs models, transformers, datasets, and more simply by using the Sagemaker API. 
