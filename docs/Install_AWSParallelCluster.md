@@ -1,10 +1,10 @@
 #Installing the AWS ParrallelCluster User interface (UI)
 
- ## To install and instance of the AWS Parrallel Cluster UI choose an AWS Cloudformation quick-create link for the AWS region you want cluster in.
+ ## To install and instance of the AWS Parrallel Cluster UI choose an AWS Cloudformation quick-create link for the AWS region you want the cluster in.
  
   Follow the instructions [here](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-pcui-v3.html)
  
-#Installing the AWS ParrallelCluster CLI:
+#Installing the AWS ParallelCluster CLI:
 
     - Using a virtual environment (recommended)
     - Using a conda virtual environment 
