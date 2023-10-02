@@ -1,4 +1,4 @@
-#Installing the AWS ParrallelCluster User interface (UI)
+# Installing the AWS ParallelCluster User interface (UI)
 
  ## To install an instance of the AWS Parallel Cluster UI choose an AWS Cloud Formation quick-create link for the AWS region you want the cluster in.
  
