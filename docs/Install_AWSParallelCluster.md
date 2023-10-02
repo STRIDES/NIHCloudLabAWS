@@ -1,6 +1,6 @@
 #Installing the AWS ParrallelCluster User interface (UI)
 
- ## To install and instance of the AWS Parrallel Cluster UI choose an AWS Cloudformation quick-create link for the AWS region you want the cluster in.
+ ## To install an instance of the AWS Parallel Cluster UI choose an AWS Cloud Formation quick-create link for the AWS region you want the cluster in.
  
   Follow the instructions [here](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-pcui-v3.html)
  
@@ -83,7 +83,7 @@ export PATH="$HOME/mambaforge/bin:$PATH"
  mamba activate pcluster
  ```
 
- ## 4. Verify that AWS ParrallelCluster is installed correctly
+ ## 4. Verify that AWS ParallelCluster is installed correctly
                
         -Linux, macOS, or Unix
           
