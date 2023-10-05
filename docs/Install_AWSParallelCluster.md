@@ -6,7 +6,7 @@
   
   Follow the instructions [here](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-pcui-v3.html), once UI is deployed the link should direct you to the UI and should look like :
 
-   <img src="/docs/images/ParallelclusterUI.PNG" width="700" height="600">
+   ![parallel cluster UI image](/docs/images/ParallelclusterUI.PNG)
 
  ### Create and Configure ParallelCluster using the UI without pre-made templates
  
