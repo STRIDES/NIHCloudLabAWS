@@ -15,6 +15,7 @@
 + [Long Read Sequencing Analysis](#long)
 + [Drug Discovery](#atom)
 + [AI/ML Pipeline](#ai)
++ [CryoEM](#cryoem)
 + [Open Data](#open)
 + [Generative AI on AWS](#genai)
 
@@ -84,6 +85,12 @@ Machine learning is a subfield of artificial intelligence that focuses on the de
 + AWS has a very general tutorial [here](https://aws.amazon.com/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/) on how to build out an AI pipeline on SageMaker.
 + This [breast cancer tutorial](https://github.com/aws/amazon-sagemaker-examples/blob/main/introduction_to_applying_machine_learning/breast_cancer_prediction/Breast%20Cancer%20Prediction.ipynb) from the imaging section above shows a more applied example. 
 + You can also submit a training job to SageMaker, and have your final model uploaded to S3 using [PyTorch](https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/using_pytorch.html#train-a-model-with-pytorch), [Tensorflow](https://docs.aws.amazon.com/sagemaker/latest/dg/tf.html) or [Apache MXNet](https://docs.aws.amazon.com/sagemaker/latest/dg/mxnet.html).
+
+## **CryoEM** <a name="cryoem"></a>
+Cryo-Electron Microscopy (cryoEM), is a powerful imaging technique used in structural biology to visualize the structures of biological macromolecules, such as proteins, nucleic acids, and large molecular complexes, at near-atomic or even atomic resolution. It has revolutionized the field of structural biology by providing detailed three-dimensional structures of biomolecules, which is crucial for understanding their functions.
+
++ AWS created a [hands-on workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/056181d4-c084-47be-954c-20ec22350b02/en-US) for you to stand up a cryoEM environment using RELION.
++ You can also read [this blog on how to set up cryoSPARC](https://aws.amazon.com/blogs/hpc/how-thermo-fisher-scientific-accelerated-cryo-em-using-aws-parallelcluster/), as well as [docs from cryoSPARC](https://guide.cryosparc.com/setup-configuration-and-management/cryosparc-on-aws). 
 
 ## **Open Data** <a name="open"></a>
 AWS has a lot of public data that you can integrate into your testing or use in your own research. You can access these datasets at the [Registry of Open Data on AWS](https://registry.opendata.aws/). There you can click on any of the datasets to view the S3 path to the data, as well as publications that have used those data and tutorials if available. To demonstrate, we can click the [gnomad dataset](https://registry.opendata.aws/broad-gnomad/), then get the S3 path and view the files at the command line by pasting `https://registry.opendata.aws/broad-gnomad/`. 
