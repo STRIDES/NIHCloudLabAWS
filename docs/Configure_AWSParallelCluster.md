@@ -1,5 +1,5 @@
 ## Configuring AWS Parallel Cluster
-Make sure that you have first installed pcluster following these [install instructions](https://github.com/STRIDES/NIHCloudLabAWS/blob/aws---parrallelcluster-patch/docs/Install_AWSParrallelCluster.md).
+Make sure that you have parallel cluster installed first [link](https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-parallelcluster.html).
 
 ### 1. Setup your AWS credentials
 
