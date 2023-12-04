@@ -3,6 +3,7 @@ Connecting to instances is a little different in Cloud Lab because external IP a
 your private IP is changed. 
 
 There are two ways you can connect to an instance in Cloud Lab:
+
 + When launching an instance, we can set a broad IP range for the security group that will encompass the VPN's private IP, without allowing traffic from the whole internet.
 + We can grant an IAM role that allows SSM (Session Manager) access if that is preferred over SSH.
 
