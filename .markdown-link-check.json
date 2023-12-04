@@ -1,0 +1,9 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "/*",
+      "pattern": "#*"
+    }
+  ]
+}
+
