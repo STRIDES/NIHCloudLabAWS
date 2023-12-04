@@ -23,5 +23,6 @@ jobs:
         npm install -g markdown-link-check
 
     - name: Check links in Markdown files
-      run: markdown-link-check
+      run: find . -name \*.md -print0 | xargs -0 -n1 markdown-link-check
+
 
