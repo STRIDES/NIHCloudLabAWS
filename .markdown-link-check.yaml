@@ -1,0 +1,3 @@
+skipFiles:
+  - '**/docs/**/*.png'
+
