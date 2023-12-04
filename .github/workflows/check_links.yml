@@ -23,5 +23,5 @@ jobs:
         npm install -g markdown-link-check
 
     - name: Check links in Markdown files
-      run: markdown-link-check -q
+      run: markdown-link-check
 
