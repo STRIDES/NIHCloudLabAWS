@@ -1,3 +1,7 @@
-skipFiles:
-  - '**/docs/**/*.png'
-
+{
+  "ignorePatterns": [
+    {
+      "pattern": "**/docs/**/*.png"
+    }
+  ]
+}
