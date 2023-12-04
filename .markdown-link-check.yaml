@@ -4,4 +4,10 @@
       "pattern": "/docs/**/*",
     }
   ]
+   "ignorePatterns": [
+    {
+      "pattern": "#*",
+    }
+  ]
 }
+
