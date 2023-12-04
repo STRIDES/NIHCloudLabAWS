@@ -2,10 +2,7 @@
   "ignorePatterns": [
     {
       "pattern": "/docs/**/*",
-    }
-  ]
-   "ignorePatterns": [
-    {
+      "pattern": "/docs/*,
       "pattern": "#*",
     }
   ]
