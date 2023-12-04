@@ -23,4 +23,4 @@ jobs:
         npm install -g markdown-link-check
 
     - name: Check links in Markdown files
-      run: find . -name '*.md' -print0 | xargs -0 -n1 markdown-link-check -q -c .markdown-link-config.yaml
+      run: find . -name '*.md' -print0 | xargs -0 -n1 markdown-link-check -q -c .markdown-link-check.yaml
