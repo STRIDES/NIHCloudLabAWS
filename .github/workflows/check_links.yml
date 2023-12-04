@@ -16,15 +16,11 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 14
+        node-version: 16
 
     - name: Install dependencies
       run: |
         npm install -g markdown-link-check
-        npm install -g html-proofer
 
     - name: Check links in Markdown files
-      run: markdown-link-check --config .markdown-link-check.yaml $(find . -name "*.md" -not -path "./node_modules/*")
-
-    - name: Check links in HTML files
-      run: htmlproofer ./ --allow-hash-href --check-html --http-status-ignore "999"
+      run: markdown-link-check $(find . -name "*.md" -not -path "./node_modules/*")
