@@ -1,8 +1,8 @@
 {
   "ignorePatterns": [
     {
-      "pattern": "/docs/*",
-      "pattern": "#*"
+      "pattern": "^/docs/",
+      "pattern": "^#*"
     }
   ]
 }
