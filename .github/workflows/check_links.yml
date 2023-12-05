@@ -3,8 +3,10 @@ name: Check Links
 on:
   push:
     branches:
-      - main
-
+      - '*'
+  pull_request:
+    branches:
+      - '*'
 jobs:
   check-links:
     runs-on: ubuntu-latest
@@ -23,4 +25,4 @@ jobs:
         npm install -g markdown-link-check
 
     - name: Check links in Markdown files
-      run: find . -name '*.md' -print0 | xargs -0 -n1 markdown-link-check -q 
+      run: find . -name '*.md' -print0 | xargs -0 -n1 markdown-link-check -q -c .markdown-link-check.json
