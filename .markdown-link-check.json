@@ -2,13 +2,21 @@
   "ignorePatterns": [
     {
       "pattern": "^#"
+    },
+    {
+      "pattern": "^https://iam.nih.gov"
     }
   ],
   "replacementPatterns": [
     {
       "pattern": "^/docs",
       "replacement": "https://github.com/STRIDES/NIHCloudLabAWS/tree/main/docs"
+    },
+    {
+      "pattern": "^/tutorials",
+      "replacement": "https://github.com/STRIDES/NIHCloudLabAWS/tree/main/tutorials"
     }
+
   ],
   "timeout": "20s",
   "retryOn429": true,
