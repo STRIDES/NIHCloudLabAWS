@@ -1,6 +1,18 @@
 {
   "ignorePatterns": [
-    "^/docs/",
-    "^#*"
-  ]
+    {
+      "pattern": "^#"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "^/docs",
+      "replacement": "https://github.com/STRIDES/NIHCloudLabAWS/tree/main/docs"
+    }
+  ],
+  "timeout": "20s",
+  "retryOn429": true,
+  "retryCount": 5,
+  "fallbackRetryDelay": "30s",
+  "aliveStatusCodes": [200, 206]
 }
