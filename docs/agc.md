@@ -6,7 +6,7 @@ You can do all of the following from your local computer using the AWS SDK, but 
 
 Because agc uses AWS Batch for computation, you can get away with spinning up a small VM, like the t2 micro for this tutorial. Once you VM is ready, ssh into it. If you are using a notebook, open the Jupyter environment.
 
-Make sure you set up your environment following the [Prerequisites](https://aws.github.io/amazon-genomics-cli/docs/getting-started/prerequisites/) page. Install the AWS CLI if running locally, and if on EC2 or Sagemaker, you just need to install nodejs. Make sure you run `aws configure` and input your Short-term Access keys. Intramural users can access keys following [these instructions](/docs/STAKs_intramural.md). 
+Make sure you set up your environment following the [Prerequisites](https://aws.github.io/amazon-genomics-cli/docs/getting-started/prerequisites/) page. Install the AWS CLI if running locally, and if on EC2 or Sagemaker, you just need to install nodejs. Make sure you run `aws configure` and input your Short-term Access keys. Intramural users can access keys following [these instructions](/docs/Intramural_STAKs.md). 
 
 Now run the [install instructions](https://aws.github.io/amazon-genomics-cli/docs/getting-started/installation/) and add agc to the path with `export PATH=$HOME/bin:$PATH`. If the install went well, go ahead and activate. You need to add a few flags to the base `activate` command. Create the bucket before running this command, and make sure that the bucket is empty. 
 
