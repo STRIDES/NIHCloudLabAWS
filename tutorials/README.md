@@ -15,7 +15,6 @@
 + [Protein Folding](#af)
 + [Long Read Sequencing Analysis](#long)
 + [Drug Discovery](#atom)
-+ [Artificial Intelligence](#ai)
 + [CryoEM](#cryoem)
 + [Open Data](#open)
 
