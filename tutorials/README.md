@@ -4,6 +4,7 @@
 ## Overview of Page Contents
 
 + [Biomedical Workflows on AWS](#bio)
++ [Artificial Intelligence](#ai)
 + [Clinical Informatics](#ci)
 + [Download SRA Data](#sra)
 + [GWAS](#gwas)
@@ -17,7 +18,6 @@
 + [Artificial Intelligence](#ai)
 + [CryoEM](#cryoem)
 + [Open Data](#open)
-+ [Generative AI on AWS](#genai)
 
 ---------------------------------
 ## **Biomedical Workflows on AWS** <a name="bio"></a>
@@ -33,6 +33,15 @@ There are a lot of ways to run workflows on AWS. Here we list a few possibilitie
 **For many of these tutorials, you will need Short Term Access Keys to create and use resources, particularly whenever a tutorial calls for "access key ID" and "secret key." Use [this guide](/docs/Intramural_STAKs.md) for an explanation of how to obtain and use Short Term Access Keys. If you are an NIH-affiliated researcher, in other words, you don't work at the NIH but have a Cloud Lab account, you will not have access to keys. If there is a tutorial you are unable to complete, reach out to us for help at CloudLab@nih.gov**
 
  **Please also note, GPU machines cost more than most CPU machines, so be sure to shut these machines down after use, or apply an EC2 [lifecycle configuration](/docs/auto-shutdown-instance.md). You may also encounter service quotas to protect you from the accidental use of expensive machine types. If that happens, and you still want to use a certain instance type, follow these [instructions](/docs/service_quotas.md).**
+
+## **Artificial Intelligence** <a name="ai"></a>
+Machine learning is a subfield of artificial intelligence that focuses on the development of algorithms and models that enable computers to learn from and make predictions or decisions based on data, without being explicitly programmed. Artificial intelligence and machine learning algorithms are being applied to a variety of biomedical research questions, ranging from image classification to genomic variant calling. AWS has a long list of AI/ML tutorials available and we have compiled a list here. Most recent development focuses on generative AI including use cases such as extracting information from text, transforming speech to text, and generating images from text. Sagemaker Studio  allows the user to rapidly create, test, and train generative AI models and has ready to use models all contained with [JumpStart](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html). These models range from foundation models, fine-tunable models, and task-specific solutions. 
++ For examples of generative AI, look at [this AWS GitHub repo](https://github.com/aws-samples/amazon-sagemaker-generativeai).
++ You can also view [our tutorials](https://github.com/STRIDES/NIHCloudLabAWS/tree/main/tutorials/notebooks/GenAI) using several AWS products
++ For other AI use cases, we recommend you start with this comprehensive [on-demand workshop](https://catalog.workshops.aws/hcls-aiml/en-US/breast-cancer-classification) on how to use SageMaker Studio for a variety of AI/ML use cases including applying a classifier to RNAseq data, classifying tabular breast cancer data, buiding graph neural nets on HIV data, training a medical imaging model on chest scans, summarize scientific literature using foundation models, MLOps using gene expression data, and finally, performing antibody structure prediction. 
++ AWS has a very general tutorial [here](https://aws.amazon.com/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/) on how to build out an AI pipeline on SageMaker.
++ These [general examples](https://github.com/aws/amazon-sagemaker-examples/tree/main/introduction_to_applying_machine_learning) will teach you how to use Sagemaker tools more broadly.
++ You can also submit a training job to SageMaker, and have your final model uploaded to S3 using [PyTorch](https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/using_pytorch.html#train-a-model-with-pytorch), [Tensorflow](https://docs.aws.amazon.com/sagemaker/latest/dg/tf.html) or [Apache MXNet](https://docs.aws.amazon.com/sagemaker/latest/dg/mxnet.html).
 
 ## **Clinical Informatics** <a name="ci"></a>
 Clinical informatics, also known as healthcare informatics or medical informatics, is an interdisciplinary field that applies data science to healthcare data to improve patient care, enhance clinical processes, and facilitate medical research. It often involves integrating diverse data types including electronic health records, demographic, or environmental data. AWS offers two on demand workshops that walk you through AWS HealthLake for Population Health data analysis. [This first workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/4849824d-084a-4a64-a237-f05027f54abc/en-US) shows you how to ingest data to HealthLake, query those data using Athena, visualize these data using QuickSight, then join FHIR data with environmental data and visualize the combined dataset. [The second workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/498fdbc5-46e1-4cb0-97a0-f4ec3a30f26a/en-US/activity-streaming-data) also ingests data into HealthLake, then visualizes medical device data, uses AI to summarize clinical notes, and then transcribes clinical audio files and summarizes them. 
@@ -77,15 +86,6 @@ Oxford Nanopore has a pretty complete offering of notebook tutorials for handlin
 The [Accelerating Therapeutics for Opportunities in Medicine (ATOM) Consortium](https://atomscience.org/) created a series of [Jupyter notebooks](https://github.com/ATOMScience-org/AMPL/tree/master/atomsci/ddm/examples/tutorials) that walk you through the ATOM approach to Drug Discovery. 
 
 These notebooks were created to run in Google Colab, so if you run them in AWS, you will need to make a few modification. First, we recommend you use a [Sagemaker Studio Notebook](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated.html) rather than a User-Managed notebook simply because it will have Tensorflow and other dependencies installed. Be sure to attach a GPU to your instance (T4 is fine). Also, you will need to comment out `%tensorflow_version 2.x` since that is a Colab-specific command. You will also need to `pip install` a few packages as needed. If you get errors with `deepchem`, try running `pip install --pre deepchem[tensorflow]` and/or `pip install --pre deepchem[torch]`. Also, some notebooks will require a Tensorflow kernel, while others require Pytorch. You may also run into a Pandas error, reach out to the ATOM GitHub developers for the best solution to this issue.
-
-## **Artificial Intelligence** <a name="ai"></a>
-Machine learning is a subfield of artificial intelligence that focuses on the development of algorithms and models that enable computers to learn from and make predictions or decisions based on data, without being explicitly programmed. Artificial intelligence and machine learning algorithms are being applied to a variety of biomedical research questions, ranging from image classification to genomic variant calling. AWS has a long list of AI/ML tutorials available and we have compiled a list here. Most recent development focuses on generative AI including use cases such as extracting information from text, transforming speech to text, and generating images from text. Sagemaker Studio  allows the user to rapidly create, test, and train generative AI models and has ready to use models all contained with [JumpStart](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html). These models range from foundation models, fine-tunable models, and task-specific solutions. 
-+ For examples of generative AI, look at [this AWS GitHub repo](https://github.com/aws-samples/amazon-sagemaker-generativeai).
-+ For other AI use cases, we recommend you start with this comprehensive [on-demand workshop](https://catalog.workshops.aws/hcls-aiml/en-US/breast-cancer-classification) on how to use SageMaker Studio for a variety of AI/ML use cases including applying a classifier to RNAseq data, classifying tabular breast cancer data, buiding graph neural nets on HIV data, training a medical imaging model on chest scans, summarize scientific literature using foundation models, MLOps using gene expression data, and finally, performing antibody structure prediction. 
-+ AWS has a very general tutorial [here](https://aws.amazon.com/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/) on how to build out an AI pipeline on SageMaker.
-+ These [general examples](https://github.com/aws/amazon-sagemaker-examples/tree/main/introduction_to_applying_machine_learning) will teach you how to use Sagemaker tools more broadly.
-+ You can also submit a training job to SageMaker, and have your final model uploaded to S3 using [PyTorch](https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/using_pytorch.html#train-a-model-with-pytorch), [Tensorflow](https://docs.aws.amazon.com/sagemaker/latest/dg/tf.html) or [Apache MXNet](https://docs.aws.amazon.com/sagemaker/latest/dg/mxnet.html).
-
 
 ## **CryoEM** <a name="cryoem"></a>
 Cryo-Electron Microscopy (cryoEM), is a powerful imaging technique used in structural biology to visualize the structures of biological macromolecules, such as proteins, nucleic acids, and large molecular complexes, at near-atomic or even atomic resolution. It has revolutionized the field of structural biology by providing detailed three-dimensional structures of biomolecules, which is crucial for understanding their functions.
