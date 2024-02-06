@@ -10,7 +10,7 @@
    
 Option 1 – Registering with a University Account
 
-_If your university is listed in the dropdown, please use your university username and password to complete the registration process. Follow these steps:_
+_If your university is listed in the dropdown, you can use your university username and password to complete the registration process. Follow these steps:_
 
 4. Select the name of your university.
 
