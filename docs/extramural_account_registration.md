@@ -10,7 +10,7 @@
    
 Option 1 – Registering with a University Account
 
-_If your university is listed in the dropdown, please user your university username and password to complete the registration process. Follow these steps:_
+_If your university is listed in the dropdown, please use your university username and password to complete the registration process. Follow these steps:_
 
 4. Select the name of your university.
 
@@ -22,7 +22,7 @@ _If your university is listed in the dropdown, please user your university usern
 
    ![Grant Access](/docs/images/3_grant_access.png)
 
-7. Fill out the form. Enter your name, **university email address** (personal emails will not be accepted), a description of how you plan to use NIH Cloud Lab, and your NIH program officer’s name. Click **Submit** and you are finished. You will receive an email from cloudlab@nih.gov when your credits are ready – typically within a few days.
+7. Fill out the form. Enter your name, **university email address**, a description of how you plan to use NIH Cloud Lab, and your NIH program officer’s name. Click **Submit** and you are finished. You will receive an email from cloudlab@nih.gov when your credits are ready – typically within a few days.
 
    ![Final Form](/docs/images/4_final_formv2.png)
    
@@ -35,7 +35,7 @@ A Login.gov account is a free account that members of the public can create to a
 
   ![initial nih login page](/docs/images/1_NIH_login.png)
 
-3. Type in **Login.gov** or **National Science Foundation** (if you have an account with NSF) and follow the prompts to sign in to your account. The images shown here are only for the *login.gov* authentication. If you do not have a Login.gov account, you can create one following [these instructions](https://login.gov/help/get-started/create-your-account/) or the instructions attached to the registration email. **Please register using your university email address, personal emails will not be accepted.**
+3. Type in **Login.gov** or **National Science Foundation** (if you have an account with NSF) and follow the prompts to sign in to your account. The images shown here are only for the *login.gov* authentication. If you do not have a Login.gov account, you can create one following [these instructions](https://login.gov/help/get-started/create-your-account/) or the instructions attached to the registration email. **Please register using your university email address**
 
    ![Sign In Login.gov](/docs/images/6_signin_logingov.png)
 
