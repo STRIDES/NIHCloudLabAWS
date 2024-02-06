@@ -22,7 +22,7 @@ _If your university is listed in the dropdown, please use your university userna
 
    ![Grant Access](/docs/images/3_grant_access.png)
 
-7. Fill out the form. Enter your name, **university email address**, a description of how you plan to use NIH Cloud Lab, and your NIH program officer’s name. Click **Submit** and you are finished. You will receive an email from cloudlab@nih.gov when your credits are ready – typically within a few days.
+7. Fill out the form. Enter your name, university email address, a description of how you plan to use NIH Cloud Lab, and your NIH program officer’s name. Click **Submit** and you are finished. You will receive an email from cloudlab@nih.gov when your credits are ready – typically within a few days.
 
    ![Final Form](/docs/images/4_final_formv2.png)
    
