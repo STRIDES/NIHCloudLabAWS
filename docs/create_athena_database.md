@@ -62,7 +62,7 @@ Click **Next**
 
 ## Query the SRA metadata using Athena
 
-You can query the SRA database directly in the Athena user interface or you can use the API to query via a Jupyter Notebook. We recommend the Jupyter notebook approach, and provide an example [here](/tutorials/notebooks/SRA-Download), as well as [these examples](https://github.com/ncbi/ASHG-Workshop-2021) produced by the SRA team. In that GitHub repo, you can view notebook 2 and adapt it from BigQuery to Athena, and then notebook 3 is a great example or different kinds of Athena queries you can run. If you want to use the Athena console directly, we recommend learning the SQL query structure from our notebook or the SRA team ones, then using this [AWS guide](https://docs.aws.amazon.com/athena/latest/ug/getting-started.html) to how to search directly in Athena. Skip to #3 since we have already done #1-2 above. 
+You can query the SRA database directly in the Athena user interface or you can use the API to query via a Jupyter Notebook. We recommend the Jupyter notebook approach, and provide an example [here](/tutorials/notebooks/SRADownload/SRA-Download.ipynb), as well as [these examples](https://github.com/ncbi/ASHG-Workshop-2021) produced by the SRA team. In that GitHub repo, you can view notebook 2 and adapt it from BigQuery to Athena, and then notebook 3 is a great example or different kinds of Athena queries you can run. If you want to use the Athena console directly, we recommend learning the SQL query structure from our notebook or the SRA team ones, then using this [AWS guide](https://docs.aws.amazon.com/athena/latest/ug/getting-started.html) to how to search directly in Athena. Skip to #3 since we have already done #1-2 above. 
 
 
 
