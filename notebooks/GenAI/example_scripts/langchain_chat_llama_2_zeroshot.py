@@ -1,12 +1,11 @@
-from langchain.retrievers import PubMedRetriever
+from langchain_community.retrievers import PubMedRetriever
 from langchain.chains import ConversationalRetrievalChain
 from langchain.prompts import PromptTemplate
-#from langchain import SagemakerEndpoint
-from langchain.llms.sagemaker_endpoint import LLMContentHandler
+from langchain_community.llms import SagemakerEndpoint
+from langchain_community.llms.sagemaker_endpoint import LLMContentHandler
 import sys
 import json
 import os
-from langchain.llms import SagemakerEndpoint
 
 
 class bcolors:
@@ -24,7 +23,6 @@ MAX_HISTORY_LENGTH = 1
 
 def build_chain():
   region = os.environ["AWS_REGION"]
-  #kendra_index_id = os.environ["KENDRA_INDEX_ID"]
   endpoint_name = os.environ["LLAMA_2_ENDPOINT"]
 
   class ContentHandler(LLMContentHandler):
@@ -58,7 +56,6 @@ def build_chain():
           content_handler=content_handler,
       )
       
-  #retriever = AmazonKendraRetriever(index_id=kendra_index_id,region_name=region)
   retriever= PubMedRetriever()
     
   prompt_template = """
