@@ -1,6 +1,6 @@
 # Searching the SRA database using Amazon Athena
 
-1) Navigate to the Amazon Athena homepage. Click **Data Sources**. Advanced users could also navigate directly to the AWS Glue page and skip to #4.
+1) Navigate to the Amazon Athena homepage. Click **Data Sources**.
 
 <img src="/docs/images/1_select_data_sources.png" width="550" height="300">
 
