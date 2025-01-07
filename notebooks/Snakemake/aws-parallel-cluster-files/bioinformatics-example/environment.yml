@@ -1,0 +1,12 @@
+name: bioinformatics-test
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - bwa
+  - samtools
+  - bcftools
+  - matplotlib
+  - pandas
+  - pysam
