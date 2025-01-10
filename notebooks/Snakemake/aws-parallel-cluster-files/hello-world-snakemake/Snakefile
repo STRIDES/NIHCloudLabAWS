@@ -1,0 +1,12 @@
+#Snakefile
+rule all:
+    input:
+        "output.txt"
+
+rule example_rule:
+    output:
+        "output.txt"
+    shell:
+        """
+        echo 'Hello, World!' > {output}
+        """
