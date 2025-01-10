@@ -28,7 +28,7 @@ The quick link for creating this stack within the us-east-1 region can be found 
 14. Enter the temporary password. Follow the steps to create your own password and log in.
 15. You are now on the home page of the PCUI in the AWS Region that you selected.
 
-   ![parallel cluster UI image](/docs/images/ParallelclusterUI.PNG)
+   ![parallel cluster UI image](images/ParallelclusterUI.PNG)
 
  
 # Installing the AWS ParallelCluster CLI:
@@ -123,7 +123,7 @@ export PATH="$HOME/mambaforge/bin:$PATH"
     Output should display version number.
 
  ## 5. Move on to configuring and connecting to your cluster
- Follow the [next instructions](/docs/Configure_AWSParallelCluster.md) on how to configure your cluster.
+ Follow the [next instructions](/docs/Configure_AWSParallelCluster.md) on how to configure your cluster via the command line. Otherwise checkout our tutorial for using Parallel Cluster via the console to run Snakemake workflows [here](https://github.com/STRIDES/NIHCloudLabAWS/blob/aws-parallel-cluster/notebooks/Snakemake/AWS-ParallelCluster.ipynb).
 
 
 
