@@ -1,0 +1,10 @@
+Prompt 1: "Write an R script that performs differential expression analysis on RNA-Seq data. The script should:
+
+    1.	Load a CSV file containing RNA-Seq read counts with columns: Gene ID, Sample 1, Sample 2, ..., Sample N.
+    2.	Normalize the read counts using the DESeq2 package.
+    3.	Perform differential expression analysis between two specified conditions.
+    4.	Generate a volcano plot to visualize the differentially expressed genes.
+    5.	Save the results of the differential expression analysis in a CSV file with columns: Gene ID, log2 Fold Change, p-value, Adjusted p-value, Differential Expression Status (Significant/Not Significant).
+    6.	Save the volcano plot as a PNG file."
+
+  
