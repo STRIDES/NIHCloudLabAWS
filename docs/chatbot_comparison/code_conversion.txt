@@ -1,0 +1,259 @@
+Persona: You are a bioinformatician with no experience running nextflow workflows. You need to convert your code from a scripting language to an nf-core workflow. 
+
+Task: Convert this code to an nf-core workflow.
+
+Details:
+- Source Code: The code is written in BASH 
+- Target Workflow: The code needs to be converted into an nf-core workflow.
+- Input Format: The nextflow script should accept input files in a samplesheet format.
+
+Additional Requirements:
+- Ensure that the nf-core workflow adheres to best practices.
+- Include necessary modules and processes to replicate the functionality of the original script.
+- Provide clear comments and documentation within the script for ease of understanding and future modifications.
+- Ensure that the nextflow_schema.json file includes the script name and a description of the workflow.
+
+Desired Output:
+- A nf-core style set of scripts that replicates the above functionality. The necessary files include the main.nf file, a nextflow.config file, a nextflow_schema.json, and a modules.config file.
+- The script should accept input files in a samplesheet format.
+- Please use a publishDir directive anytime a directory must be created
+- The script should be able to run in a docker, singularity or conda environment. 
+
+Example of a samplesheet format:
+sample,fastq_1,fastq_2
+sample1,sample1_R1.fastq.gz,sample1_R2.fastq.gz
+sample2,sample2_R1.fastq.gz,sample2_R2.fastq.gz
+
+Example of a main.nf file: 
+```
+#!/usr/bin/env nextflow
+
+nextflow.enable.dsl=2
+
+// Define the workflow
+workflow {
+    // Define the input channel for samplesheet
+    Channel.fromPath(params.samplesheet)
+           .splitCsv(header: true)
+           .set { samplesheet }
+
+    // Map the samplesheet to tuples with sample IDs and FASTQ files
+    samplesheet
+        .map { row -> tuple(row.sample, row.fastq_1, row.fastq_2) }
+        .into { reads_ch }
+
+    // Step 1: Align reads
+    align_ch = ALIGN_READS(reads_ch)
+
+    // Step 2: Sort BAM files
+    sort_ch = SORT_BAM(align_ch)
+
+    // Step 3: Index BAM files
+    INDEX_BAM(sort_ch)
+}
+
+// Process to align reads to a reference genome
+process ALIGN_READS {
+    input:
+    tuple val(sample_id), file(fastq_1), file(fastq_2)
+
+    output:
+    tuple val(sample_id), file("${sample_id}.bam")
+
+    conda "${moduleDir}/environment.yml"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/bwa:0.7.17--hdfd78af_0' :
+        'biocontainers/bwa:0.7.17--hdfd78af_0' }"
+
+    script:
+    """
+    bwa mem ref_genome.fa $fastq_1 $fastq_2 > ${sample_id}.sam
+    samtools view -Sb ${sample_id}.sam > ${sample_id}.bam
+    """
+}
+
+// Process to sort BAM files
+process SORT_BAM {
+    input:
+    tuple val(sample_id), file(bam)
+
+    output:
+    tuple val(sample_id), file("${sample_id}.sorted.bam")
+
+    conda "${moduleDir}/environment.yml"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/samtools:1.9--hdfd78af_0' :
+        'biocontainers/samtools:1.9--hdfd78af_0' }"
+
+    script:
+    """
+    samtools sort $bam -o ${sample_id}.sorted.bam
+    """
+}
+
+// Process to index sorted BAM files
+process INDEX_BAM {
+    input:
+    tuple val(sample_id), file(sorted_bam)
+
+    output:
+    tuple val(sample_id), file("${sample_id}.sorted.bam.bai")
+
+    conda "${moduleDir}/environment.yml"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/samtools:1.9--hdfd78af_0' :
+        'biocontainers/samtools:1.9--hdfd78af_0' }"
+
+    script:
+    """
+    samtools index $sorted_bam
+    """
+}
+
+```
+
+Example of a nextflow.config file: 
+```
+params {
+    outdir = 'results'
+}
+
+process {
+    withName: 'ALIGN_READS' {
+        cpus = 4
+        memory = '8 GB'
+    }
+    withName: 'SORT_BAM' {
+        cpus = 2
+        memory = '4 GB'
+    }
+    withName: 'INDEX_BAM' {
+        cpus = 1
+        memory = '2 GB'
+    }
+}
+
+docker {
+    enabled = params.containerEngine == 'docker'
+    image = 'nfcore/rnaseq:latest'
+}
+
+singularity {
+    enabled = params.containerEngine == 'singularity'
+    autoMounts = true
+}
+
+conda {
+    enabled = params.containerEngine == 'conda'
+    cacheDir = './conda'
+}
+```
+Example of a nextflow_schema.json: 
+{
+    "title": "nf-core/rnaseq",
+    "description": "RNA-seq analysis pipeline",
+    "type": "object",
+    "properties": {
+        "outdir": {
+            "type": "string",
+            "description": "Output directory",
+            "default": "results"
+        }
+    },
+    "required": ["outdir"]
+}
+
+Example of a modules.config file: 
+```
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Config file for defining DSL2 per module options and publishing paths
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Available keys to override module options:
+        ext.args   = Additional arguments appended to command in module.
+        ext.args2  = Second set of arguments appended to command in module (multi-tool modules).
+        ext.args3  = Third set of arguments appended to command in module (multi-tool modules).
+        ext.prefix = File name prefix for output files.
+----------------------------------------------------------------------------------------
+*/
+
+process {
+
+    publishDir = [
+        path: { "${params.outdir}/${task.process.tokenize(':')[-1].tokenize('_')[0].toLowerCase()}" },
+        mode: params.publish_dir_mode,
+        saveAs: { filename -> filename.equals('versions.yml') ? null : filename }
+    ]
+
+}
+
+module {
+    bwa {
+        version = '0.7.17'
+        source = 'bioconda'
+    }
+    samtools {
+        version = '1.9'
+        source = 'bioconda'
+    }
+}
+```
+Example of environment.yml file for conda environment creation: 
+```
+name: alignment
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bwa=0.7.17
+  - samtools=1.9
+```
+
+Script to convert: 
+bacass.sh
+```
+#!/bin/bash
+
+# Directory containing the input FASTQ files
+INPUT_DIR="/home/ramsivakumar/nextflow_conversion/fastq"
+OUTPUT_DIR="/home/ramsivakumar/nextflow_conversion/test_out_bash"
+
+# Create output directories for the tools
+mkdir -p "$OUTPUT_DIR/fastp_output" "$OUTPUT_DIR/fastqc_output" "$OUTPUT_DIR/unicycler_output"
+
+# Loop over the files in the input directory
+  fastq_file_r1="$INPUT_DIR/${sample_name}_R1_001.fastq.gz"
+  fastq_file_r2="$INPUT_DIR/${sample_name}_R2_001.fastq.gz"
+
+  # Check if the R2 file exists
+  if [[ ! -f "$fastq_file_r2" ]]; then
+    echo "Warning: Corresponding R2 file for $fastq_file_r1 not found. Skipping this pair."
+    continue
+  fi
+
+  # Step 1: Run fastp
+  fastp_output_r1="$OUTPUT_DIR/fastp_output/${sample_name}_R1.fastp.fastq"
+  fastp_output_r2="$OUTPUT_DIR/fastp_output/${sample_name}_R2.fastp.fastq"
+  fastp -i "$fastq_file_r1" -I "$fastq_file_r2" -o "$fastp_output_r1" -O "$fastp_output_r2"
+
+  # Step 2: Run fastqc on the fastp output
+  fastqc_output_dir="$OUTPUT_DIR/fastqc_output/${sample_name}_fastqc"
+  mkdir -p "$fastqc_output_dir"
+  fastqc "$fastp_output_r1" "$fastp_output_r2" -o "$fastqc_output_dir"
+
+  # Step 3: Run multiqc
+  multiqc_output_dir="$OUTPUT_DIR/multiqc_output"
+  mkdir -p "$multiqc_output_dir"
+  multiqc "$fastqc_output_dir" -o "$multiqc_output_dir"
+
+  # Step 4: Run unicycler on the fastp output
+  unicycler_output_dir="$OUTPUT_DIR/unicycler_output/${sample_name}_unicycler"
+  mkdir -p "$unicycler_output_dir"
+  unicycler -1 "$fastp_output_r1" -2 "$fastp_output_r2" -o "$unicycler_output_dir"
+
+  echo "Finished processing $sample_name."
+done
+
+echo "All files processed."
+```
