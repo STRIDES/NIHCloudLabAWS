@@ -1,3 +1,5 @@
+Can you answer these google cloud related questions: 
+
 Machine Learning: What machine learning services does Google Cloud offer?
 Data and Analytics: What are the key features of Google BigQuery?
 Compute Services: What are the initial steps to create a virtual machine on Google Cloud Platform?
