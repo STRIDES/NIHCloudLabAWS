@@ -1,0 +1,156 @@
+I'll help you fix and improve the code. Here's the corrected version with error handling, input validation, and better organization:
+```
+import csv
+import os
+from pathlib import Path
+
+def read_fasta(file_path):
+    """
+    Read a FASTA file and return a dictionary of sequences.
+    
+    Args:
+        file_path (str): Path to the FASTA file
+        
+    Returns:
+        dict: Dictionary with sequence IDs as keys and sequences as values
+        
+    Raises:
+        FileNotFoundError: If the input file doesn't exist
+        ValueError: If the file is empty or not in FASTA format
+    """
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"The file {file_path} does not exist")
+        
+    sequences = {}
+    current_id = None
+    current_sequence = []
+    
+    with open(file_path, 'r') as file:
+        for line_number, line in enumerate(file, 1):
+            line = line.strip()
+            if not line:  # Skip empty lines
+                continue
+                
+            if line.startswith('>'):
+                if current_id:  # Save the previous sequence
+                    sequences[current_id] = ''.join(current_sequence)
+                current_id = line[1:].strip()  # Remove '>' and whitespace
+                if not current_id:  # Check for empty sequence ID
+                    raise ValueError(f"Empty sequence ID found at line {line_number}")
+                current_sequence = []
+            else:
+                if not current_id:
+                    raise ValueError(f"Sequence data found before ID at line {line_number}")
+                # Remove any whitespace and validate sequence
+                cleaned_sequence = ''.join(char.upper() for char in line if char.isalpha())
+                if cleaned_sequence:  # Only add non-empty sequences
+                    current_sequence.append(cleaned_sequence)
+    
+    # Don't forget to save the last sequence
+    if current_id:
+        sequences[current_id] = ''.join(current_sequence)
+    
+    if not sequences:
+        raise ValueError("No valid sequences found in the file")
+        
+    return sequences
+
+def write_sequence_lengths(sequences, output_file):
+    """
+    Write sequence lengths to a CSV file.
+    
+    Args:
+        sequences (dict): Dictionary of sequences
+        output_file (str): Path to the output CSV file
+    """
+    try:
+        with open(output_file, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['Sequence ID', 'Sequence Length'])
+            
+            # Sort by sequence ID for consistent output
+            for seq_id in sorted(sequences.keys()):
+                sequence = sequences[seq_id]
+                length = len(sequence)
+                writer.writerow([seq_id, length])
+                
+        print(f"Results successfully written to {output_file}")
+        
+    except PermissionError:
+        raise PermissionError(f"Unable to write to {output_file}. Check permissions.")
+
+def main():
+    """Main function to process FASTA file and generate sequence length report."""
+    try:
+        # Input and output file paths
+        file_path = 'sequences.fasta'
+        output_file = 'sequence_lengths.csv'
+        
+        # Create output directory if it doesn't exist
+        output_dir = os.path.dirname(output_file)
+        if output_dir:
+            os.makedirs(output_dir, exist_ok=True)
+        
+        # Process sequences
+        print(f"Reading sequences from {file_path}...")
+        sequences = read_fasta(file_path)
+        print(f"Found {len(sequences)} sequences")
+        
+        # Write results
+        write_sequence_lengths(sequences, output_file)
+        
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return 1
+    
+    return 0
+
+if __name__ == '__main__':
+    exit(main())
+```
+
+Key improvements made:
+
+Added proper error handling for file operations
+
+Added input validation for FASTA format
+
+Improved sequence parsing with better handling of empty lines and whitespace
+
+Added documentation strings for all functions
+
+Added sequence ID validation
+
+Implemented proper cleanup of sequence data (removing whitespace, handling case)
+
+Added progress messages for user feedback
+
+Added return codes for the main function
+
+Added creation of output directory if it doesn't exist
+
+Added sorting of sequence IDs for consistent output
+
+Improved memory efficiency by using lists for sequence building
+
+Added validation for empty files and invalid sequences
+
+Usage example:
+
+# Example FASTA file (sequences.fasta):
+# >Sequence1
+# ATCGATCG
+# >Sequence2
+# GCTAGCTA
+# GCTAGCTA
+
+# Running the script will create sequence_lengths.csv:
+# Sequence ID,Sequence Length
+# Sequence1,8
+# Sequence2,16
+
+Copy
+
+Insert at cursor
+python
+The script now handles various edge cases and provides better error messages when something goes wrong. It also validates the input data to ensure it's in the correct FASTA format before processing.
