@@ -1,0 +1,88 @@
+# Load required libraries
+library(DESeq2)
+library(ggplot2)
+
+# Read the input count data
+read_counts <- function(file_path) {
+  counts_data <- read.csv(file_path, row.names = 1)
+  return(counts_data)
+}
+
+# Prepare DESeq2 object
+prepare_deseq <- function(counts, condition) {
+  colData <- data.frame(
+    condition = factor(condition)
+  )
+  dds <- DESeqDataSetFromMatrix(
+    countData = counts,
+    colData = colData,
+    design = ~ condition
+  )
+  return(dds)
+}
+
+# Perform differential expression analysis
+run_deseq <- function(dds) {
+  dds <- DESeq(dds)
+  res <- results(dds)
+  return(res)
+}
+
+# Create volcano plot
+create_volcano_plot <- function(res, output_file) {
+  # Convert results to data frame
+  res_df <- as.data.frame(res)
+  res_df$significant <- ifelse(res_df$padj < 0.05 & abs(res_df$log2FoldChange) > 1, 
+                              "Significant", "Not Significant")
+  
+  # Create volcano plot
+  p <- ggplot(res_df, aes(x = log2FoldChange, y = -log10(pvalue), color = significant)) +
+    geom_point(alpha = 0.6) +
+    scale_color_manual(values = c("grey", "red")) +
+    theme_minimal() +
+    labs(
+      title = "Volcano Plot of Differential Expression",
+      x = "Log2 Fold Change",
+      y = "-Log10 P-value"
+    )
+  
+  # Save plot
+  ggsave(output_file, p, width = 10, height = 8)
+}
+
+# Export results
+export_results <- function(res, output_file) {
+  res_df <- as.data.frame(res)
+  res_df$gene_id <- rownames(res_df)
+  res_df$differential_expression_status <- ifelse(
+    res_df$padj < 0.05 & abs(res_df$log2FoldChange) > 1,
+    "Significant",
+    "Not Significant"
+  )
+  
+  # Reorder columns
+  result_table <- res_df[, c("gene_id", "log2FoldChange", "pvalue", "padj", 
+                            "differential_expression_status")]
+  
+  write.csv(result_table, file = output_file, row.names = FALSE)
+}
+
+# Main execution function
+main <- function(count_file, condition_labels, output_prefix) {
+  # Read count data
+  counts <- read_counts(count_file)
+  
+  # Prepare and run DESeq2 analysis
+  dds <- prepare_deseq(counts, condition_labels)
+  res <- run_deseq(dds)
+  
+  # Create output files
+  create_volcano_plot(res, paste0(output_prefix, "_volcano_plot.png"))
+  export_results(res, paste0(output_prefix, "_results.csv"))
+}
+
+# Example usage:
+# count_file <- "counts.csv"
+# condition_labels <- c("control", "control", "treated", "treated")
+# output_prefix <- "differential_expression"
+# main(count_file, condition_labels, output_prefix)
