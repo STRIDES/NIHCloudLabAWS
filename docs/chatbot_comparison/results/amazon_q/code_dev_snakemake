@@ -1,0 +1,75 @@
+Snakefile: 
+```
+from snakemake.utils import min_version
+min_version("8.25.5")
+
+# Configuration
+configfile: "config.yaml"
+
+# Rule all - defines the final output files we want to generate
+rule all:
+    input:
+        expand("fastqc_output/{sample}_trimmed_fastqc.html",
+               sample=[f.replace(".fastq", "") for f in os.listdir("raw_data") if f.endswith('.fastq')])
+
+# Trimmomatic rule for cleaning raw data
+rule trimmomatic:
+    input:
+        "raw_data/{sample}.fastq"
+    output:
+        "trimmed/{sample}_trimmed.fastq"
+    conda:
+        "environment.yml"
+    params:
+        # Trimmomatic parameters can be adjusted based on requirements
+        adapters="ILLUMINACLIP:TruSeq3-SE.fa:2:30:10",
+        sliding_window="SLIDINGWINDOW:4:20",
+        minlen="MINLEN:36"
+    shell:
+        """
+        trimmomatic SE \
+            {input} \
+            {output} \
+            {params.adapters} \
+            {params.sliding_window} \
+            {params.minlen}
+        """
+
+# FastQC rule for quality control on trimmed data
+rule fastqc:
+    input:
+        "trimmed/{sample}_trimmed.fastq"
+    output:
+        html="fastqc_output/{sample}_trimmed_fastqc.html",
+        zip="fastqc_output/{sample}_trimmed_fastqc.zip"
+    conda:
+        "environment.yml"
+    shell:
+        "fastqc {input} --outdir fastqc_output/"
+```
+config.yaml
+```
+# Configuration for the Snakemake workflow
+input_directory: "raw_data"
+output_directory: "results"
+
+# Trimmomatic parameters
+trimmomatic:
+    threads: 4
+    adapters: "TruSeq3-SE.fa"
+    
+# FastQC parameters
+fastqc:
+    threads: 4
+```
+environment.yaml
+```
+name: bioinfo_workflow
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - trimmomatic=0.39
+  - fastqc=0.12.1
+```
