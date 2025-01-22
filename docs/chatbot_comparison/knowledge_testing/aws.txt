@@ -1,3 +1,5 @@
-Machine Learning: How can I create and test a RAG system on AWS? 
+Can you answer these aws related questions:
+
+Machine Learning: How can I create and test a RAG system on AWS?
 Data and Analytics: What are the key features of Amazon SageMaker for data science workflows?
 Compute Services: How do you configure Auto Scaling for EC2 instances in AWS?
