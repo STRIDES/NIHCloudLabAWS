@@ -1,0 +1,38 @@
+The provided script has one main issue: it doesn't correctly handle the last sequence in the FASTA file. Here's the corrected version:
+
+import csv
+
+def read_fasta(file_path):
+    sequences = {}
+    with open(file_path, 'r') as file:
+        sequence_id = None
+        sequence = ''
+        for line in file:
+            if line.startswith('>'):
+                if sequence_id:
+                    sequences[sequence_id] = sequence
+                sequence_id = line[1:].strip()
+                sequence = ''
+            else:
+                sequence += line.strip()
+        # Add the last sequence
+        if sequence_id:  # Important check in case the file is empty
+            sequences[sequence_id] = sequence
+    return sequences
+
+def main():
+    file_path = 'sequences.fasta'
+    output_file = 'sequence_lengths.csv'
+    
+    sequences = read_fasta(file_path)
+    
+    with open(output_file, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Sequence ID', 'Sequence Length'])
+        for seq_id, sequence in sequences.items():
+            length = len(sequence)
+            writer.writerow([seq_id, length])
+
+if __name__ == '__main__':
+    main()
+The problem was in the read_fasta function. After reading the last line of a sequence, the code needs to add that sequence to the sequences dictionary. The original code only added a sequence when it encountered a new sequence header (a line starting with '>'). The solution adds a check after the loop to ensure the last sequence is added. The if sequence_id: condition handles cases where the input FASTA file might be empty, preventing potential errors.
