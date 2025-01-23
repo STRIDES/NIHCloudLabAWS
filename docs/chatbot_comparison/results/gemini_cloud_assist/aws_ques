@@ -1,0 +1,48 @@
+AI: How can I create and test a RAG system on AWS?
+
+You can create and test a Retrieval Augmented Generation (RAG) system on AWS using a combination of services. A common approach involves:
+
+Storage and Retrieval (Vector Database/Embeddings):
+
+Amazon OpenSearch Service: Can be used to store and search vector embeddings of your knowledge base documents.
+Amazon Aurora with pgvector: Postgres extension for vector search directly within your database.
+Other Vector Databases: Consider services like Pinecone, Weaviate, or Chroma (often integrated with AWS).
+Large Language Model (LLM):
+
+Amazon Bedrock: Provides access to foundation models (FMs) like Jurassic and Titan, suitable for the generation step in RAG.
+Amazon SageMaker JumpStart: Deploy and fine-tune open-source LLMs.
+Hugging Face on SageMaker: Another option for deploying open-source LLMs.
+Workflow Orchestration:
+
+AWS Lambda: For serverless functions to handle retrieval, prompt engineering, and response generation.
+Amazon Step Functions: Orchestrate complex RAG workflows, including error handling and retries.
+Testing and Evaluation:
+
+Manual Testing: Initially, test with a curated set of queries.
+Automated Evaluation: Use metrics like ROUGE, BLEU, or METEOR to assess the quality of generated responses. Build a test harness using Lambda or other compute services.
+Example Workflow:
+
+A user query is received.
+An embedding of the query is generated (potentially using an LLM or embedding model deployed on SageMaker).
+The embedding is used to query the vector database (OpenSearch, Aurora/pgvector, etc.) to retrieve relevant documents.
+The retrieved documents and the original query are combined into a prompt for the LLM (Bedrock, JumpStart, etc.).
+The LLM generates a response, augmented with information from the retrieved documents.
+Data and Analytics: What are the key features of Amazon SageMaker for data science workflows?
+
+Amazon SageMaker offers a comprehensive suite of tools for data science workflows:
+
+Data Preparation: SageMaker Data Wrangler for data exploration, cleaning, and feature engineering. SageMaker Feature Store for managing and sharing features.
+Model Building: SageMaker Studio Notebooks, pre-built containers for popular frameworks (TensorFlow, PyTorch, etc.), and bring-your-own container options. Automated model tuning (SageMaker Automatic Model Tuning).
+Model Training: Distributed training, managed spot instances for cost optimization, and experiment tracking.
+Model Deployment: Easy deployment to endpoints for real-time inference or batch transformations. Support for A/B testing, autoscaling, and model monitoring.
+MLOps: SageMaker Pipelines for building and managing ML workflows. Model Registry for model versioning and lineage.
+Compute Services: How do you configure Auto Scaling for EC2 instances in AWS?
+
+Launch Configuration: Define a launch template or launch configuration specifying the AMI, instance type, storage, and other settings for your EC2 instances.
+Auto Scaling Group: Create an Auto Scaling group and associate the launch template/configuration.
+Scaling Policies: Configure scaling policies to define how the Auto Scaling group should scale in response to changes in demand.
+Dynamic Scaling: Scale based on metrics like CPU utilization, request count, or queue length.
+Scheduled Scaling: Scale at specific times or intervals.
+Manual Scaling: Adjust the desired capacity of the Auto Scaling group manually.
+Health Checks: Configure health checks to ensure that Auto Scaling replaces unhealthy instances.
+Load Balancing: Integrate your Auto Scaling group with a load balancer (e.g., Elastic Load Balancing) to distribute traffic across your instances.
