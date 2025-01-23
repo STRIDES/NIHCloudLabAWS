@@ -1,0 +1,86 @@
+import pandas as pd
+import numpy as np
+import rpy2.robjects as ro
+from rpy2.robjects import pandas2ri
+from rpy2.robjects.conversion import localconverter
+
+# Activate automatic conversion between pandas and R DataFrames
+pandas2ri.activate()
+
+# 1. Load read counts data from CSV
+try:
+    counts_df = pd.read_csv("read_counts.csv", index_col=0)  # Use gene IDs as index
+except FileNotFoundError:
+    print("Error: 'read_counts.csv' not found. Please provide the correct file path.")
+    exit()
+
+
+# Define conditions (replace with your actual conditions)
+condition = ro.FactorVector(["Condition1", "Condition1", "Condition2", "Condition2"])  # Example
+
+# 2. Perform differential expression analysis with edgeR (using rpy2)
+try:
+
+    # Convert pandas DataFrame to R data frame
+    with localconverter(ro.default_converter + pandas2ri.converter):
+        r_counts = ro.conversion.py2rpy(counts_df)
+
+    # Load edgeR library in R
+    ro.r("library(edgeR)")
+
+    # Create DGEList object
+    dgelist = ro.r.DGEList(counts=r_counts, group=condition)
+
+    # Normalize counts
+    dgelist = ro.r.calcNormFactors(dgelist)
+
+
+    # Estimate dispersion
+    dgelist = ro.r.estimateDisp(dgelist, design=ro.r.model_matrix("~group", data=ro.r.data_frame(group=condition)) )
+
+
+    # Fit GLM
+    fit = ro.r.glmQLFit(dgelist, design=ro.r.model_matrix("~group", data=ro.r.data_frame(group=condition)))
+
+    # Perform quasi-likelihood F-test
+    qlf = ro.r.glmQLFTest(fit, coef=2) # Assuming "Condition2" is the second level in the factor
+
+    # Extract results
+    res = ro.r.topTags(qlf, n=float('inf'))
+
+    # Convert R data frame back to pandas DataFrame
+    with localconverter(ro.default_converter + pandas2ri.converter):
+        res_df = ro.conversion.rpy2py(res[0])
+
+
+except Exception as e:
+    print(f"An error occurred during R integration: {e}")
+    exit()
+
+
+
+# 3. Prepare and save results table
+res_df = res_df.rename(columns={"logFC": "log2FoldChange", "PValue": "pvalue", "FDR": "padj"})  # Rename for consistency
+res_df["GeneID"] = res_df.index
+res_df = res_df[["GeneID", "log2FoldChange", "pvalue", "padj"]]
+
+res_df['DifferentialExpressionStatus'] = np.where((res_df['padj'] < 0.05) & (abs(res_df['log2FoldChange']) >= 1), "Significant", "Not Significant")
+
+res_df.to_csv("differential_expression_results.csv", index=False)
+
+print("Differential expression analysis completed and results saved.")
+
+Use code with care. Learn more
+Key improvements:
+
+Error Handling: Includes a try-except block to catch potential FileNotFoundError and errors during R integration.
+Clearer R Integration: Uses localconverter for more robust and explicit conversion between pandas and R data frames.
+edgeR Workflow: Implements a complete edgeR workflow, including normalization, dispersion estimation, GLM fitting, and quasi-likelihood F-test.
+Consistent Output: Uses consistent column names (log2FoldChange, pvalue, padj) and includes the differential expression status.
+Before running:
+
+Install necessary packages: Make sure you have pandas, numpy, rpy2 installed in your Python environment. You'll also need to have R and the edgeR package installed on your system.
+Input data: Replace "read_counts.csv" with the path to your read count data. Ensure the first column contains gene IDs and the other columns are sample counts.
+Adjust conditions: Change the condition vector to reflect your experimental design.
+Consider filtering: You might want to filter low-count genes before analysis. You can add filtering steps after creating the dgelist object within the R code block. For example dgelist <- dgelist[rowSums(cpm(dgelist)>1)>=2,] to keep genes that have cpm >1 in 2 or more samples.
+This revised script provides a more robust and complete differential expression analysis pipeline using edgeR via rpy2, addressing potential errors and offering better control over the process.
