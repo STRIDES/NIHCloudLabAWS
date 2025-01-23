@@ -1,0 +1,51 @@
+# Snakefile
+
+rule all:
+    input:
+        expand("trimmed_data/{sample}.trimmed.fastq.gz", sample=glob_wildcards("raw_data/{sample}.fastq.gz").sample),
+        expand("fastqc_reports/{sample}.trimmed.fastqc.zip", sample=glob_wildcards("raw_data/{sample}.fastq.gz").sample),
+        expand("fastqc_reports/{sample}.trimmed.fastqc.html", sample=glob_wildcards("raw_data/{sample}.fastq.gz").sample)
+
+
+rule trim_reads:
+    input:
+        "raw_data/{sample}.fastq.gz"
+    output:
+        "trimmed_data/{sample}.trimmed.fastq.gz"
+    conda:
+        "environment.yml"
+    shell:
+        """
+        trimmomatic SE -phred33 {input} {output} ILLUMINACLIP:TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+        """
+
+rule fastqc:
+    input:
+        "trimmed_data/{sample}.trimmed.fastq.gz"
+    output:
+        report_zip="fastqc_reports/{sample}.trimmed.fastqc.zip",
+        report_html="fastqc_reports/{sample}.trimmed.fastqc.html"
+
+    conda:
+        "environment.yml"
+    shell:
+        """
+        fastqc {input} --outdir=fastqc_reports
+        """
+# environment.yml
+name: bioinformatics_workflow
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - trimmomatic
+  - fastqc
+Explanation and Key Improvements:
+
+Simplicity and Clarity: The Snakefile is structured for easy readability and maintainability.
+Glob Wildcards: Uses glob_wildcards for dynamic file discovery. This allows the workflow to automatically process all FASTQ files in the raw_data directory without needing to manually list them.
+Output Consistency: The output files are now consistently named and placed in dedicated directories (trimmed_data and fastqc_reports). This improves organization.
+Conda Integration: The conda: directive ensures that each rule uses the specified conda environment, guaranteeing consistent software versions and dependencies.
+Trimmomatic Parameters: Includes reasonable default parameters for Trimmomatic. These can be adjusted as needed. Assumes you have the adapter file TruSeq3-SE.fa available in the working directory (you will have to download this yourself, as external URLs are prohibited). You should also consider if these trimming parameters are appropriate to your dataset.
+FastQC Output: Explicitly captures both the .zip and .html output of FastQC using named output files.
+This improved solution provides a more robust and scalable foundation for your bioinformatics workflow. Remember to create the raw_data directory and place your .fastq.gz files inside it before running snakemake. You'll also need the adapter file for Trimmomatic as mentioned above.
