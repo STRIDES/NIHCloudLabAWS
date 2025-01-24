@@ -1,123 +1,90 @@
-#!/usr/bin/env python3
-
-"""
-Differential Expression Analysis using edgeR via rpy2
-This script performs RNA-Seq differential expression analysis using the edgeR package.
-"""
-
 import pandas as pd
-import numpy as np
-from rpy2.robjects import pandas2ri, r
-from rpy2.robjects.packages import importr
 import rpy2.robjects as ro
-import warnings
+from rpy2.robjects import pandas2ri
+from rpy2.robjects.packages import importr
+import numpy as np
 
-# Suppress warnings
-warnings.filterwarnings("ignore")
-
-def load_count_data(file_path):
+def perform_differential_expression_analysis(count_file, condition1_samples, condition2_samples, output_file):
     """
-    Load RNA-Seq count data from CSV file
+    Perform differential expression analysis using edgeR.
     
     Args:
-        file_path (str): Path to CSV file containing count data
-        
-    Returns:
-        pandas.DataFrame: Count data with genes as rows and samples as columns
-    """
-    counts_df = pd.read_csv(file_path)
-    return counts_df
-
-def perform_edger_analysis(counts_df, condition1_samples, condition2_samples, min_count=1):
-    """
-    Perform differential expression analysis using edgeR
-    
-    Args:
-        counts_df (pandas.DataFrame): Count data with genes as rows and samples as columns
+        count_file (str): Path to input CSV file containing read counts
         condition1_samples (list): List of sample names for condition 1
         condition2_samples (list): List of sample names for condition 2
-        min_count (int): Minimum count threshold for filtering genes
-        
-    Returns:
-        pandas.DataFrame: Results of differential expression analysis
+        output_file (str): Path to output CSV file for results
     """
-    # Convert pandas DataFrame to R DataFrame
+    # Read count data
+    counts_df = pd.read_csv(count_file, index_col='Gene ID')
+    
+    # Convert to R dataframe
     pandas2ri.activate()
+    counts_matrix = pandas2ri.py2rpy(counts_df)
     
     # Import required R packages
+    base = importr('base')
     edger = importr('edgeR')
     stats = importr('stats')
-    base = importr('base')
-    
-    # Prepare count matrix
-    count_matrix = counts_df.set_index('Gene ID')
-    all_samples = condition1_samples + condition2_samples
-    count_matrix = count_matrix[all_samples]
     
     # Create DGEList object
-    r_counts = pandas2ri.py2rpy(count_matrix)
-    group = ro.FactorVector(['group1'] * len(condition1_samples) + ['group2'] * len(condition2_samples))
-    dge = edger.DGEList(counts=r_counts, group=group)
+    dge = edger.DGEList(counts=counts_matrix)
     
-    # Filter low expression genes
-    keep = r.rowSums(dge.rx2('counts'))()/dge.rx2('samples').rx2('lib.size').ro[0] > min_count
-    dge = dge.rx(keep, True)
+    # Create design matrix
+    groups = []
+    for col in counts_df.columns:
+        if col in condition1_samples:
+            groups.append('condition1')
+        elif col in condition2_samples:
+            groups.append('condition2')
+    
+    design = stats.model_matrix(ro.Formula('~ group'), 
+                              data=base.data_frame(group=ro.StrVector(groups)))
     
     # Calculate normalization factors
     dge = edger.calcNormFactors(dge)
     
-    # Estimate dispersion
-    dge = edger.estimateCommonDisp(dge)
-    dge = edger.estimateTagwiseDisp(dge)
+    # Estimate dispersions
+    dge = edger.estimateGLMCommonDisp(dge, design)
+    dge = edger.estimateGLMTrendedDisp(dge, design)
+    dge = edger.estimateGLMTagwiseDisp(dge, design)
     
-    # Perform exact test for differential expression
-    et = edger.exactTest(dge)
+    # Fit GLM
+    fit = edger.glmFit(dge, design)
+    
+    # Perform likelihood ratio test
+    lrt = edger.glmLRT(fit, coef=2)
     
     # Get results
-    results = pandas2ri.rpy2py(base.as_data_frame(et.rx2('table')))
-    results.index = count_matrix[keep].index
-    results.reset_index(inplace=True)
+    results = edger.topTags(lrt, n=base.nrow(dge.rx2('counts')), adjust_method="BH")
     
-    # Add adjusted p-values
-    results['adj.P.Val'] = stats.p_adjust(results['PValue'], method='BH')
+    # Convert R results to pandas DataFrame
+    results_df = pandas2ri.rpy2py(results.rx2('table'))
     
     # Add differential expression status
-    results['Status'] = 'Not Significant'
-    results.loc[(abs(results['logFC']) >= 1) & (results['adj.P.Val'] < 0.05), 'Status'] = 'Significant'
+    results_df['Differential Expression Status'] = np.where(
+        results_df['FDR'] < 0.05, 'Significant', 'Not Significant'
+    )
     
-    # Rename columns
-    results.columns = ['Gene ID', 'log2FC', 'logCPM', 'P.Value', 'Adj.P.Value', 'DE.Status']
+    # Rename columns to match requirements
+    results_df = results_df.rename(columns={
+        'logFC': 'log2 Fold Change',
+        'PValue': 'p-value',
+        'FDR': 'Adjusted p-value'
+    })
     
-    return results[['Gene ID', 'log2FC', 'P.Value', 'Adj.P.Value', 'DE.Status']]
-
-def main():
-    """
-    Main function to run the differential expression analysis
-    """
-    # Example usage
-    input_file = "counts.csv"
-    output_file = "differential_expression_results.csv"
-    
-    # Define conditions
-    condition1_samples = ["Sample1", "Sample2", "Sample3"]
-    condition2_samples = ["Sample4", "Sample5", "Sample6"]
-    
-    try:
-        # Load count data
-        print("Loading count data...")
-        counts_df = load_count_data(input_file)
-        
-        # Perform differential expression analysis
-        print("Performing differential expression analysis...")
-        results = perform_edger_analysis(counts_df, condition1_samples, condition2_samples)
-        
-        # Save results
-        print(f"Saving results to {output_file}...")
-        results.to_csv(output_file, index=False)
-        print("Analysis complete!")
-        
-    except Exception as e:
-        print(f"Error: {str(e)}")
+    # Save results to CSV
+    results_df.to_csv(output_file)
 
 if __name__ == "__main__":
-    main()
+    # Example usage
+    count_file = "counts.csv"
+    condition1_samples = ["Sample1", "Sample2", "Sample3"]
+    condition2_samples = ["Sample4", "Sample5", "Sample6"]
+    output_file = "differential_expression_results.csv"
+    
+    perform_differential_expression_analysis(
+        count_file=count_file,
+        condition1_samples=condition1_samples,
+        condition2_samples=condition2_samples,
+        output_file=output_file
+    )
