@@ -99,10 +99,21 @@ The purpose of this document is to provide a comprehensive comparison of all pop
 
 ### Table Comparing Chatbots
 
-| Feature                     | GitHub Copilot | Anaconda | Jupyter-ai | Amazon Q and AWS CodeWhisperer | Gemini Code Assist |
-|-----------------------------|----------------|----------|------------|-------------------------------|--------------------|
-| Cost                        |                |          |            |                               |                    |
-| Security                    |                |          |            |                               |                    |
-| Cross-platform Capabilities |                |          |            |                               |                    |
-| Speed                       |                |          |            |                               |                    |
-
+| Feature                        | Amazon Q                                      | Gemini Code Assist                          | GitHub Copilot                              |
+|--------------------------------|----------------------------------------------|--------------------------------------------|---------------------------------------------|
+| **IDE Support**                |                                              |                                            |                                             |
+| **First Release Time**         |                                              |                                            |                                             |
+| **Developer**                  |                                              |                                            |                                             |
+| **Providing References to Suggestions** |                                              |                                            |                                             |
+| **Explanation of Suggestions** |                                              |                                            |                                             |
+| **Providing Multiple Suggestions** |                                              |                                            |                                             |
+| **Training Data Source**       |                                              |                                            |                                             |
+| **Programming Languages**      |                                              |                                            |                                             |
+| **Multipurpose Use**           |                                              |                                            |                                             |
+| **Subscription**               |                                              |                                            |                                             |
+| **Offline Use**                |                                              |                                            |                                             |
+| **Local File Access**          |                                              |                                            |                                             |
+| **Cost**                       |                                              |                                            |                                             |
+| **Data Security**              |                                              |                                            |                                             |
+| **Cross-Platform Capabilities**|                                              |                                            |                                             |
+| **Speed**                      |                                              |                                            |                                             |
