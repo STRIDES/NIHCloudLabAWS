@@ -1,0 +1,190 @@
+Here's a Python script that performs differential expression analysis using the popular DESeq2-like approach: [1]
+
+import pandas as pd
+import numpy as np
+from scipy import stats
+from statsmodels.stats.multitest import multipletests
+
+class DifferentialExpression:
+    def __init__(self, counts_file):
+        """Initialize with counts data file path"""
+        self.counts_df = pd.read_csv(counts_file, index_col='Gene_ID')
+        self.normalized_counts = None
+        self.results = None
+
+    def normalize_counts(self):
+        """
+        Normalize counts using DESeq2-like method:
+        1. Calculate geometric means per gene
+        2. Calculate size factors
+        3. Normalize counts by size factors
+        """
+        # Calculate geometric means for each gene
+        geometric_means = stats.gmean(self.counts_df, axis=1)
+        
+        # Calculate size factors
+        size_factors = []
+        for sample in self.counts_df.columns:
+            # Calculate ratios of counts to geometric means
+            ratios = self.counts_df[sample] / geometric_means
+            # Take median of ratios as size factor
+            size_factors.append(np.median(ratios[~np.isnan(ratios) & ~np.isinf(ratios)]))
+        
+        # Normalize counts
+        self.normalized_counts = self.counts_df.copy()
+        for i, sample in enumerate(self.counts_df.columns):
+            self.normalized_counts[sample] = self.counts_df[sample] / size_factors[i]
+        
+        return self.normalized_counts
+
+    def perform_differential_expression(self, condition1_samples, condition2_samples, 
+                                     alpha=0.05):
+        """
+        Perform differential expression analysis between two conditions
+        """
+        if self.normalized_counts is None:
+            self.normalize_counts()
+
+        results_dict = {
+            'Gene_ID': [],
+            'log2FoldChange': [],
+            'pvalue': [],
+            'padj': [],
+            'Status': []
+        }
+
+        # For each gene
+        for gene in self.normalized_counts.index:
+            # Get counts for both conditions
+            condition1_counts = self.normalized_counts.loc[gene, condition1_samples]
+            condition2_counts = self.normalized_counts.loc[gene, condition2_samples]
+            
+            # Calculate log2 fold change
+            mean_condition1 = np.mean(condition1_counts) + 1  # Add 1 to avoid log(0)
+            mean_condition2 = np.mean(condition2_counts) + 1
+            log2fc = np.log2(mean_condition2 / mean_condition1)
+            
+            # Perform t-test
+            t_stat, p_value = stats.ttest_ind(condition1_counts, condition2_counts)
+            
+            # Store results
+            results_dict['Gene_ID'].append(gene)
+            results_dict['log2FoldChange'].append(log2fc)
+            results_dict['pvalue'].append(p_value)
+        
+        # Create results dataframe
+        results_df = pd.DataFrame(results_dict)
+        
+        # Adjust p-values for multiple testing
+        results_df['padj'] = multipletests(results_df['pvalue'], 
+                                         method='fdr_bh')[1]
+        
+        # Add significance status
+        results_df['Status'] = 'Not Significant'
+        results_df.loc[(abs(results_df['log2FoldChange']) >= 1) & 
+                      (results_df['padj'] < alpha), 'Status'] = 'Significant'
+        
+        self.results = results_df
+        return self.results
+
+    def save_results(self, output_file):
+        """Save results to CSV file"""
+        if self.results is not None:
+            self.results.to_csv(output_file, index=False)
+            print(f"Results saved to {output_file}")
+        else:
+            print("No results to save. Run differential expression analysis first.")
+
+def main():
+    # Example usage
+    input_file = "counts_data.csv"
+    output_file = "differential_expression_results.csv"
+    
+    # Initialize analyzer
+    de_analyzer = DifferentialExpression(input_file)
+    
+    # Define conditions
+    condition1_samples = ['Sample1', 'Sample2', 'Sample3']  # Control samples
+    condition2_samples = ['Sample4', 'Sample5', 'Sample6']  # Treatment samples
+    
+    # Perform analysis
+    results = de_analyzer.perform_differential_expression(
+        condition1_samples,
+        condition2_samples,
+        alpha=0.05
+    )
+    
+    # Save results
+    de_analyzer.save_results(output_file)
+    
+    # Print summary
+    significant_genes = len(results[results['Status'] == 'Significant'])
+    print(f"\nAnalysis Summary:")
+    print(f"Total genes analyzed: {len(results)}")
+    print(f"Significantly differential expressed genes: {significant_genes}")
+
+if __name__ == "__main__":
+    main()
+
+Copy
+
+Insert at cursor
+python
+This script:
+
+Creates a DifferentialExpression class that handles the analysis workflow.
+
+Implements a DESeq2-like normalization method that:
+
+Calculates geometric means for each gene
+
+Determines size factors for each sample
+
+Normalizes counts using these size factors
+
+Performs differential expression analysis by:
+
+Computing log2 fold changes between conditions
+
+Performing t-tests for statistical significance
+
+Adjusting p-values for multiple testing using Benjamini-Hochberg method
+
+Identifying significantly differential expressed genes
+
+Outputs results in a CSV file with all required columns
+
+To use the script:
+
+Prepare your input CSV file with the format:
+
+Gene_ID,Sample1,Sample2,Sample3,Sample4,Sample5,Sample6
+Gene1,100,120,90,500,480,520
+Gene2,200,180,220,150,170,160
+...
+
+Copy
+
+Insert at cursor
+text
+Modify the sample names in the main() function to match your data.
+
+Run the script:
+
+python differential_expression_analysis.py
+
+Copy
+
+Insert at cursor
+python
+The script will:
+
+Load and normalize your count data
+
+Perform differential expression analysis
+
+Save results to a CSV file
+
+Print a summary of the analysis
+
+Note that this is a simplified version of differential expression analysis. For production use, consider using established packages like DESeq2 or edgeR through their Python interfaces, as they implement more sophisticated statistical models and handling of biological variability.
