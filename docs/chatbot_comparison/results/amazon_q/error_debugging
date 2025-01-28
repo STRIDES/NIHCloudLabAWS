@@ -4,9 +4,7 @@ I'll share updates here as I work on this.
 
 Summary of changes
 
-I need to create a new file to implement the DNA sequence length calculator based on the provided code. I'll create a new Python script with the corrected version of the code.
-
-I have created a corrected version of the DNA sequence length calculator that addresses several issues in the original code: proper error handling, modular design with separate functions for each task, comprehensive docstrings, and robust file handling. All the requirements have been met.
+The problem statement asks to review and correct a WDL script for samtools sort and index workflow. Since this WDL script isn't currently in the workspace, I'll create a new file to provide the corrected version.
 
 Files used
 These fields can change throughout code generation
@@ -15,107 +13,73 @@ Reviewed: 0
 
 Created: 1
 
-dna_sequence_length.py
+samtools_workflow.wdl
 
 Changed: 0
 
 Deleted: 0
 
 ```
-import csv
+workflow samtools_sort_index_workflow {
+    input {
+        File input_bam
+    }
 
-def read_fasta(file_path):
-    """
-    Read a FASTA file and return a dictionary of sequences.
-    
-    Args:
-        file_path (str): Path to the FASTA file
-        
-    Returns:
-        dict: Dictionary with sequence IDs as keys and sequences as values
-    """
-    sequences = {}
-    current_sequence_id = None
-    current_sequence = ''
-    
-    try:
-        with open(file_path, 'r') as file:
-            for line in file:
-                line = line.strip()
-                if line.startswith('>'):
-                    if current_sequence_id:
-                        sequences[current_sequence_id] = current_sequence
-                    current_sequence_id = line[1:].strip()
-                    current_sequence = ''
-                else:
-                    current_sequence += line
-            
-            # Don't forget to add the last sequence
-            if current_sequence_id:
-                sequences[current_sequence_id] = current_sequence
-                
-    except FileNotFoundError:
-        print(f"Error: The file {file_path} was not found.")
-        raise
-    except Exception as e:
-        print(f"An error occurred while reading the file: {str(e)}")
-        raise
-        
-    return sequences
+    call samtools_sort {
+        input:
+            bam_file = input_bam
+    }
 
-def calculate_sequence_lengths(sequences):
-    """
-    Calculate lengths of DNA sequences.
-    
-    Args:
-        sequences (dict): Dictionary of sequences
-        
-    Returns:
-        list: List of tuples containing (sequence_id, length)
-    """
-    return [(seq_id, len(sequence)) for seq_id, sequence in sequences.items()]
+    call samtools_index {
+        input:
+            sorted_bam = samtools_sort.sorted_bam
+    }
 
-def write_results_to_csv(results, output_file):
-    """
-    Write sequence lengths to CSV file.
-    
-    Args:
-        results (list): List of tuples containing (sequence_id, length)
-        output_file (str): Path to output CSV file
-    """
-    try:
-        with open(output_file, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(['Sequence ID', 'Sequence Length'])
-            writer.writerows(results)
-    except Exception as e:
-        print(f"An error occurred while writing to the CSV file: {str(e)}")
-        raise
+    output {
+        File sorted_bam = samtools_sort.sorted_bam
+        File bam_index = samtools_index.bam_index
+    }
+}
 
-def main():
-    """
-    Main function to execute the DNA sequence length calculation workflow.
-    """
-    try:
-        file_path = 'sequences.fasta'
-        output_file = 'sequence_lengths.csv'
-        
-        # Read sequences from FASTA file
-        sequences = read_fasta(file_path)
-        
-        # Calculate sequence lengths
-        results = calculate_sequence_lengths(sequences)
-        
-        # Write results to CSV
-        write_results_to_csv(results, output_file)
-        
-        print(f"Successfully processed {len(sequences)} sequences.")
-        print(f"Results have been written to {output_file}")
-        
-    except Exception as e:
-        print(f"Program failed: {str(e)}")
-        raise
+task samtools_sort {
+    input {
+        File bam_file
+    }
 
-if __name__ == '__main__':
-    main()
+    command <<<
+        samtools sort ${bam_file} -o sorted.bam
+    >>>
+
+    output {
+        File sorted_bam = "sorted.bam"
+    }
+
+    runtime {
+        docker: "biocontainers/samtools:v1.9-4-deb_cv1"
+        memory: "4G"
+        cpu: 2
+        disk: "100G"  # Added disk specification
+    }
+}
+
+task samtools_index {
+    input {
+        File sorted_bam
+    }
+
+    command <<<
+        samtools index ${sorted_bam}
+    >>>
+
+    output {
+        File bam_index = "${sorted_bam}.bai"  # Fixed to use the input BAM name
+    }
+
+    runtime {
+        docker: "biocontainers/samtools:v1.9-4-deb_cv1"
+        memory: "2G"
+        cpu: 1
+        disk: "50G"  # Added disk specification
+    }
+}
 ```
