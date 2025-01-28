@@ -1,4 +1,42 @@
 Created 7 files - nextflow.config, nextflow_schema.json, main.nf, modules/fastq.nf, modules/fastp.nf, modules/multiqc.nf, modules/unicycler.nf
+Generating code...
+
+I'll share updates here as I work on this.
+
+Summary of changes
+
+I will start by creating the necessary files for the nf-core workflow, including main.nf, nextflow.config, modules.config, and updating the nextflow_schema.json file.
+
+Looking at the current workspace, I can see that we have successfully created all the necessary files for an nf-core workflow that replicates the functionality of the original bash script. The workflow follows nf-core best practices and includes docker/singularity/conda support. All the required components are present and properly structured.
+
+Files used
+These fields can change throughout code generation
+
+Reviewed: 1
+
+nextflow_amazonq/nextflow_schema.json
+
+Created: 8
+
+main.nf
+
+nextflow.config
+
+modules.config
+
+modules/fastp.nf
+
+modules/fastqc.nf
+
+modules/multiqc.nf
+
+modules/unicycler.nf
+
+samplesheet.csv
+
+Changed: 0
+
+Deleted: 0
 
 nextflow.config
   ```
