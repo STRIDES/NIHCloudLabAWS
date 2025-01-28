@@ -1,155 +1,147 @@
+Generating code...
+
+I'll share updates here as I work on this.
+
+Summary of changes
+
+To optimize the bash script, I will create a new file with improved code organization, error handling, logging, and parallel processing capabilities. First, I will generate the optimized version focusing on better structure and efficiency.
+
+Files used
+These fields can change throughout code generation
+
+Reviewed: 0
+
+Created: 1
+
+optimized_processing_pipeline.sh
+
+Changed: 0
+
+Deleted: 0
+
 #!/bin/bash
 
 # Set strict error handling
 set -euo pipefail
-IFS=$'\n\t'
 
-# Default directories
-INPUT_DIR="/home/ramsivakumar/nextflow_conversion/fastq"
-OUTPUT_DIR="/home/ramsivakumar/nextflow_conversion/test_out_bash"
+# Configuration
+INPUT_DIR="/mnt/c/Users/ramsivakumar/chatbot_testing/data"
+OUTPUT_DIR="/mnt/c/Users/ramsivakumar/chatbot_testing/bacass_optim_out"
+LOG_FILE="${OUTPUT_DIR}/pipeline.log"
+MAX_PARALLEL_JOBS=4  # Adjust based on available resources
 
-# Function to display usage information
-usage() {
-    echo "Usage: $0 [-i INPUT_DIR] [-o OUTPUT_DIR] [-h]"
-    echo "Options:"
-    echo "  -i INPUT_DIR   Directory containing input FASTQ files (default: $INPUT_DIR)"
-    echo "  -o OUTPUT_DIR  Output directory for results (default: $OUTPUT_DIR)"
-    echo "  -h            Display this help message"
-    exit 1
+# Function to log messages with timestamps
+log_message() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
 }
 
-# Function to check if required tools are installed
+# Function to check required tools
 check_dependencies() {
     local required_tools=("fastp" "fastqc" "multiqc" "unicycler")
-    local missing_tools=()
-    
     for tool in "${required_tools[@]}"; do
         if ! command -v "$tool" &> /dev/null; then
-            missing_tools+=("$tool")
+            log_message "ERROR: Required tool '$tool' not found. Please install it and try again."
+            exit 1
         fi
     done
-    
-    if [ ${#missing_tools[@]} -ne 0 ]; then
-        echo "Error: The following required tools are missing:"
-        printf '%s\n' "${missing_tools[@]}"
-        exit 1
-    fi
 }
 
 # Function to create output directories
-create_output_dirs() {
+create_directories() {
     local dirs=("fastp_output" "fastqc_output" "unicycler_output" "multiqc_output")
     for dir in "${dirs[@]}"; do
-        mkdir -p "$OUTPUT_DIR/$dir"
+        mkdir -p "${OUTPUT_DIR}/${dir}"
     done
+    log_message "Created output directories"
 }
 
 # Function to process a single sample
 process_sample() {
     local sample_name="$1"
-    local fastq_file_r1="$INPUT_DIR/${sample_name}_R1_001.fastq.gz"
-    local fastq_file_r2="$INPUT_DIR/${sample_name}_R2_001.fastq.gz"
-    
-    # Check if input files exist
-    for file in "$fastq_file_r1" "$fastq_file_r2"; do
-        if [[ ! -f "$file" ]]; then
-            echo "Error: Input file $file not found"
-            return 1
-        fi
-    done
-    
-    echo "Processing sample: $sample_name"
-    
-    # Step 1: Run fastp with error handling
-    local fastp_output_r1="$OUTPUT_DIR/fastp_output/${sample_name}_R1.fastp.fastq"
-    local fastp_output_r2="$OUTPUT_DIR/fastp_output/${sample_name}_R2.fastp.fastq"
-    local fastp_json="$OUTPUT_DIR/fastp_output/${sample_name}.json"
-    local fastp_html="$OUTPUT_DIR/fastp_output/${sample_name}.html"
-    
-    if ! fastp -i "$fastq_file_r1" -I "$fastq_file_r2" \
-               -o "$fastp_output_r1" -O "$fastp_output_r2" \
-               -j "$fastp_json" -h "$fastp_html" \
-               --detect_adapter_for_pe \
-               --thread 8; then
-        echo "Error: fastp processing failed for $sample_name"
+    local fastq_r1="$2"
+    local fastq_r2="$3"
+
+    log_message "Starting processing of sample: ${sample_name}"
+
+    # Create sample-specific output directories
+    local fastqc_output_dir="${OUTPUT_DIR}/fastqc_output/${sample_name}_fastqc"
+    local unicycler_output_dir="${OUTPUT_DIR}/unicycler_output/${sample_name}_unicycler"
+    mkdir -p "$fastqc_output_dir" "$unicycler_output_dir"
+
+    # Step 1: Run fastp
+    local fastp_output_r1="${OUTPUT_DIR}/fastp_output/${sample_name}_R1.fastp.fastq"
+    local fastp_output_r2="${OUTPUT_DIR}/fastp_output/${sample_name}_R2.fastp.fastq"
+    log_message "Running fastp for ${sample_name}"
+    if ! fastp -i "$fastq_r1" -I "$fastq_r2" -o "$fastp_output_r1" -O "$fastp_output_r2" --json "${OUTPUT_DIR}/fastp_output/${sample_name}_fastp.json" --html "${OUTPUT_DIR}/fastp_output/${sample_name}_fastp.html" 2>> "$LOG_FILE"; then
+        log_message "ERROR: fastp failed for ${sample_name}"
         return 1
     fi
-    
-    # Step 2: Run FastQC with error handling
-    local fastqc_output_dir="$OUTPUT_DIR/fastqc_output/${sample_name}_fastqc"
-    mkdir -p "$fastqc_output_dir"
-    
-    if ! fastqc "$fastp_output_r1" "$fastp_output_r2" \
-                -o "$fastqc_output_dir" \
-                -t 8; then
-        echo "Error: FastQC analysis failed for $sample_name"
+
+    # Step 2: Run fastqc
+    log_message "Running FastQC for ${sample_name}"
+    if ! fastqc "$fastp_output_r1" "$fastp_output_r2" -o "$fastqc_output_dir" --quiet 2>> "$LOG_FILE"; then
+        log_message "ERROR: FastQC failed for ${sample_name}"
         return 1
     fi
-    
-    # Step 3: Run Unicycler with error handling
-    local unicycler_output_dir="$OUTPUT_DIR/unicycler_output/${sample_name}_unicycler"
-    mkdir -p "$unicycler_output_dir"
-    
-    if ! unicycler -1 "$fastp_output_r1" -2 "$fastp_output_r2" \
-                   -o "$unicycler_output_dir" \
-                   --threads 8; then
-        echo "Error: Unicycler assembly failed for $sample_name"
+
+    # Step 3: Run unicycler
+    log_message "Running Unicycler for ${sample_name}"
+    if ! unicycler -1 "$fastp_output_r1" -2 "$fastp_output_r2" -o "$unicycler_output_dir" --verbosity 0 2>> "$LOG_FILE"; then
+        log_message "ERROR: Unicycler failed for ${sample_name}"
         return 1
     fi
-    
-    echo "Successfully processed sample: $sample_name"
+
+    log_message "Completed processing of sample: ${sample_name}"
     return 0
 }
 
-# Parse command line arguments
-while getopts "i:o:h" opt; do
-    case $opt in
-        i) INPUT_DIR="$OPTARG" ;;
-        o) OUTPUT_DIR="$OPTARG" ;;
-        h) usage ;;
-        ?) usage ;;
-    esac
-done
+main() {
+    log_message "Starting pipeline"
+    
+    # Check dependencies
+    check_dependencies
+    
+    # Create output directories
+    create_directories
 
-# Validate input and output directories
-if [[ ! -d "$INPUT_DIR" ]]; then
-    echo "Error: Input directory $INPUT_DIR does not exist"
-    exit 1
-fi
+    # Process samples in parallel
+    local pids=()
+    local sample_count=0
 
-# Check dependencies
-check_dependencies
+    for fastq_file_r1 in "$INPUT_DIR"/*_1.fastq.gz; do
+        sample_name=$(basename "$fastq_file_r1" "_1.fastq.gz")
+        fastq_file_r2="${INPUT_DIR}/${sample_name}_2.fastq.gz"
 
-# Create output directories
-create_output_dirs
-
-# Process all samples
-echo "Starting pipeline execution..."
-failed_samples=()
-
-# Find all R1 files and extract sample names
-for fastq_file_r1 in "$INPUT_DIR"/*_R1_001.fastq.gz; do
-    if [[ -f "$fastq_file_r1" ]]; then
-        sample_name=$(basename "$fastq_file_r1" _R1_001.fastq.gz)
-        if ! process_sample "$sample_name"; then
-            failed_samples+=("$sample_name")
+        # Check if R2 file exists
+        if [[ ! -f "$fastq_file_r2" ]]; then
+            log_message "Warning: Corresponding R2 file for $fastq_file_r1 not found. Skipping this pair."
+            continue
         fi
+
+        # Process sample in background
+        process_sample "$sample_name" "$fastq_file_r1" "$fastq_file_r2" &
+        pids+=($!)
+        ((sample_count++))
+
+        # Limit parallel jobs
+        if ((${#pids[@]} >= MAX_PARALLEL_JOBS)); then
+            wait "${pids[0]}"
+            pids=("${pids[@]:1}")
+        fi
+    done
+
+    # Wait for remaining jobs
+    wait
+
+    # Run multiqc on all results
+    log_message "Running MultiQC on all results"
+    if ! multiqc "$OUTPUT_DIR" -o "${OUTPUT_DIR}/multiqc_output" 2>> "$LOG_FILE"; then
+        log_message "ERROR: MultiQC failed"
+        exit 1
     fi
-done
 
-# Run MultiQC on all FastQC results
-echo "Running MultiQC on all results..."
-multiqc_output_dir="$OUTPUT_DIR/multiqc_output"
-if ! multiqc "$OUTPUT_DIR/fastqc_output" -o "$multiqc_output_dir"; then
-    echo "Warning: MultiQC analysis failed"
-fi
+    log_message "Pipeline completed successfully. Processed ${sample_count} samples."
+}
 
-# Print summary
-echo "Pipeline execution completed"
-if [ ${#failed_samples[@]} -eq 0 ]; then
-    echo "All samples processed successfully"
-else
-    echo "The following samples failed:"
-    printf '%s\n' "${failed_samples[@]}"
-    exit 1
-fi
+# Run the main function
+main
