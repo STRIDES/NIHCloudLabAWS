@@ -1,4 +1,0 @@
-Prompt 2 : "Write a Python script that performs differential expression analysis on RNA-Seq data using the edgeR package (via rpy2 for R integration). The script should:
-    1.	Load a CSV file containing RNA-Seq read counts with columns: Gene ID, Sample 1, Sample 2, ..., Sample N.
-    2.	Use the edgeR package to normalize the read counts and perform differential expression analysis between two specified conditions.
-    3.	Output the results in a CSV file with columns: Gene ID, log2 Fold Change, p-value, Adjusted p-value, Differential Expression Status (Significant/Not Significant)."
