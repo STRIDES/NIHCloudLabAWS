@@ -2,7 +2,9 @@
 
 ## Introduction and Purpose of the Document
 
-The purpose of this document is to provide a comprehensive comparison of all popular coding chatbots, helping readers understand the different features each offer.## Amazon Q Developer
+The purpose of this document is to provide a comprehensive comparison of all popular coding chatbots, helping readers understand the different features each offer.
+
+## Amazon Q Developer
 
 ### Overview
 
