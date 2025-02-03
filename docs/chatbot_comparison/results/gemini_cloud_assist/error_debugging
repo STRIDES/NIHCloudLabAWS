@@ -1,38 +1,73 @@
-The provided script has one main issue: it doesn't correctly handle the last sequence in the FASTA file. Here's the corrected version:
+```
+workflow samtools_sort_index_workflow {
+    input {
+        File input_bam
+    }
 
-import csv
+    call samtools_sort {
+        input:
+            bam_file = input_bam
+    }
 
-def read_fasta(file_path):
-    sequences = {}
-    with open(file_path, 'r') as file:
-        sequence_id = None
-        sequence = ''
-        for line in file:
-            if line.startswith('>'):
-                if sequence_id:
-                    sequences[sequence_id] = sequence
-                sequence_id = line[1:].strip()
-                sequence = ''
-            else:
-                sequence += line.strip()
-        # Add the last sequence
-        if sequence_id:  # Important check in case the file is empty
-            sequences[sequence_id] = sequence
-    return sequences
+    call samtools_index {
+        input:
+            sorted_bam = samtools_sort.output_sorted_bam  # Use the output field name from the task
+    }
 
-def main():
-    file_path = 'sequences.fasta'
-    output_file = 'sequence_lengths.csv'
-    
-    sequences = read_fasta(file_path)
-    
-    with open(output_file, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(['Sequence ID', 'Sequence Length'])
-        for seq_id, sequence in sequences.items():
-            length = len(sequence)
-            writer.writerow([seq_id, length])
+    output {
+        File sorted_bam = samtools_sort.output_sorted_bam # Use output from task, and consistent naming
+        File bam_index = samtools_index.bam_index
+    }
+}
 
-if __name__ == '__main__':
-    main()
-The problem was in the read_fasta function. After reading the last line of a sequence, the code needs to add that sequence to the sequences dictionary. The original code only added a sequence when it encountered a new sequence header (a line starting with '>'). The solution adds a check after the loop to ensure the last sequence is added. The if sequence_id: condition handles cases where the input FASTA file might be empty, preventing potential errors.
+task samtools_sort {
+    input {
+        File bam_file
+    }
+
+    command {
+        samtools sort -o sorted.bam ${bam_file} #Corrected output redirection, should precede file
+    }
+
+    output {
+        File output_sorted_bam = "sorted.bam" # Added output_ prefix for clarity and WDL compatibility.
+    }
+
+    runtime {
+        docker: "biocontainers/samtools:v1.9-4-deb_cv1"
+        memory: "4 GB"  # Added unit to memory
+        cpu: 2
+    }
+}
+
+task samtools_index {
+    input {
+        File sorted_bam
+    }
+
+    command {
+        samtools index ${sorted_bam}
+    }
+
+    output {
+        File bam_index = "${sorted_bam}.bai" #  Use input filename to create output dynamically
+    }
+
+    runtime {
+        docker: "biocontainers/samtools:v1.9-4-deb_cv1"
+        memory: "2 GB" # Added unit to memory
+        cpu: 1
+    }
+}
+```
+Key Corrections and Explanations:
+
+Output Field Names: In the samtools_sort task, the output file was defined with the name "sorted.bam", but the workflow was attempting to access it as samtools_sort.sorted_bam. This has been corrected by changing the task's output name to output_sorted_bam. The workflow now correctly references samtools_sort.output_sorted_bam.
+
+samtools sort Command: The samtools sort command had incorrect syntax for output redirection. The -o flag should precede the output filename. It's been changed from samtools sort ${bam_file} -o sorted.bam to samtools sort -o sorted.bam ${bam_file}.
+
+samtools index Output: The output file for samtools index was hardcoded as "sorted.bam.bai". This would be problematic if the input BAM had a different name. It has been changed to ${sorted_bam}.bai, which dynamically generates the index filename based on the input BAM, ensuring the correct .bai file is created for any input BAM file name.
+
+Memory Specification: The runtime blocks in both tasks had memory specified as "4G" and "2G". WDL 1.0 requires memory units (e.g., GB, MB). This has been corrected to "4 GB" and "2 GB".
+
+With these changes, the WDL script should now execute correctly, producing a sorted BAM file and its corresponding index. It's also more robust and adaptable to different input BAM file names.
