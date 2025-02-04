@@ -31,32 +31,32 @@ The purpose of this document is to provide a comprehensive comparison of all pop
 
 ### Code Development Comparison Table
 
-| **Category**             | **Topic**                                | Test | AWS Developer Q | Google Gemini Assist | GitHub Copilot | Anaconda AI |
-|--------------------------|------------------------------------------|------|-----------------|----------------------|----------------|-------------|
-| **Scripting: Python**    | Includes all of the prompt requirements  |      |                 |                      |                |             |
-|                          | Demonstrates proficiency in the language mentioned |      |                 |                      |                |             |
-|                          | Includes comments + explanations to aid users |      |                 |                      |                |             |
-|                          | Code was free of Errors                  |      |                 |                      |                |             |
-| **Scripting: R**         | Includes all of the prompt requirements  |      |                 |                      |                |             |
-|                          | Demonstrates proficiency in the language mentioned |      |                 |                      |                |             |
-|                          | Includes comments + explanations to aid users |      |                 |                      |                |             |
-|                          | Code was free of Errors                  |      |                 |                      |                |             |
-| **Scripting: Snakemake** | Includes all of the prompt requirements  |      |                 |                      |                |             |
-|                          | Demonstrates proficiency in the language mentioned |      |                 |                      |                |             |
-|                          | Includes comments + explanations to aid users |      |                 |                      |                |             |
-|                          | Code was free of Errors                  |      |                 |                      |                |             |
-| **Code Conversion: Python to Nextflow** | Includes all of the prompt requirements  |      |                 |                      |                |             |
-|                          | Demonstrates proficiency in the language mentioned |      |                 |                      |                |             |
-|                          | Includes comments + explanations to aid users |      |                 |                      |                |             |
-|                          | Code was free of Errors                  |      |                 |                      |                |             |
-| **Error Debugging: WDL** | Includes all of the prompt requirements  |      |                 |                      |                |             |
-|                          | Demonstrates proficiency in the language mentioned |      |                 |                      |                |             |
-|                          | Includes comments + explanations to aid users |      |                 |                      |                |             |
-|                          | Code was free of Errors                  |      |                 |                      |                |             |
-| **Optimization: BASH**   | Includes all of the prompt requirements  |      |                 |                      |                |             |
-|                          | Demonstrates proficiency in the language mentioned |      |                 |                      |                |             |
-|                          | Includes comments + explanations to aid users |      |                 |                      |                |             |
-|                          | Code was free of Errors                  |      |                 |                      |                |             |
+| **Topic**             | **Test**                                | **AWS Developer Q** | **Google Gemini Assist** | **GitHub Copilot** | **Anaconda AI** |
+|--------------------------|------------------------------------------|---------------------|--------------------------|--------------------|-----------------|
+| **Scripting: Python**    | Includes all of the prompt requirements  |                     |                          |                    |                 |
+|                          | Demonstrates proficiency in the language mentioned |                     |                          |                    |                 |
+|                          | Includes comments + explanations to aid users |                     |                          |                    |                 |
+|                          | Code was free of Errors                  |                     |                          |                    |                 |
+| **Scripting: R**         | Includes all of the prompt requirements  |                     |                          |                    |                 |
+|                          | Demonstrates proficiency in the language mentioned |                     |                          |                    |                 |
+|                          | Includes comments + explanations to aid users |                     |                          |                    |                 |
+|                          | Code was free of Errors                  |                     |                          |                    |                 |
+| **Scripting: Snakemake** | Includes all of the prompt requirements  |                     |                          |                    |                 |
+|                          | Demonstrates proficiency in the language mentioned |                     |                          |                    |                 |
+|                          | Includes comments + explanations to aid users |                     |                          |                    |                 |
+|                          | Code was free of Errors                  |                     |                          |                    |                 |
+| **Code Conversion: Python to Nextflow** | Includes all of the prompt requirements  |                     |                          |                    |                 |
+|                          | Demonstrates proficiency in the language mentioned |                     |                          |                    |                 |
+|                          | Includes comments + explanations to aid users |                     |                          |                    |                 |
+|                          | Code was free of Errors                  |                     |                          |                    |                 |
+| **Error Debugging: WDL** | Includes all of the prompt requirements  |                     |                          |                    |                 |
+|                          | Demonstrates proficiency in the language mentioned |                     |                          |                    |                 |
+|                          | Includes comments + explanations to aid users |                     |                          |                    |                 |
+|                          | Code was free of Errors                  |                     |                          |                    |                 |
+| **Optimization: BASH**   | Includes all of the prompt requirements  |                     |                          |                    |                 |
+|                          | Demonstrates proficiency in the language mentioned |                     |                          |                    |                 |
+|                          | Includes comments + explanations to aid users |                     |                          |                    |                 |
+|                          | Code was free of Errors                  |                     |                          |                    |                 |
 
 ### General Feature Comparison Table
 
