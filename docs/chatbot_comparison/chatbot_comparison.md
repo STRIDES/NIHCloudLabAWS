@@ -29,7 +29,7 @@ The purpose of this document is to provide a comprehensive comparison of all pop
 ### Overview
 ### Features 
 
-### Code Development Comparison Table
+## Code Development Comparison Table
 
 | **Topic**             | **Test**                                | **AWS Developer Q** | **Google Gemini Assist** | **GitHub Copilot** | **Anaconda AI** |
 |--------------------------|------------------------------------------|---------------------|--------------------------|--------------------|-----------------|
@@ -58,7 +58,10 @@ The purpose of this document is to provide a comprehensive comparison of all pop
 |                          | Includes comments + explanations to aid users |                     |                          |                    |                 |
 |                          | Code was free of Errors                  |                     |                          |                    |                 |
 
-### General Feature Comparison Table
+
+Additional Notes: 
+
+## General Feature Comparison Table
 
 | **Topic**                | **Feature**                              | **Amazon Q Developer** | **Gemini Code Assist** | **GitHub Copilot** | **Anaconda AI** |
 |--------------------------|------------------------------------------|------------------------|------------------------|--------------------|-----------------|
@@ -79,3 +82,5 @@ The purpose of this document is to provide a comprehensive comparison of all pop
 | **Benchmarking**         | Speed                                    |                        |                        |                    |                 |
 |                          | Accuracy                                 |                        |                        |                    |                 |
 |                          | Consistency                              |                        |                        |                    |                 |
+
+Additional Notes: 
