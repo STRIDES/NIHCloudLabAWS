@@ -31,7 +31,7 @@ The purpose of this document is to provide a comprehensive comparison of all pop
 
 ## Code Development Comparison Table
 
-| **Topic**             | **Test**                                | **AWS Developer Q** | **Google Gemini Assist** | **GitHub Copilot** | **Anaconda AI** |
+| **Topic**             | **Test**                                | **Amazon Q Developer** | ** Gemini Code Assist** | **GitHub Copilot** | **Anaconda AI** |
 |--------------------------|------------------------------------------|---------------------|--------------------------|--------------------|-----------------|
 | **Scripting: Python**    | Includes all of the prompt requirements  |                     |                          |                    |                 |
 |                          | Demonstrates proficiency in the language mentioned |                     |                          |                    |                 |
