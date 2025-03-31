@@ -1,4 +1,4 @@
-# Searching the SRA database using Amazon Athena
+# Creating and Searching a database using Amazon Athena
 
 1) Navigate to the Amazon Athena homepage. Click **Data sources and catalogs**.
 
@@ -24,24 +24,19 @@
 
 <img src="./images/athena/6_click_add_data_source.png">
 
-7) Now we add the data source. For *Data source* select **S3**. For *Location of S3 data* and select **In a diffirent account**. For *S3 path* select one of the two paths from this [NCBI guide](https://www.ncbi.nlm.nih.gov/sra/docs/sra-athena/) which is either:
-- Entire SRA metadata: s3://sra-pub-metadata-us-east-1
-- Coronaviridae dataset in the AWS Public Dataset Program: s3://sra-pub-sars-cov2-metadata-us-east-1/v2/
-
-
-Click **Add an S3 data source**. 
+7) Now we add the data source.
 
 <img src="./images/athena/7_add_data_source.png">
 
-8) Select **Create an IAM role**, give your role some kind of name like `sraCrawler`. This will add a role and grant it permissions to access the public S3 bucket with the SRA metadata. Feel free to go to `IAM` and search for the Role you just created. Click **Next**.
+8) Select **Create an IAM role**, give your role some kind of name like `sraCrawler`. Click on `Update choosen IAM Role`. This will add a role and grant it permissions to access the public S3 bucket. Click **Next**.
 
 <img src="./images/athena/8_create_role.png">
 
-9) For **Set output and scheduling**, leave the default options and click **Next**. 
+9) For **Target database**, Click **Add database**. 
 
 <img src="./images/athena/9_output_scheduling.png">
 
-10) Name your Database. Click **Create database**.
+10) Name your database. Click **Create database**.
 
 <img src="./images/athena/10_create_database.png">
 
@@ -49,7 +44,7 @@ Click **Add an S3 data source**.
 
 <img src="./images/athena/11_run_crawler.png">
 
-## Query the SRA metadata via Athena user interface
+## Query the database via Athena user interface
 
 1) Navigate to the `Amazon Athena > Query editor`. Before you run you need to set up query result location in Amazon S3. Click `Edit setting`.
 
@@ -69,6 +64,6 @@ Click **Add an S3 data source**.
 
 
 
-## Query the SRA metadata using via Jupyter Notebook
+## Query a databse via Jupyter Notebook
 
-You can query the SRA database via a Jupyter Notebook. We provide an example [here](https://github.com/STRIDES/NIHCloudLabAWS/blob/main/notebooks/SRADownload/SRA-Download.ipynb), as well as [these examples](https://github.com/ncbi/ASHG-Workshop-2021) produced by the SRA team. In that GitHub repo, you can view notebook 2 and adapt it from BigQuery to Athena, and then notebook 3 is a great example or different kinds of Athena queries you can run. 
+You can query a database via a Jupyter Notebook. We provide an example [here](https://github.com/STRIDES/NIHCloudLabAWS/blob/main/notebooks/SRADownload/SRA-Download.ipynb), as well as [these examples](https://github.com/ncbi/ASHG-Workshop-2021). 
