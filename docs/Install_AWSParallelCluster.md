@@ -123,7 +123,7 @@ export PATH="$HOME/mambaforge/bin:$PATH"
     Output should display version number.
 
  ## 5. Move on to configuring and connecting to your cluster
- Follow the [next instructions](/docs/Configure_AWSParallelCluster.md) on how to configure your cluster via the command line. Otherwise checkout our tutorial for using Parallel Cluster via the console to run Snakemake workflows [here](https://github.com/STRIDES/NIHCloudLabAWS/blob/aws-parallel-cluster/notebooks/Snakemake/AWS-ParallelCluster.ipynb).
+ Follow the [next instructions](/docs/Configure_AWSParallelCluster.md) on how to configure your cluster via the command line. Otherwise, check out our tutorial for using Parallel Cluster via the console to run **Snakemake workflows** [here](https://github.com/STRIDES/NIHCloudLabAWS/blob/main/notebooks/Snakemake/AWS-ParallelCluster.ipynb).
 
 
 
