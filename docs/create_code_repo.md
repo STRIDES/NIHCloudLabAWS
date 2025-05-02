@@ -1,5 +1,7 @@
 # Guide to using AWS CodeCommit
 
+**IMPORTANT: This AWS service will be transitioned out, only existing customers since July 25, 2024 can continue to use this service**
+
 Most NIH Cloud Lab users are probably used to using GitHub to manage and access code. The cloud providers also offer their own managed git repositories, which allows you to keep all your code within AWS without any external integrations.
 Follow this guide to learn how to set up and use AWS CodeCommit.
 
