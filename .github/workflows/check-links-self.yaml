@@ -10,4 +10,4 @@ jobs:
     name: 'Link Check'
     uses: STRIDES/NIHCloudLab/.github/workflows/check-links.yaml@main
     with:
-      repo_link_ignore_list: "https://REPLACE_WITH_YOUR_IPv4_ADDRESS:8080, https://iam.nih.gov"
+      repo_link_ignore_list: "https://REPLACE_WITH_YOUR_IPv4_ADDRESS:8080,https://iam.nih.gov"
