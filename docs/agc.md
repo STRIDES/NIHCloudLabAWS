@@ -1,4 +1,6 @@
-### Using the Amazon Genomics CLI (agc) in Coud Lab
+### [Deprecated] Using the Amazon Genomics CLI (agc) in Cloud Lab
+
+**IMPORTANT: Amazon Genomics CLI (agc) has been deprecated, please use Amazon [HealthOmics](https://docs.aws.amazon.com/omics/) instead**
 
 The following instructions follow the [AWS docs](https://aws.github.io/amazon-genomics-cli/docs/), but with some tips and tricks specific to Cloud Lab. Read more about the specifics of the agc tool in the [docs](https://aws.github.io/amazon-genomics-cli/docs/concepts/).
 
