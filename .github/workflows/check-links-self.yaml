@@ -2,6 +2,9 @@ name: 'Check Links'
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+    - './docs/agc.md'
+    - './docs/Genomics_Workflows.md'
   schedule:
     - cron: '0 0 1 */3 *'
 
@@ -10,4 +13,4 @@ jobs:
     name: 'Link Check'
     uses: STRIDES/NIHCloudLab/.github/workflows/check-links.yaml@main
     with:
-      repo_link_ignore_list: "https://REPLACE_WITH_YOUR_IPv4_ADDRESS:8080,https://iam.nih.gov"
+      repo_link_ignore_list: ""
